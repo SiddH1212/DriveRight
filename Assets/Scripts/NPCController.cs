@@ -1,0 +1,240 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class NPCController : MonoBehaviour
+{
+    public float speed = 10f;
+    public float rotationSpeed = 1f;
+    public float nodeReachThreshold = 1.5f;
+    public float unsafeDistance = 5f;
+    public float minTailgatingDistance = 2.3f, midTailgatingDistance = 3.5f, maxTailgatingDistance = 5f;
+    public float upShift = 1f;
+    public float minTailgatingPenalty = 5f, midTailgatingPenalty = 10f, maxTailgatingPenalty = 20f;
+    public float minStoppingDistance = 2f;  // Minimum distance to stop completely
+    public float decelerationFactor = 30f;  // High value for rapid deceleration
+    public float accelerationFactor = 2f;   // Lower value for smooth acceleration
+    private float unpredictability = 100f;
+
+    private LaneNode currentNode;
+    private LaneNode targetNode;
+    private LaneNode previousNode;
+
+    private Rigidbody rb;
+    public RoadGraph roadGraph;
+    private bool TailgatingMax = false, TailgatingMid = false, TailgatingMin = false;
+    private float currentSpeed;             // Current speed adjusted dynamically
+    public GameManager gameManager;
+    private int vehicleLayerMask;           // Layer mask to detect only vehicles
+    private NPCIndicator npcIndicator = null;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        TryGetComponent<NPCIndicator>(out npcIndicator);
+        currentSpeed = speed;  // Initialize currentSpeed to max speed
+
+        if (roadGraph == null || roadGraph.Nodes.Count == 0 || roadGraph.Nodes[0].Outgoing.Count == 0 || roadGraph.Nodes[0].Position == Vector3.zero)
+        {
+            Debug.Log("Graph loaded from NPC script");
+            roadGraph.Load();
+        }
+
+        currentNode = roadGraph.GetClosestNode(transform.position, 20f);
+
+        if (currentNode != null && currentNode.Outgoing.Count > 0)
+        {
+            // depending on the predictability, we choose if we would move on the graph or we'd make an unpredictable move
+
+            // predictable case: moving on the next graph node
+            targetNode = currentNode.Outgoing[Random.Range(0, currentNode.Outgoing.Count)];
+            // targetNode = currentNode.Outgoing[0];
+        }
+
+        vehicleLayerMask = LayerMask.GetMask("Vehicles");
+    }
+
+    void FixedUpdate()
+    {
+        if (currentNode == null || targetNode == null) return;
+
+        MoveTowardsTarget();
+        CheckUnsafeDistance();
+    }
+
+    void MoveTowardsTarget()
+    {
+        Vector3 toTarget = targetNode.Position - transform.position;
+        toTarget.y = 0;
+
+        if (toTarget.magnitude <= nodeReachThreshold)
+        {
+            previousNode = currentNode;
+            currentNode = targetNode;
+
+            List<LaneNode> options = currentNode.Outgoing.ToList();
+
+            if (options.Count > 0)
+            {
+                targetNode = options[Random.Range(0, options.Count)];
+
+                // unpredictable case: moving to a random nearby node in close to the target node, and has same direction as movement
+                if (Random.Range(0, 1000) < unpredictability)
+                {
+                    List<LaneNode> Prospects = roadGraph.GetNodesFacing(roadGraph.GetNearbyNodes(currentNode.Position, targetNode.Position, 15f, 0.9f), targetNode.Position - currentNode.Position, 0.9f);
+                    if (Prospects.Count > 0) targetNode = Prospects[Random.Range(0, Prospects.Count)];
+                }
+
+                // targetNode = options[0];
+            }
+            else
+            {
+                targetNode = null;
+            }
+
+            return;
+        }
+
+        Vector3 dir = toTarget.normalized;
+
+        Vector3 horizontalVelocity = dir * currentSpeed;
+        horizontalVelocity.y = rb.velocity.y;
+        rb.velocity = horizontalVelocity;
+
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    void CheckUnsafeDistance()
+    {
+        Vector3 back = -transform.forward;
+        Vector3 upOffset = Vector3.up * upShift;
+
+        Ray rayBack     = new Ray(transform.position + upOffset, back);
+        Ray rayFront    = new Ray(transform.position + upOffset, transform.forward);
+        Ray rayFrontL   = new Ray(transform.position + upOffset, transform.forward + 0.2f * Vector3.Cross(transform.up, transform.forward));
+        Ray rayFrontR   = new Ray(transform.position + upOffset, transform.forward - 0.2f * Vector3.Cross(transform.up, transform.forward));
+
+        // Back raycast with layer mask
+        if (checkHit(rayBack, minTailgatingDistance, vehicleLayerMask))
+        {
+            if (!TailgatingMin) gameManager.UpdateScore(-(int)maxTailgatingPenalty, "Driving too close behind another vehicle: severity 3/3");
+            TailgatingMin = true;
+        }
+        else
+        {
+            TailgatingMin = false;
+        }
+        if (checkHit(rayBack, midTailgatingDistance, vehicleLayerMask))
+        {
+            if (!TailgatingMid) gameManager.UpdateScore(-(int)midTailgatingPenalty, "Driving too close behind another vehicle: severity 2/3");
+            TailgatingMid = true;
+        }
+        else
+        {
+            TailgatingMid = false;
+        }
+        if (checkHit(rayBack, maxTailgatingDistance, vehicleLayerMask))
+        {
+            if (!TailgatingMax) gameManager.UpdateScore(-(int)minTailgatingPenalty, "Driving too close behind another vehicle: severity 1/3");
+            TailgatingMax = true;
+        }
+        else
+        {
+            TailgatingMax = false;
+        }
+
+
+        float frontCheckDistance = (1 + rb.velocity.magnitude / speed) * unsafeDistance;
+
+        // Front raycasts: collect distances to NPCs
+        List<float> hitDistances = new List<float>();
+        RaycastHit hitFront, hitFrontL, hitFrontR;
+
+        bool hitFrontBool = Physics.Raycast(rayFront, out hitFront, frontCheckDistance, vehicleLayerMask) && ((hitFront.collider.name.Contains("NPC") || hitFront.collider.tag == "Player"));
+        if (hitFrontBool) hitDistances.Add(hitFront.distance);
+
+        bool hitFrontLBool = Physics.Raycast(rayFrontL, out hitFrontL, frontCheckDistance, vehicleLayerMask) && ((hitFrontL.collider.name.Contains("NPC") || hitFrontL.collider.tag == "Player"));
+        if (hitFrontLBool) hitDistances.Add(hitFrontL.distance);
+
+        bool hitFrontRBool = Physics.Raycast(rayFrontR, out hitFrontR, frontCheckDistance, vehicleLayerMask) && ((hitFrontR.collider.name.Contains("NPC") || hitFrontR.collider.tag == "Player"));
+        if (hitFrontRBool) hitDistances.Add(hitFrontR.distance);
+
+        bool frontHit = hitDistances.Count > 0;
+        float minDistance = frontHit ? hitDistances.Min() : float.MaxValue;
+
+        if (npcIndicator != null)
+{
+            if (frontHit) npcIndicator.TurnOnLights();
+            else npcIndicator.TurnOffLights();
+}
+        // // Scoring for hitting 
+        // bool bodyHit = (hitFrontBool && hitFront.collider.name == "Body") ||
+        //                (hitFrontLBool && hitFrontL.collider.name == "Body") ||
+        //                (hitFrontRBool && hitFrontR.collider.name == "Body");
+
+        // if (bodyHit && !hittingFront)
+        // {
+        //     gameManager.UpdateScore(-5, "Driving too close in front of another vehicle");
+        //     hittingFront = true;
+        // }
+        // else if (!bodyHit)
+        // {
+        //     hittingFront = false;
+        // }
+
+        // Calculate target speed based on distance
+        float targetSpeed;
+        // if (name == "NPC_Truck_0") {
+        // Debug.Log(minDistance);
+        // Debug.Log(hitDistances.Count);
+        // }
+        if (frontHit && minDistance <= minStoppingDistance)
+        {
+            targetSpeed = 0f;
+            currentSpeed = 0f;
+        }
+        else if (frontHit)
+        {
+            // Debug.Log(minDistance);
+            float t = (minDistance - minStoppingDistance) / (frontCheckDistance - minStoppingDistance);
+            t = Mathf.Clamp01(t);
+            targetSpeed = speed * t;
+        }
+        else
+        {
+            targetSpeed = speed;
+        }
+
+        // Adjust currentSpeed with rapid deceleration or smooth acceleration
+        if (targetSpeed < currentSpeed)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, decelerationFactor * Time.fixedDeltaTime);
+        }
+        else
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelerationFactor * Time.fixedDeltaTime);
+        }
+
+        // Clamp currentSpeed to prevent negative values
+        currentSpeed = Mathf.Clamp(currentSpeed, 0f, speed);
+
+        // Visualize raycasts in the editor
+        // Debug.DrawRay(rayBack.origin, rayBack.direction * unsafeDistance, Color.green);
+        Debug.DrawRay(rayBack.origin, rayBack.direction * minTailgatingDistance, Color.red);
+        Debug.DrawRay(rayBack.origin+Vector3.up*0.1f, rayBack.direction * midTailgatingDistance, Color.yellow);
+        Debug.DrawRay(rayBack.origin+Vector3.up*0.2f, rayBack.direction * maxTailgatingDistance, Color.green);
+        Debug.DrawRay(rayFront.origin, rayFront.direction * frontCheckDistance, Color.blue);
+        Debug.DrawRay(rayFrontL.origin, rayFrontL.direction * frontCheckDistance, Color.blue);
+        Debug.DrawRay(rayFrontR.origin, rayFrontR.direction * frontCheckDistance, Color.blue);
+    }
+
+    bool checkHit(Ray rayBack, float unsafeDistance, int VehicleLayerMask)
+    {
+        RaycastHit hit;
+        return Physics.Raycast(rayBack, out hit, unsafeDistance, vehicleLayerMask) &&
+            hit.collider.tag == "Player" &&
+            hit.collider.GetComponentInParent<Rigidbody>().velocity != Vector3.zero;
+    }
+}
