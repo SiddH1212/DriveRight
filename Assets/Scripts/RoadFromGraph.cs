@@ -4,6 +4,7 @@ using UnityEngine.Splines;
 using UnityEditor;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class RoadFromGraph : MonoBehaviour
 {
@@ -24,8 +25,19 @@ public class RoadFromGraph : MonoBehaviour
         // 3) Generate scene geometry
         intersectionMaterial = (Material)Resources.Load("IntersectionMaterial");
         roadGraph = FindObjectOfType<RoadGraph>();
-        roadGraph.Load();
-        GenerateFromGraph(roadGraph.Nodes);
+        StartCoroutine(LoadAndGenerate());
+    }
+    IEnumerator LoadAndGenerate()
+    {
+        yield return StartCoroutine(roadGraph.LoadGraphCoroutine());
+        if (roadGraph.Nodes != null && roadGraph.Nodes.Count > 0)
+        {
+            GenerateFromGraph(roadGraph.Nodes);
+        }
+        else
+        {
+            Debug.LogError("Failed to generate roads: graph is empty or failed to load.");
+        }
     }
 
     // void ConstructNetwork(LaneNode laneNode)

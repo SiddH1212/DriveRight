@@ -1,0 +1,126 @@
+{
+    "name": "EvoFoxOneS",
+    "maps": [
+        {
+            "name": "EvoFoxOneS",
+            "id": "8cd09099-2cac-4fb7-a0cd-dfd56fe6dd65",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "8c404b2b-146c-4d27-9fce-903572d35dbd",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Brake",
+                    "type": "Button",
+                    "id": "ff613430-6768-4eea-8599-bf89732da33c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left Indicator",
+                    "type": "Button",
+                    "id": "b4fb2f93-b734-4399-a062-e6d1f67985b7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right Indicator",
+                    "type": "Button",
+                    "id": "753653ec-a762-4335-8eb8-f4aaa3663400",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cancel Indicator",
+                    "type": "Button",
+                    "id": "e9f50305-2d48-4959-9ff3-5af1afa5ace4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "193d5897-ee9e-442f-b959-142f6f7535c7",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8d10a74-4bdf-49ea-9a29-a7dab4c67042",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e892e88-7c59-4b79-804a-38853faa9483",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Indicator",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "745eb191-a37b-4779-976c-5307adcc2ade",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Indicator",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ef2d2e4-592c-43da-8c8d-ccbebe39968e",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel Indicator",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
+            "devices": [
+                {
+                    "devicePath": "<XboxOneGamepadAndroid>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

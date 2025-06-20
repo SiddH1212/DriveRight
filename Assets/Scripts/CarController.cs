@@ -1,17 +1,19 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 
 public class CarController : MonoBehaviour
 {
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbrakeForce;
-    private bool isBraking;
+    // private bool isBraking;
+    [SerializeField]
+    private InputActionReference brake;
     private float thresh = 1e-3f;
     public TextMeshProUGUI speedText;
     public GameManager gameManager;
-    private CarIndicator carIndicator;
 
     // Car Params
     [SerializeField] private float motorForce, brakeForce, maxSteerAngle, steerSensitivity, steerReturn;
@@ -23,20 +25,24 @@ public class CarController : MonoBehaviour
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+    [SerializeField] private Transform steeringWheel;
     private Vector3 prevPos;
+    
     void Start()
     {
-        prevPos = transform.position;
-        carIndicator = FindObjectOfType<CarIndicator>();
+        brake.action.Enable();
+        brake.action.started += BrakeOn;
+        brake.action.canceled += BrakeOff;
+        prevPos = transform.position;        
     }
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-
         Vector3 deltaPos = transform.position - prevPos;
-        speedText.text = $"Speed: {MathF.Round(Vector3.Magnitude(deltaPos/Time.deltaTime))}";
+        speedText.text = $"Speed: {MathF.Round(Vector3.Magnitude(deltaPos / Time.deltaTime))}";
         prevPos = transform.position;
     }
 
@@ -49,24 +55,34 @@ public class CarController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         // Braking Input
-        isBraking = Input.GetKey(KeyCode.Space);
-        
-        if (isBraking) carIndicator.TurnOnLights();
-        else carIndicator.TurnOffLights();
+        // isBraking = Input.GetKey(KeyCode.Space);
+    }
+    private void BrakeOn(InputAction.CallbackContext context)
+    {
+        currentbrakeForce = brakeForce;
+        Debug.Log("Breaking");
     }
 
-    private void HandleMotor() {
+    private void BrakeOff(InputAction.CallbackContext context)
+    {
+        currentbrakeForce = 0f;
+        Debug.Log("Resuming");
+    }
+
+    private void HandleMotor()
+    {
         // Rear wheel drive
 
         // frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         // frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
         rearRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbrakeForce = isBraking ? brakeForce : 0f;
+        // currentbrakeForce = isBraking ? brakeForce : 0f;
         ApplyBraking();
     }
 
-    private void ApplyBraking() {
+    private void ApplyBraking()
+    {
         frontRightWheelCollider.brakeTorque = currentbrakeForce;
         frontLeftWheelCollider.brakeTorque = currentbrakeForce;
         // Rear wheel braking
@@ -74,29 +90,37 @@ public class CarController : MonoBehaviour
         rearRightWheelCollider.brakeTorque = currentbrakeForce;
     }
 
-    private void HandleSteering() {
+    private void HandleSteering()
+    {
         currentSteerAngle = Math.Min(maxSteerAngle, currentSteerAngle + steerSensitivity * horizontalInput);
         currentSteerAngle = Math.Max(-maxSteerAngle, currentSteerAngle);
 
-        if (horizontalInput == 0){
-            if (currentSteerAngle > thresh) currentSteerAngle -= currentSteerAngle/90 * steerReturn * steerSensitivity;
-            else if (currentSteerAngle < -thresh) currentSteerAngle -= currentSteerAngle/90 * steerReturn * steerSensitivity;
+        if (horizontalInput == 0)
+        {
+            if (currentSteerAngle > thresh) currentSteerAngle -= currentSteerAngle / 90 * steerReturn * steerSensitivity;
+            else if (currentSteerAngle < -thresh) currentSteerAngle -= currentSteerAngle / 90 * steerReturn * steerSensitivity;
             else currentSteerAngle = 0f;
-        }   
+        }
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
-    } 
 
-    private void UpdateWheels() {
+        float currentSteerWheelRoation = -currentSteerAngle;
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, currentSteerWheelRoation);
+        steeringWheel.localRotation = Quaternion.Slerp(steeringWheel.localRotation, targetRotation, Time.deltaTime * 5f);
+    }
+
+    private void UpdateWheels()
+    {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) {
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    {
         Vector3 pos;
-        Quaternion rot; 
+        Quaternion rot;
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
@@ -105,8 +129,14 @@ public class CarController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Debug.Log($"Player collided with smth {collision.collider.gameObject.layer}");
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Vehicles")){
-            gameManager.UpdateScore(-50, $"Collided with vechicle: {collision.collider.attachedRigidbody.gameObject.name}");
-        }       
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Vehicles"))
+        {
+            gameManager.UpdateScore(-10, $"Collided with vechicle: {collision.collider.attachedRigidbody.gameObject.name}");
+        }
+    }
+    private void OnDestroy()
+    {
+        brake.action.started -= BrakeOn;
+        brake.action.canceled -= BrakeOff;
     }
 }

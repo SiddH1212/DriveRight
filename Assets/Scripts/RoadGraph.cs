@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // using UnityEngine.Splines;
@@ -14,25 +15,46 @@ public class LaneNode
 public class RoadGraph : MonoBehaviour
 {
     // All nodes across all roads
-    public string loadPath = Application.streamingAssetsPath + "/graph_data.dat";
+    // public string loadPath = Application.streamingAssetsPath + "/graph_data.dat";
     // public string loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_isb_pullela_0.dat"; // IIITH_arnd.dat";
     // public string loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_08.dat"; //Application.streamingAssetsPath + "/graph_data.dat";
-    public string savePath = Application.streamingAssetsPath + "/graph_data.dat";
+    // public string savePath = Application.streamingAssetsPath + "/graph_data.dat";
     [HideInInspector] public List<LaneNode> Nodes = new List<LaneNode>();
 
     void Start()
     {
         // loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_08.dat";
-        loadPath = Application.streamingAssetsPath + "/graph_data.dat";
+        // loadPath = Application.streamingAssetsPath + "/graph_data.dat";
         // loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_isb_pullela_0.dat"; // IIITH_arnd.dat";
-        Load();
+        // Load();
+        StartCoroutine(LoadGraphCoroutine());
     }
 
-    public void Load()
+    // public void Load()
+    // {
+    //     Nodes = RoadGraphSerializer.LoadGraph(loadPath);
+    //     RoadGraphSerializer.SaveGraph(Nodes, Application.streamingAssetsPath + "/test.dat");
+    //     // RebuildGraph();
+    // }
+    public IEnumerator LoadGraphCoroutine()
     {
-        Nodes = RoadGraphSerializer.LoadGraph(loadPath);
-        RoadGraphSerializer.SaveGraph(Nodes, Application.streamingAssetsPath + "/test.dat");
-        // RebuildGraph();
+        bool done = false;
+        yield return RoadGraphSerializer.LoadGraphCoroutine(loadedNodes =>
+        {
+            Nodes = loadedNodes;
+            done = true;
+        });
+
+        yield return null;
+
+        if (Nodes == null || Nodes.Count == 0)
+        {
+            Debug.LogError("RoadGraph failed to load.");
+        }
+        else
+        {
+            Debug.Log("RoadGraph loaded with " + Nodes.Count + " nodes.");
+        }
     }
 
     public LaneNode GetClosestNode(Vector3 position, float maxDistance = 2f)

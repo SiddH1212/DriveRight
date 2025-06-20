@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,23 +14,43 @@ public class NPCSpawner : MonoBehaviour
 
     void Start()
     {
-        if (graph == null || graph.Nodes.Count == 0 || graph.Nodes[0].Outgoing.Count == 0 || graph.Nodes[0].Position == Vector3.zero){
-            Debug.Log("Graph loaded from npc script");
-            graph.Load();
-        }
-        if (graph == null || graph.Nodes.Count == 0)
-        {
-            Debug.LogError("RoadGraph not assigned or empty!");
-            return;
-        }
+        // if (graph == null || graph.Nodes.Count == 0 || graph.Nodes[0].Outgoing.Count == 0 || graph.Nodes[0].Position == Vector3.zero){
+        //     Debug.Log("Graph loaded from npc script");
+        //     graph.Load();
+        // }
+        // if (graph == null || graph.Nodes.Count == 0)
+        // {
+        //     Debug.LogError("RoadGraph not assigned or empty!");
+        //     return;
+        // }
 
+        // int blues = Random.Range(0, nCars+1);
+
+        // SpawnVehicles(blues, carPrefabBlue);
+        // SpawnVehicles(nTrucks, truckPrefab);
+        // SpawnVehicles(nCars - blues, carPrefabRed);
+        StartCoroutine(SpawnVehiclesAfterGraphReady());
+    }
+    IEnumerator SpawnVehiclesAfterGraphReady()
+    {
+        if (graph == null)
+        {
+            Debug.LogError("RoadGraph not assigned");
+            yield break;
+        }
+        yield return StartCoroutine(graph.LoadGraphCoroutine());
+        yield return null;
+        if (graph.Nodes == null || graph.Nodes.Count == 0)
+        {
+            Debug.LogError("RoadGraph failed to load or is empty.");
+            yield break;
+        }
         int blues = Random.Range(0, nCars+1);
 
         SpawnVehicles(blues, carPrefabBlue);
         SpawnVehicles(nTrucks, truckPrefab);
         SpawnVehicles(nCars - blues, carPrefabRed);
     }
-
     void SpawnVehicles(int count, GameObject prefab)
     {
         int tries = 0;

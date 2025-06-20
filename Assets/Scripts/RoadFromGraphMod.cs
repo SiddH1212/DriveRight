@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEditor;
+using System.Collections;
 
 public class RoadFromGraphMod : MonoBehaviour
 {
@@ -15,15 +16,22 @@ public class RoadFromGraphMod : MonoBehaviour
 
     void Start()
     {
-        // 1) Load the graph
-        // var nodes = RoadGraphSerializer.LoadGraph(graphJsonFile);
-        // // 2) Re‐create the .Outgoing references
-        // RoadGraphSerializer.RebuildOutgoing(nodes);
-        // 3) Generate scene geometry
         intersectionMaterial = (Material)Resources.Load("IntersectionMaterial");
         roadGraph = FindObjectOfType<RoadGraph>();
-        roadGraph.Load();
-        GenerateFromGraph(roadGraph.Nodes);
+        StartCoroutine(LoadAndGenerate());
+    }
+
+    IEnumerator LoadAndGenerate()
+    {
+        yield return StartCoroutine(roadGraph.LoadGraphCoroutine());
+        if (roadGraph.Nodes != null && roadGraph.Nodes.Count > 0)
+        {
+            GenerateFromGraph(roadGraph.Nodes);
+        }
+        else
+        {
+            Debug.LogError("Failed to generate roads: graph is empty or failed to load.");
+        }
     }
 
     void ConstructNetwork(LaneNode laneNode)

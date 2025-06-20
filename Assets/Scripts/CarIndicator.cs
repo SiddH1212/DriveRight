@@ -1,29 +1,46 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject leftIndicator, rightIndicator, leftArrow, rightArrow;
-
     public bool rightOn = false, leftOn = false;
     private Coroutine rightBlinkCoroutine = null, leftBlinkCoroutine = null;
-
-
+    [SerializeField] private InputActionReference left, right, off;
+    private bool rightIndicated = false, leftIndicated=false, stoppedIndicator=false;
     void Start()
     {
-        leftIndicator.SetActive(false); leftArrow.SetActive(false);
+        left.action.Enable();
+        right.action.Enable();
+        off.action.Enable();
+        left.action.started += leftStart;
+        right.action.started += rightStart;
+        off.action.started += offStart;
+        leftIndicator.SetActive(false);  leftArrow.SetActive(false);
         rightIndicator.SetActive(false); rightArrow.SetActive(false);
     }
-
+    void leftStart(InputAction.CallbackContext callbackContext)
+    {
+        leftIndicated = true;
+    }
+    void rightStart(InputAction.CallbackContext callbackContext)
+    {
+        rightIndicated = true;
+    }
+    void offStart(InputAction.CallbackContext callbackContext)
+    {
+        stoppedIndicator = true;
+    }
     void Update()
     {
-        bool rightIndicated = Input.GetKeyDown(KeyCode.Period);
-        bool leftIndicated = Input.GetKeyDown(KeyCode.Comma);
-        float horizontalInput = Input.GetAxis("Horizontal");
+        // bool rightIndicated = Input.GetKeyDown(KeyCode.Period);
+        // bool leftIndicated = Input.GetKeyDown(KeyCode.Comma);
+        // float horizontalInput = Input.GetAxis("Horizontal");
 
-        bool stoppedIndicator = Input.GetKeyDown(KeyCode.Slash); // ||
-                                                                 // (rightOn && (horizontalInput < 0)) ||
-                                                                 // (leftOn && (horizontalInput > 0));
+        // bool stoppedIndicator = Input.GetKeyDown(KeyCode.Slash); // ||
+                                // (rightOn && (horizontalInput < 0)) ||
+                                // (leftOn && (horizontalInput > 0));
 
         if (rightIndicated && !rightOn)
         {
@@ -54,27 +71,16 @@ public class CarIndicator : MonoBehaviour
         }
     }
 
-    public void TurnOffIndicators()
-    {
+    public void TurnOffIndicators(){
         if (rightBlinkCoroutine != null) StopCoroutine(rightBlinkCoroutine);
         if (leftBlinkCoroutine != null) StopCoroutine(leftBlinkCoroutine);
 
         rightOn = false;
         leftOn = false;
-
-        leftIndicator.SetActive(false); leftArrow.SetActive(false);
+        leftIndicated = false;
+        rightIndicated = false;
+        stoppedIndicator = false;
+        leftIndicator.SetActive(false);  leftArrow.SetActive(false);
         rightIndicator.SetActive(false); rightArrow.SetActive(false);
-    }
-
-    public void TurnOnLights()
-    {
-        if (!leftOn)  leftIndicator.SetActive(true);
-        if (!rightOn) rightIndicator.SetActive(true);
-    }
-
-    public void TurnOffLights()
-    {
-        if (!leftOn)  leftIndicator.SetActive(false);
-        if (!rightOn) rightIndicator.SetActive(false);
     }
 }

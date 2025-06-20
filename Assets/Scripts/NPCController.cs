@@ -20,7 +20,6 @@ public class NPCController : MonoBehaviour
     private LaneNode currentNode;
     private LaneNode targetNode;
     private LaneNode previousNode;
-
     private Rigidbody rb;
     public RoadGraph roadGraph;
     private bool TailgatingMax = false, TailgatingMid = false, TailgatingMin = false;
@@ -35,24 +34,49 @@ public class NPCController : MonoBehaviour
         TryGetComponent<NPCIndicator>(out npcIndicator);
         currentSpeed = speed;  // Initialize currentSpeed to max speed
 
-        if (roadGraph == null || roadGraph.Nodes.Count == 0 || roadGraph.Nodes[0].Outgoing.Count == 0 || roadGraph.Nodes[0].Position == Vector3.zero)
-        {
-            Debug.Log("Graph loaded from NPC script");
-            roadGraph.Load();
-        }
+        // if (roadGraph == null || roadGraph.Nodes.Count == 0 || roadGraph.Nodes[0].Outgoing.Count == 0 || roadGraph.Nodes[0].Position == Vector3.zero)
+        // {
+        //     Debug.Log("Graph loaded from NPC script");
+        //     roadGraph.Load();
+        // }
 
-        currentNode = roadGraph.GetClosestNode(transform.position, 20f);
+        // currentNode = roadGraph.GetClosestNode(transform.position, 20f);
 
-        if (currentNode != null && currentNode.Outgoing.Count > 0)
-        {
-            // depending on the predictability, we choose if we would move on the graph or we'd make an unpredictable move
+        // if (currentNode != null && currentNode.Outgoing.Count > 0)
+        // {
+        //     // depending on the predictability, we choose if we would move on the graph or we'd make an unpredictable move
 
-            // predictable case: moving on the next graph node
-            targetNode = currentNode.Outgoing[Random.Range(0, currentNode.Outgoing.Count)];
-            // targetNode = currentNode.Outgoing[0];
-        }
+        //     // predictable case: moving on the next graph node
+        //     targetNode = currentNode.Outgoing[Random.Range(0, currentNode.Outgoing.Count)];
+        //     // targetNode = currentNode.Outgoing[0];
+        // }
 
         vehicleLayerMask = LayerMask.GetMask("Vehicles");
+        StartCoroutine(InitNPC());
+    }
+    IEnumerator InitNPC()
+    {
+        if (roadGraph == null)
+        {
+            Debug.LogError("No roadgraph assigned");
+            yield break;
+        }
+        yield return StartCoroutine(roadGraph.LoadGraphCoroutine());
+        yield return null;
+        if (roadGraph.Nodes == null || roadGraph.Nodes.Count == 0)
+        {
+            Debug.LogError("No nodes in RoadGraph");
+            yield break;
+        }
+        currentNode = roadGraph.GetClosestNode(transform.position, 20f);
+        if (currentNode != null && currentNode.Outgoing.Count > 0)
+        {
+            targetNode = currentNode.Outgoing[Random.Range(0, currentNode.Outgoing.Count)];
+        }
+        if (gameObject.name.Contains("Truck"))
+        {
+            Debug.Log("Initialized NPC truck with graph size: " + roadGraph.Nodes.Count);
+        }
     }
 
     void FixedUpdate()

@@ -1,29 +1,29 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(RoadGraph))]
+[CustomEditor(typeof(RoadFromGraphMod))]
 public class RoadGraphEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector(); // shows the default inspector
+        DrawDefaultInspector();
 
-        RoadGraph roadGraph = (RoadGraph)target;
-        string loadPath = roadGraph.loadPath;
-        string savePath = roadGraph.savePath;
+        RoadFromGraphMod roadGraphMod = (RoadFromGraphMod)target;
 
         GUILayout.Space(10);
-        if (GUILayout.Button("Load Graph from File"))
-        {
-
-            roadGraph.Nodes = RoadGraphSerializer.LoadGraph(loadPath);
-            Debug.Log("Graph loaded into scene object.");
-        }
 
         if (GUILayout.Button("Save Graph to File"))
         {
-            RoadGraphSerializer.SaveGraph(roadGraph.Nodes, savePath);
-            Debug.Log("Graph saved from scene object.");
+            if (roadGraphMod.roadGraph != null)
+            {
+                var path = System.IO.Path.Combine(Application.persistentDataPath, "graph_data.dat");
+                RoadGraphSerializer.SaveGraph(roadGraphMod.roadGraph.Nodes, path);
+                Debug.Log("Graph saved to: " + path);
+            }
+            else
+            {
+                Debug.LogWarning("No RoadGraph assigned.");
+            }
         }
     }
 }
