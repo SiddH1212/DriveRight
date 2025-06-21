@@ -91,10 +91,10 @@ public class NPCSpawner : MonoBehaviour
             // Instantiate and configure
             GameObject vehicle = Instantiate(prefab, spawnPos, rotation);
             NPCController npc = vehicle.GetComponent<NPCController>();
-            if (npc != null)
-            {
-                npc.roadGraph = graph;
-            }
+            // if (npc != null)
+            // {
+            //     npc.roadGraph = graph;
+            // }
 
             usedPositions.Add(spawnPos);
             spawned++;

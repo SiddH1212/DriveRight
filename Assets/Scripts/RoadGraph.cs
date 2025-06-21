@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+// using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 // using UnityEngine.Splines;
 
@@ -243,6 +244,14 @@ public class RoadGraph : MonoBehaviour
     // {
     //     RoadGraphSerializer.SaveGraph(Nodes);
     // }
+    void OnDestroy()
+    {
+        Nodes.Clear();
+    }
+    void OnDisable()
+    {
+        Nodes.Clear();
+    }
 
 
 }

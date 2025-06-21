@@ -76,14 +76,16 @@ public class GameManager : MonoBehaviour
 
     public void SaveAllViolationImages()
     {
-        string path = Application.dataPath + "/Captures/";
+        // string path = Application.dataPath + "/Captures/";
+        string path = Path.Combine(Application.persistentDataPath, "Captures");
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
 
         for (int i = 0; i < violationImages.Count; i++)
         {
             byte[] bytes = violationImages[i].EncodeToPNG();
-            File.WriteAllBytes(path + "violation_" + i + ".png", bytes);
+            // File.WriteAllBytes(path + "violation_" + i + ".png", bytes);
+            File.WriteAllBytes(Path.Combine(path, $"violation_{i}.png"), bytes);
         }
 
         Debug.Log($"Saved {violationImages.Count} violation screenshots to {path}");

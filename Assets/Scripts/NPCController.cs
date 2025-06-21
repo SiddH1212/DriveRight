@@ -21,7 +21,7 @@ public class NPCController : MonoBehaviour
     private LaneNode targetNode;
     private LaneNode previousNode;
     private Rigidbody rb;
-    public RoadGraph roadGraph;
+    [SerializeField] private RoadGraph roadGraph;
     private bool TailgatingMax = false, TailgatingMid = false, TailgatingMin = false;
     private float currentSpeed;             // Current speed adjusted dynamically
     public GameManager gameManager;

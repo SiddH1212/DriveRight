@@ -19,6 +19,7 @@ public class ViolationDetector : MonoBehaviour
 
     [Tooltip("Dot-product threshold for wrong-way")]
     public float thresh = 0.1f;
+    [SerializeField] private float heightOffset = 0f;
     public float threshTurnAngle = 30;
 
 
@@ -42,7 +43,7 @@ public class ViolationDetector : MonoBehaviour
     void FixedUpdate()
     {
         // Raycast down to find which RoadGenerator we're over
-        if (Physics.Raycast(player.transform.position - Vector3.down * 0.2f, Vector3.down, out var hit, groundCheckDistance, roadLayer))
+        if (Physics.Raycast(player.transform.position + Vector3.up * heightOffset - Vector3.down * 0.2f, Vector3.down, out var hit, groundCheckDistance, roadLayer))
         {
             var rg = (RoadGenerator)null;
             if (!onRoad && Time.time > prevTimeRoad + relaxationTime)
@@ -79,31 +80,46 @@ public class ViolationDetector : MonoBehaviour
             }
 
             // Debug.Log(hit.collider.name);
-            if (rg != null && rg != currentRoad)
+            if (rg != null)
             {
+                var prevRoad = currentRoad;
                 // Switched to a new road → rebuild point list
-                currentRoad = rg;
-                points.Clear();
-                foreach (var p in currentRoad.pIn) points.Add(p);
-                foreach (var p in currentRoad.pOut) points.Add(p);
-                correctWay = true;  // reset per‑road
+                if (rg != prevRoad)
+                {
+                    correctWay = true;  // reset per‑road
+                    currentRoad = rg;
+                    points.Clear();
+                    foreach (var p in currentRoad.pIn) points.Add(p);
+                    foreach (var p in currentRoad.pOut) points.Add(p);
+                    
+                }
 
                 // also check if the user indicated correctly if he just came from an intersection
                 if (onIntersection)
                 {
                     onIntersection = false;
+                    lane = GetLane();
                     Vector3 prevDir = new Vector3(prevRot.x, 0f, prevRot.z).normalized;
                     Vector3 currDir = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
                     float turnAngle = Vector3.SignedAngle(currDir, prevDir, Vector3.up);
                     // Debug.Log("Angle Turned: " + turnAngle);
                     carIndicator.TurnOffIndicators();
-                    if (turnAngle > threshTurnAngle && (indication == 'L'))
+                    if (prevRoad == currentRoad && (turnAngle > 180 - threshTurnAngle || turnAngle < -180 + threshTurnAngle))
                     {
-                        gameManager.UpdateScore(+1, "Correctly indicated left turn");
+                        if (indication == 'F') gameManager.UpdateScore(-5, "Did not indicate before U-turn");
+                        else if (indication != 'R') gameManager.UpdateScore(-5, "Wrong Indication before U-turn");
+                        else if (prevLane != prevRoad.n_lanes - 1) gameManager.UpdateScore(-3, "U-turn should be made from the right lane");
+                        else gameManager.UpdateScore(+1, "Correctly indicated U-turn");
+                    }
+                    else if (turnAngle > threshTurnAngle && (indication == 'L'))
+                    {
+                        if (prevLane != 0) gameManager.UpdateScore(-3, "Left turn should be made from the left lane");
+                        else gameManager.UpdateScore(+1, "Correctly indicated left turn");
                     }
                     else if (turnAngle < -threshTurnAngle && (indication == 'R'))
                     {
-                        gameManager.UpdateScore(+1, "Correctly indicated right turn");
+                        if (prevLane != prevRoad.n_lanes - 1) gameManager.UpdateScore(-3, "Right turn should be made from the right lane");
+                        else gameManager.UpdateScore(+1, "Correctly indicated right turn");
                     }
                     else if (turnAngle >= threshTurnAngle || turnAngle <= -threshTurnAngle)
                     {
@@ -114,6 +130,8 @@ public class ViolationDetector : MonoBehaviour
                     {
                         gameManager.UpdateScore(-5, "Indicated without turning");
                     }
+
+                    prevLane = lane;
                 }
             }
         }
@@ -139,9 +157,6 @@ public class ViolationDetector : MonoBehaviour
             }
         }
 
-        int perLaneWidth = (int)(currentRoad.width / (currentRoad.bidirectional ? 1 : 2)) / currentRoad.n_lanes;
-        lane = (int) minDist / perLaneWidth;
-        lane = Mathf.Min(lane, currentRoad.n_lanes - 1);
         // Debug.Log(perLaneWidth + " " + minDist);
         // Debug.Log("The lane number: " + lane);
         // if (minDist > currentRoad.width / 2)
@@ -179,16 +194,20 @@ public class ViolationDetector : MonoBehaviour
         // Report violation or return to correct
         if (onRoad && !correctWay && Time.time > prevTime + relaxationTime)
         {
+            Debug.Log($"Greater: {prevTime}+{relaxationTime} than {Time.time}");
             prevTime = Time.time;
             correctWay = true;
         }
-        if (onRoad && alignment < -thresh && correctWay)
+        if (onRoad && correctWay && (alignment < -thresh || Vector3.Dot(transform.gameObject.GetComponent<Rigidbody>().velocity, -transform.forward) > 0.5f))
         {
+            Debug.Log($"Correct Way: {correctWay}");
             correctWay = false;
             gameManager.UpdateScore(-5, "Wrong Way");
             prevTime = Time.time;
+            Debug.Log($"Correct Way: {correctWay}");
+            Debug.Log($"Time: {Time.time}");
         }
-        else if (onRoad && alignment > thresh && !correctWay)
+        else if (onRoad && !correctWay && alignment > thresh && Vector3.Dot(transform.gameObject.GetComponent<Rigidbody>().velocity, -transform.forward) < 0.5f)
         {
             correctWay = true;
             prevLane = lane;
@@ -196,6 +215,7 @@ public class ViolationDetector : MonoBehaviour
             // gameManager.UpdateScore(+10, "Right Way");
         }
 
+        lane = GetLane();
         if (onRoad && prevLane != lane)
         {
             if (prevLane < lane && !carIndicator.rightOn) gameManager.UpdateScore(-5, "Changed Lane to right without indicating");
@@ -205,13 +225,33 @@ public class ViolationDetector : MonoBehaviour
         prevLane = lane;
     }
 
+    int GetLane()
+    {
+        float minDist = float.MaxValue;
+        Vector3 carPos = player.transform.position;
+        for (int i = 0; i < points.Count; i++)
+        {
+            float d = Vector3.Distance(carPos, (Vector3)points[i]);
+            if (d < minDist)
+            {
+                minDist = d;
+            }
+        }
+
+        int perLaneWidth = (int)(currentRoad.width / (currentRoad.bidirectional ? 1 : 2)) / currentRoad.n_lanes;
+        lane = (int)minDist / perLaneWidth;
+        lane = Mathf.Min(lane, currentRoad.n_lanes - 1);
+
+        return lane;
+    }
+
     void OnDrawGizmosSelected()
     {
         // Visualize the ground‑ray
         if (player != null)
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(player.transform.position - Vector3.down * 0.2f,
+            Gizmos.DrawLine((player.transform.position + Vector3.up * heightOffset - Vector3.down * 0.2f),
                             player.transform.position + Vector3.down * groundCheckDistance);
         }
     }
