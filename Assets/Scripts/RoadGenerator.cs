@@ -21,15 +21,18 @@ public class RoadGenerator : MonoBehaviour
     public float step = 0.01f;
 
     [Header("Speed Bumps")]
-    private int minBumps = 0;
-    private int maxBumps = 0;
-    private int bumpWidth = 2;      // how many segments each bump spans
-    private float bumpHeight = 0.2f;  // vertical rise
+    [SerializeField] private int minBumps = 0;
+    [SerializeField] private int maxBumps = 1;
+    [SerializeField] private int bumpWidth = 2;      // how many segments each bump spans
+    [SerializeField] private float bumpHeight = 0.2f;  // vertical rise
 
     // Generated points
     [HideInInspector] public List<float3> pIn = new List<float3>();
     [HideInInspector] public List<float3> pOut = new List<float3>();
     [HideInInspector] public List<Vector3> tangents = new List<Vector3>();
+    [HideInInspector] public List<List<float3>> pLanes = new List<List<float3>>();
+    [HideInInspector] public List<Vector3> laneTangents = new List<Vector3>();
+
 
     // Bump indices along the pIn/pOut lists
     private List<int> bumpCenters = new List<int>();
@@ -71,17 +74,46 @@ public class RoadGenerator : MonoBehaviour
                 spline.Evaluate(t, out posF, out tanF, out upF);
 
                 // compute left/right edge in world space
-                Vector3 worldPos     = splineContainer.transform.TransformPoint((Vector3)posF);
+                Vector3 worldPos = splineContainer.transform.TransformPoint((Vector3)posF);
                 Vector3 worldTangent = splineContainer.transform.TransformDirection((Vector3)tanF).normalized;
-                Vector3 worldUp      = splineContainer.transform.up;
-                Vector3 right        = Vector3.Cross(worldTangent, worldUp).normalized * width;
+                Vector3 worldUp = splineContainer.transform.up;
+                Vector3 right = Vector3.Cross(worldTangent, worldUp).normalized * width;
 
                 pIn.Add(worldPos - right);
                 pOut.Add(worldPos + right);
                 tangents.Add(worldTangent);
             }
         }
+
+        GenerateLanePoints();
     }
+    
+    private void GenerateLanePoints()
+    {
+        for (int i = 0; i < pIn.Count; i += 5)
+        {
+            List<float3> lanePoints = new List<float3>();
+            laneTangents.Add(tangents[i]);
+
+            if (!bidirectional)
+            {
+                for (int j = 0; j < n_lanes; j++)
+                {
+                    lanePoints.Add(Vector3.Lerp(pIn[i], pOut[i], 1f / (2 * n_lanes) + (float)j / n_lanes));
+                }
+            }
+            else
+            {
+                for (int j = 0; j < 2 * n_lanes; j++)
+                {
+                    lanePoints.Add(Vector3.Lerp(pIn[i], pOut[i], 1f / (4 * n_lanes) + (float)j / (2 * n_lanes)));
+                }
+            }
+
+            pLanes.Add(lanePoints);
+        }
+    }
+
 
     private void PickRandomBumps()
     {
@@ -91,7 +123,7 @@ public class RoadGenerator : MonoBehaviour
         int numBumps = UnityEngine.Random.Range(minBumps, maxBumps + 1);
         for (int i = 0; i < numBumps; i++)
         {
-            int centerIdx = UnityEngine.Random.Range(0+bumpWidth, pIn.Count-bumpWidth);
+            int centerIdx = UnityEngine.Random.Range(0 + bumpWidth, pIn.Count - bumpWidth);
             bumpCenters.Add(centerIdx);
         }
     }
@@ -183,14 +215,14 @@ public class RoadGenerator : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ground");
     }
 
-    void OnDrawGizmosSelected()
-    {
-        // visualize bump centers in scene view
-        Gizmos.color = Color.red;
-        foreach (int center in bumpCenters)
-        {
-            if (center >= 0 && center < pIn.Count)
-                Gizmos.DrawWireSphere(pIn[center], 1f);
-        }
-    }
+    // void OnDrawGizmosSelected()
+    // {
+    //     // visualize bump centers in scene view
+    //     Gizmos.color = Color.red;
+    //     foreach (int center in bumpCenters)
+    //     {
+    //         if (center >= 0 && center < pIn.Count)
+    //             Gizmos.DrawWireSphere(pIn[center], 1f);
+    //     }
+    // }
 }

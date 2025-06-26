@@ -28,7 +28,10 @@ public class RoadGraph : MonoBehaviour
         // loadPath = Application.streamingAssetsPath + "/graph_data.dat";
         // loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_isb_pullela_0.dat"; // IIITH_arnd.dat";
         // Load();
-        StartCoroutine(LoadGraphCoroutine());
+
+        // StartCoroutine(LoadGraphCoroutine());
+
+        RebuildGraph();
     }
 
     // public void Load()
@@ -50,7 +53,7 @@ public class RoadGraph : MonoBehaviour
 
         if (Nodes == null || Nodes.Count == 0)
         {
-            Debug.LogError("RoadGraph failed to load.");
+            Debug.Log("RoadGraph failed to load.");
         }
         else
         {
@@ -113,71 +116,71 @@ public class RoadGraph : MonoBehaviour
         return nodesFacing;
     }
 
-    // // Rebuilds entire graph, TODO: implement some way to persistently store the graph
-    // public void RebuildGraph()
-    // {
-    //     // Nodes.Clear();
-    //     var roadToNodes = new Dictionary<RoadGenerator, LaneNode[][]>();
+    // Rebuilds entire graph
+    public void RebuildGraph()
+    {
+        // Nodes.Clear();
+        var roadToNodes = new Dictionary<RoadGenerator, LaneNode[][]>();
 
-    //     // Shape: [timeStep][laneIdx]
+        // Shape: [timeStep][laneIdx]
 
-    //     // Gather all nodes per road
-    //     foreach (var rg in FindObjectsOfType<RoadGenerator>())
-    //     {
-    //         int timeSteps = rg.pLanes.Count;
-    //         int numLanes = rg.pLanes[0].Count;
+        // Gather all nodes per road
+        foreach (var rg in FindObjectsOfType<RoadGenerator>())
+        {
+            int timeSteps = rg.pLanes.Count;
+            int numLanes = rg.pLanes[0].Count;
 
-    //         var nodes = new LaneNode[timeSteps][];
-    //         if (GetClosestNode(rg.pLanes[0][0], 0.05f) != null) continue;
-    //         for (int i = 0; i < timeSteps; i++)
-    //         {
-    //             nodes[i] = new LaneNode[numLanes];
-    //             for (int j = 0; j < numLanes; j++)
-    //             {
-    //                 var node = new LaneNode { Position = rg.pLanes[i][j] };
-    //                 Nodes.Add(node);
-    //                 nodes[i][j] = node;
-    //             }
-    //         }
+            var nodes = new LaneNode[timeSteps][];
+            if (GetClosestNode(rg.pLanes[0][0], 0.05f) != null) continue;
+            for (int i = 0; i < timeSteps; i++)
+            {
+                nodes[i] = new LaneNode[numLanes];
+                for (int j = 0; j < numLanes; j++)
+                {
+                    var node = new LaneNode { Position = rg.pLanes[i][j] };
+                    Nodes.Add(node);
+                    nodes[i][j] = node;
+                }
+            }
 
-    //         roadToNodes[rg] = nodes;
-    //     }
+            roadToNodes[rg] = nodes;
+        }
 
-    //     // Link nodes along the lane, per road
-    //     foreach (var kv in roadToNodes)
-    //     {
-    //         var rg = kv.Key;
-    //         var nodes = kv.Value;
+        // Link nodes along the lane, per road
+        foreach (var kv in roadToNodes)
+        {
+            var rg = kv.Key;
+            var nodes = kv.Value;
 
-    //         int timeSteps = nodes.Length;
-    //         int numLanes = nodes[0].Length;
-    //         int n = rg.n_lanes;
+            int timeSteps = nodes.Length;
+            int numLanes = nodes[0].Length;
+            int n = rg.n_lanes;
 
-    //         for (int j = 0; j < numLanes; j++)
-    //         {
-    //             bool isRightLane = rg.bidirectional && j >= n;
-    //             for (int i = 0; i < timeSteps - 1; i++)
-    //             {
-    //                 LaneNode from, to;
-    //                 if (!rg.bidirectional || !isRightLane)
-    //                 {
-    //                     // Forward direction: i → i+1
-    //                     from = nodes[i][j];
-    //                     to = nodes[i + 1][j];
-    //                 }
-    //                 else
-    //                 {
-    //                     // Reverse direction: i+1 → i
-    //                     from = nodes[i + 1][j];
-    //                     to = nodes[i][j];
-    //                 }
+            for (int j = 0; j < numLanes; j++)
+            {
+                bool isRightLane = rg.bidirectional && j >= n;
+                for (int i = 0; i < timeSteps - 1; i++)
+                {
+                    LaneNode from, to;
+                    if (!rg.bidirectional || !isRightLane)
+                    {
+                        // Forward direction: i → i+1
+                        from = nodes[i][j];
+                        to = nodes[i + 1][j];
+                    }
+                    else
+                    {
+                        // Reverse direction: i+1 → i
+                        from = nodes[i + 1][j];
+                        to = nodes[i][j];
+                    }
 
-    //                 from.Outgoing.Add(to);
-    //             }
-    //         }
+                    from.Outgoing.Add(to);
+                }
+            }
 
 
-    //     }
+        }
 
     // (Later Maybe) Cross-road/intersection edges as before...
     //     Use the IntersectionRecord to link end-points across roads
@@ -196,13 +199,15 @@ public class RoadGraph : MonoBehaviour
         }
     }
     */
-    // }
+    }
 
     // (Debuggin) gizmo-draw the graph
     int count = 0;
     bool done = false;
     void OnDrawGizmos()
     {
+        RebuildGraph();
+        Debug.Log("This does work");
         Gizmos.color = Color.yellow;
         foreach (var node in Nodes)
         {

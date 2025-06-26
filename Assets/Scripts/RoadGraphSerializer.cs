@@ -20,9 +20,11 @@ public class RoadGraphData
 
 public static class RoadGraphSerializer
 {
-    private static readonly string fileName = "graph_data.dat";
+    private static readonly string fileName = "graph_data_0.dat";
     private static readonly string persistentPath = Path.Combine(Application.persistentDataPath, fileName);
     private static readonly string streamingPath = Path.Combine(Application.streamingAssetsPath, fileName);
+    public static string loadPath = streamingPath;
+    public static string savePath = loadPath;
 
     public static void SaveGraph(List<LaneNode> nodes, string savePath = "")
     {

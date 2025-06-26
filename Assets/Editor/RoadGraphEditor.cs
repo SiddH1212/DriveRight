@@ -1,29 +1,31 @@
-// using UnityEngine;
-// using UnityEditor;
+using UnityEngine;
+using UnityEditor;
+using System.IO;
 
-// [CustomEditor(typeof(RoadFromGraphMod))]
-// public class RoadGraphEditor : Editor
-// {
-//     public override void OnInspectorGUI()
-//     {
-//         DrawDefaultInspector();
+[CustomEditor(typeof(RoadGraph))]
+public class RoadGraphEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector(); // shows the default inspector
 
-//         RoadFromGraphMod roadGraphMod = (RoadFromGraphMod)target;
+        RoadGraph roadGraph = (RoadGraph)target;
+        string loadPath = RoadGraphSerializer.loadPath;
+        string savePath = RoadGraphSerializer.savePath;
 
-//         GUILayout.Space(10);
+        GUILayout.Space(10);
+        if (GUILayout.Button("Load Graph from File"))
+        {
+            string jsonData = File.ReadAllText(loadPath);
 
-//         if (GUILayout.Button("Save Graph to File"))
-//         {
-//             if (roadGraphMod.roadGraph != null)
-//             {
-//                 var path = System.IO.Path.Combine(Application.persistentDataPath, "graph_data.dat");
-//                 RoadGraphSerializer.SaveGraph(roadGraphMod.roadGraph.Nodes, path);
-//                 Debug.Log("Graph saved to: " + path);
-//             }
-//             else
-//             {
-//                 Debug.LogWarning("No RoadGraph assigned.");
-//             }
-//         }
-//     }
-// }
+            roadGraph.Nodes = RoadGraphSerializer.DeserializeGraph(jsonData);
+            Debug.Log("Graph loaded into scene object.");
+        }
+
+        if (GUILayout.Button("Save Graph to File"))
+        {
+            RoadGraphSerializer.SaveGraph(roadGraph.Nodes, savePath);
+            Debug.Log("Graph saved from scene object.");
+        }
+    }
+}
