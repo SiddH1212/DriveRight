@@ -31,10 +31,9 @@ public class RoadGraph : MonoBehaviour
 
         // StartCoroutine(LoadGraphCoroutine());
 
-        RebuildGraph();
+        // RebuildGraph();
     }
 
-    // public void Load()
     // {
     //     Nodes = RoadGraphSerializer.LoadGraph(loadPath);
     //     RoadGraphSerializer.SaveGraph(Nodes, Application.streamingAssetsPath + "/test.dat");
@@ -115,7 +114,10 @@ public class RoadGraph : MonoBehaviour
 
         return nodesFacing;
     }
-
+    public void Clear()
+    {
+        Nodes.Clear();
+    }
     // Rebuilds entire graph
     public void RebuildGraph()
     {
@@ -182,23 +184,23 @@ public class RoadGraph : MonoBehaviour
 
         }
 
-    // (Later Maybe) Cross-road/intersection edges as before...
-    //     Use the IntersectionRecord to link end-points across roads
+        // (Later Maybe) Cross-road/intersection edges as before...
+        //     Use the IntersectionRecord to link end-points across roads
 
-    /*
-    foreach (var inter in FindObjectsOfType<IntersectionRecord>())
-    {
-        var lists = inter.ConnectedNodes; // List<List<LaneNode>>
-        for (int i = 0; i < lists.Count; i++)
-        for (int j = 0; j < lists.Count; j++)
+        /*
+        foreach (var inter in FindObjectsOfType<IntersectionRecord>())
         {
-            if (i == j) continue;
-            foreach (var src in lists[i])
-                foreach (var dst in lists[j])
-                    src.Outgoing.Add(dst);
+            var lists = inter.ConnectedNodes; // List<List<LaneNode>>
+            for (int i = 0; i < lists.Count; i++)
+            for (int j = 0; j < lists.Count; j++)
+            {
+                if (i == j) continue;
+                foreach (var src in lists[i])
+                    foreach (var dst in lists[j])
+                        src.Outgoing.Add(dst);
+            }
         }
-    }
-    */
+        */
     }
 
     // (Debuggin) gizmo-draw the graph
@@ -206,8 +208,7 @@ public class RoadGraph : MonoBehaviour
     bool done = false;
     void OnDrawGizmos()
     {
-        RebuildGraph();
-        Debug.Log("This does work");
+        // RebuildGraph();
         Gizmos.color = Color.yellow;
         foreach (var node in Nodes)
         {

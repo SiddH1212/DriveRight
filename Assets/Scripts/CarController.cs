@@ -26,6 +26,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
     [SerializeField] private Transform steeringWheel;
+    [SerializeField] private RectTransform speedNeedle;
+    [SerializeField] private float needleMinAngle = 127f;
+    [SerializeField] private float needleMaxAngle = -127f;
+    [SerializeField] private float maxSpeed = 220f;
     private Vector3 prevPos;
     
     void Start()
@@ -42,8 +46,10 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheels();
         Vector3 deltaPos = transform.position - prevPos;
-        speedText.text = $"Speed: {MathF.Round(Vector3.Magnitude(deltaPos / Time.deltaTime))}";
+        float speed = Vector3.Magnitude(deltaPos / Time.deltaTime) * 3.6f; // convert to km/h
+        speedText.text = $"Speed: {MathF.Round(speed)} km/h";
         prevPos = transform.position;
+        UpdateSpeedometer(speed);
     }
 
     private void GetInput()
@@ -124,6 +130,13 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+    void UpdateSpeedometer(float speed)
+    {
+        float clampedSpeed = Mathf.Clamp(speed, 0, maxSpeed);
+        float t = clampedSpeed / maxSpeed;
+        float angle = Mathf.Lerp(needleMinAngle, needleMaxAngle, t);
+        speedNeedle.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
     void OnCollisionEnter(Collision collision)

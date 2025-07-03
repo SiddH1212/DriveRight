@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public List<string> messageList = new List<string>();
 
     private List<Texture2D> violationImages = new List<Texture2D>();
-
+    void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
     public void Start()
     {
         // var roadGraph = FindObjectOfType<RoadGraph>();

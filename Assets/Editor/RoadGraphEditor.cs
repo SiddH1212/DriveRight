@@ -25,7 +25,17 @@ public class RoadGraphEditor : Editor
         if (GUILayout.Button("Save Graph to File"))
         {
             RoadGraphSerializer.SaveGraph(roadGraph.Nodes, savePath);
-            Debug.Log("Graph saved from scene object.");
+            Debug.Log($"Graph saved from scene object to {savePath}.");
+        }
+        if (GUILayout.Button("Clear Nodes"))
+        {
+            roadGraph.Clear();
+            Debug.Log("Cleared");
+        }
+        if (GUILayout.Button("Rebuild Graph"))
+        {
+            roadGraph.RebuildGraph();
+            Debug.Log("Rebuilt");
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class LaneNodeSerializable
@@ -20,11 +21,24 @@ public class RoadGraphData
 
 public static class RoadGraphSerializer
 {
-    private static readonly string fileName = "graph_data_0.dat";
-    private static readonly string persistentPath = Path.Combine(Application.persistentDataPath, fileName);
-    private static readonly string streamingPath = Path.Combine(Application.streamingAssetsPath, fileName);
-    public static string loadPath = streamingPath;
-    public static string savePath = loadPath;
+    private static string fileName
+    {
+        get
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            return sceneName switch
+            {
+                "VR" => "graph_data.dat",
+                "EasyMobile" => "graph_data_0.dat",
+                _ => throw new NotImplementedException()
+            };
+        }
+    }
+
+    private static string persistentPath => Path.Combine(Application.persistentDataPath, fileName);
+    private static string streamingPath => Path.Combine(Application.streamingAssetsPath, fileName);
+    public static string loadPath => streamingPath;
+    public static string savePath => loadPath;
 
     public static void SaveGraph(List<LaneNode> nodes, string savePath = "")
     {
@@ -56,8 +70,8 @@ public static class RoadGraphSerializer
 
     public static IEnumerator LoadGraphCoroutine(Action<List<LaneNode>> onComplete)
     {
-        if (!File.Exists(persistentPath))
-        {
+        // if (!File.Exists(persistentPath))
+        // {
 #if UNITY_ANDROID
             UnityWebRequest www = UnityWebRequest.Get(streamingPath);
             yield return www.SendWebRequest();
@@ -86,7 +100,7 @@ public static class RoadGraphSerializer
                 yield break;
             }
 #endif
-        }
+        // }
 
         string json = File.ReadAllText(persistentPath);
         onComplete(DeserializeGraph(json));

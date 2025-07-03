@@ -2,4770 +2,3180 @@
     "nodes": [
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -577.9800415039063,
+                "y": 0.10000000149011612,
+                "z": -377.01739501953127
             },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                2
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -570.5359497070313,
+                "y": 0.10000000149011612,
+                "z": -383.69464111328127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                282,
+                291
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -570.0836791992188,
+                "y": 0.10000000149011612,
+                "z": -368.21417236328127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                4
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -562.6395874023438,
+                "y": 0.10000000149011612,
+                "z": -374.89141845703127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                1
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -562.1832885742188,
+                "y": 0.10000000149011612,
+                "z": -359.4064636230469
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                6
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -554.7391967773438,
+                "y": 0.10000000149011612,
+                "z": -366.0837097167969
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                3
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -554.2570190429688,
+                "y": 0.10000000149011612,
+                "z": -350.5699157714844
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                8
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -546.8129272460938,
+                "y": 0.10000000149011612,
+                "z": -357.2471618652344
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                5
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -546.3313598632813,
+                "y": 0.10000000149011612,
+                "z": -341.7340087890625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                10
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -538.8872680664063,
+                "y": 0.10000000149011612,
+                "z": -348.4112548828125
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                7
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -538.3782348632813,
+                "y": 0.10000000149011612,
+                "z": -332.8675537109375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                12
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -530.9341430664063,
+                "y": 0.10000000149011612,
+                "z": -339.5447998046875
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                9
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -530.4525146484375,
+                "y": 0.10000000149011612,
+                "z": -324.0316162109375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                14
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -523.0084228515625,
+                "y": 0.10000000149011612,
+                "z": -330.7088623046875
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                11
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -522.5347900390625,
+                "y": 0.10000000149011612,
+                "z": -315.20458984375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                16
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -515.0906982421875,
+                "y": 0.10000000149011612,
+                "z": -321.8818359375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                13
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -514.609375,
+                "y": 0.10000000149011612,
+                "z": -306.36895751953127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                18
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -507.165283203125,
+                "y": 0.10000000149011612,
+                "z": -313.04620361328127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                15
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -506.6807861328125,
+                "y": 0.10000000149011612,
+                "z": -297.5298156738281
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                20
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -499.2366943359375,
+                "y": 0.10000000149011612,
+                "z": -304.2070617675781
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                17
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -498.7510681152344,
+                "y": 0.10000000149011612,
+                "z": -288.6894226074219
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                22
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -491.3069763183594,
+                "y": 0.10000000149011612,
+                "z": -295.3666687011719
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                19
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -490.82135009765627,
+                "y": 0.10000000149011612,
+                "z": -279.8489990234375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                24
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -483.37725830078127,
+                "y": 0.10000000149011612,
+                "z": -286.5262451171875
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                21
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -482.89276123046877,
+                "y": 0.10000000149011612,
+                "z": -271.0098571777344
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                26
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -475.44866943359377,
+                "y": 0.10000000149011612,
+                "z": -277.6871032714844
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                23
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -474.96734619140627,
+                "y": 0.10000000149011612,
+                "z": -262.17425537109377
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                28
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -467.52325439453127,
+                "y": 0.10000000149011612,
+                "z": -268.85150146484377
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                25
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -467.04962158203127,
+                "y": 0.10000000149011612,
+                "z": -253.34722900390626
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                30
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -459.60552978515627,
+                "y": 0.10000000149011612,
+                "z": -260.02447509765627
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                27
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -459.1238708496094,
+                "y": 0.10000000149011612,
+                "z": -244.51126098632813
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                32
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -451.6797790527344,
+                "y": 0.10000000149011612,
+                "z": -251.18850708007813
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                29
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -451.17083740234377,
+                "y": 0.10000000149011612,
+                "z": -235.64483642578126
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                34
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -443.72674560546877,
+                "y": 0.10000000149011612,
+                "z": -242.32208251953126
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                31
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -443.2451171875,
+                "y": 0.10000000149011612,
+                "z": -226.80892944335938
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                36
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -435.801025390625,
+                "y": 0.10000000149011612,
+                "z": -233.48617553710938
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                33
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -435.3188781738281,
+                "y": 0.10000000149011612,
+                "z": -217.972412109375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                38
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -427.8747863769531,
+                "y": 0.10000000149011612,
+                "z": -224.649658203125
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                35
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -427.41851806640627,
+                "y": 0.10000000149011612,
+                "z": -209.1647186279297
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                40
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -419.97442626953127,
+                "y": 0.10000000149011612,
+                "z": -215.8419647216797
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                37
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -419.5221252441406,
+                "y": 0.10000000149011612,
+                "z": -200.36146545410157
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                210,
+                219
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -412.0780334472656,
+                "y": 0.10000000149011612,
+                "z": -207.03871154785157
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                39
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -605.581298828125,
+                "y": 0.10000000149011612,
+                "z": -391.636474609375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                44
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -598.8704833984375,
+                "y": 0.10000000149011612,
+                "z": -384.22265625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                300,
+                309
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -618.927978515625,
+                "y": 0.10000000149011612,
+                "z": -379.55523681640627
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                46
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -612.2171630859375,
+                "y": 0.10000000149011612,
+                "z": -372.14141845703127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                43
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -632.2813720703125,
+                "y": 0.10000000149011612,
+                "z": -367.46783447265627
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                48
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -625.570556640625,
+                "y": 0.10000000149011612,
+                "z": -360.0540771484375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                45
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -645.6785888671875,
+                "y": 0.10000000149011612,
+                "z": -355.3409423828125
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                50
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -638.9676513671875,
+                "y": 0.10000000149011612,
+                "z": -347.9271240234375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                47
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -659.0748291015625,
+                "y": 0.10000000149011612,
+                "z": -343.21484375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                52
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -652.3638916015625,
+                "y": 0.10000000149011612,
+                "z": -335.801025390625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                49
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -672.517333984375,
+                "y": 0.10000000149011612,
+                "z": -331.04681396484377
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                54
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -665.806396484375,
+                "y": 0.10000000149011612,
+                "z": -323.633056640625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                51
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -685.91357421875,
+                "y": 0.10000000149011612,
+                "z": -318.92071533203127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                56
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -679.2027587890625,
+                "y": 0.10000000149011612,
+                "z": -311.50689697265627
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                53
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -699.29638671875,
+                "y": 0.10000000149011612,
+                "z": -306.8067626953125
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                58
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -692.58544921875,
+                "y": 0.10000000149011612,
+                "z": -299.39300537109377
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                55
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -712.692138671875,
+                "y": 0.10000000149011612,
+                "z": -294.68115234375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                60
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -705.981201171875,
+                "y": 0.10000000149011612,
+                "z": -287.267333984375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                57
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -726.09326171875,
+                "y": 0.10000000149011612,
+                "z": -282.55059814453127
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                62
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -719.38232421875,
+                "y": 0.10000000149011612,
+                "z": -275.13677978515627
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                59
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -739.4962158203125,
+                "y": 0.10000000149011612,
+                "z": -270.4183349609375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                64
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -732.785400390625,
+                "y": 0.10000000149011612,
+                "z": -263.00457763671877
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                61
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -752.8992919921875,
+                "y": 0.10000000149011612,
+                "z": -258.28607177734377
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                66
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -746.1883544921875,
+                "y": 0.10000000149011612,
+                "z": -250.87228393554688
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                63
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -766.3004150390625,
+                "y": 0.10000000149011612,
+                "z": -246.15553283691407
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                68
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -759.5894775390625,
+                "y": 0.10000000149011612,
+                "z": -238.7417449951172
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                65
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -779.6961669921875,
+                "y": 0.10000000149011612,
+                "z": -234.02987670898438
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                70
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -772.9852294921875,
+                "y": 0.10000000149011612,
+                "z": -226.6160888671875
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                67
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -793.078857421875,
+                "y": 0.10000000149011612,
+                "z": -221.9159698486328
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                72
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -786.3680419921875,
+                "y": 0.10000000149011612,
+                "z": -214.50218200683595
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                69
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -806.4752197265625,
+                "y": 0.10000000149011612,
+                "z": -209.7898406982422
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                74
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -799.7642822265625,
+                "y": 0.10000000149011612,
+                "z": -202.3760528564453
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                71
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -819.9176025390625,
+                "y": 0.10000000149011612,
+                "z": -197.6218719482422
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                76
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -813.206787109375,
+                "y": 0.10000000149011612,
+                "z": -190.2080841064453
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                73
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -833.3138427734375,
+                "y": 0.10000000149011612,
+                "z": -185.4958038330078
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                78
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -826.6029052734375,
+                "y": 0.10000000149011612,
+                "z": -178.08201599121095
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                75
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -846.7109375,
+                "y": 0.10000000149011612,
+                "z": -173.36888122558595
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                80
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -840.0001220703125,
+                "y": 0.10000000149011612,
+                "z": -165.95509338378907
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                77
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -860.064453125,
+                "y": 0.10000000149011612,
+                "z": -161.281494140625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                82
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -853.353515625,
+                "y": 0.10000000149011612,
+                "z": -153.86770629882813
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                79
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -873.4111328125,
+                "y": 0.10000000149011612,
+                "z": -149.2002716064453
             },
             "outgoingIndices": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -866.7001953125,
+                "y": 0.10000000149011612,
+                "z": -141.78648376464845
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                81
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -392.025634765625,
+                "y": 0.10000000149011612,
+                "z": -194.01034545898438
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                86
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -398.77435302734377,
+                "y": 0.10000000149011612,
+                "z": -201.3896484375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                228,
+                237
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -385.17462158203127,
+                "y": 0.10000000149011612,
+                "z": -200.27590942382813
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                88
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -391.92340087890627,
+                "y": 0.10000000149011612,
+                "z": -207.65521240234376
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                85
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -378.3201904296875,
+                "y": 0.10000000149011612,
+                "z": -206.544677734375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                90
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -385.06890869140627,
+                "y": 0.10000000149011612,
+                "z": -213.92398071289063
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                87
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -371.4432373046875,
+                "y": 0.10000000149011612,
+                "z": -212.83395385742188
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                92
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -378.1920166015625,
+                "y": 0.10000000149011612,
+                "z": -220.2132568359375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                89
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -364.56683349609377,
+                "y": 0.10000000149011612,
+                "z": -219.12277221679688
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                94
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -371.31561279296877,
+                "y": 0.10000000149011612,
+                "z": -226.50210571289063
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                91
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -357.6666259765625,
+                "y": 0.10000000149011612,
+                "z": -225.433349609375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                96
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -364.4154052734375,
+                "y": 0.10000000149011612,
+                "z": -232.81265258789063
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                93
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -350.79022216796877,
+                "y": 0.10000000149011612,
+                "z": -231.72219848632813
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                98
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -357.5389404296875,
+                "y": 0.10000000149011612,
+                "z": -239.10153198242188
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                95
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -343.920654296875,
+                "y": 0.10000000149011612,
+                "z": -238.00473022460938
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                100
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -350.66943359375,
+                "y": 0.10000000149011612,
+                "z": -245.38406372070313
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                97
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -337.04449462890627,
+                "y": 0.10000000149011612,
+                "z": -244.2933349609375
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                102
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -343.79327392578127,
+                "y": 0.10000000149011612,
+                "z": -251.67266845703126
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                99
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -330.16552734375,
+                "y": 0.10000000149011612,
+                "z": -250.58447265625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                104
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -336.914306640625,
+                "y": 0.10000000149011612,
+                "z": -257.9637756347656
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                101
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -323.28564453125,
+                "y": 0.10000000149011612,
+                "z": -256.8764953613281
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                106
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -330.03436279296877,
+                "y": 0.10000000149011612,
+                "z": -264.25579833984377
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                103
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -316.40570068359377,
+                "y": 0.10000000149011612,
+                "z": -263.1685791015625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                108
+            ]
         },
         {
             "position": {
-                "x": -595.1748046875,
-                "y": 0.009998321533203125,
-                "z": -390.67926025390627
+                "x": -323.15447998046877,
+                "y": 0.10000000149011612,
+                "z": -270.5478515625
             },
             "outgoingIndices": [
-                338
+                105
             ]
         },
         {
             "position": {
-                "x": -601.625244140625,
-                "y": 0.009998321533203125,
-                "z": -398.32073974609377
+                "x": -309.52679443359377,
+                "y": 0.10000000149011612,
+                "z": -269.459716796875
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                110
+            ]
         },
         {
             "position": {
-                "x": -606.716064453125,
-                "y": 0.009998321533203125,
-                "z": -380.9369812011719
+                "x": -316.2755126953125,
+                "y": 0.10000000149011612,
+                "z": -276.8389892578125
             },
             "outgoingIndices": [
-                340
+                107
             ]
         },
         {
             "position": {
-                "x": -613.1663818359375,
-                "y": 0.009998321533203125,
-                "z": -388.5784606933594
+                "x": -302.65057373046877,
+                "y": 0.10000000149011612,
+                "z": -275.74835205078127
             },
             "outgoingIndices": [
-                337
+                112
             ]
         },
         {
             "position": {
-                "x": -618.26318359375,
-                "y": 0.009998321533203125,
-                "z": -371.18975830078127
+                "x": -309.39935302734377,
+                "y": 0.10000000149011612,
+                "z": -283.12762451171877
             },
             "outgoingIndices": [
-                342
+                109
             ]
         },
         {
             "position": {
-                "x": -624.7135009765625,
-                "y": 0.009998321533203125,
-                "z": -378.83123779296877
+                "x": -295.78106689453127,
+                "y": 0.10000000149011612,
+                "z": -282.03082275390627
             },
             "outgoingIndices": [
-                339
+                114
             ]
         },
         {
             "position": {
-                "x": -629.8480224609375,
-                "y": 0.009998321533203125,
-                "z": -361.41064453125
+                "x": -302.52984619140627,
+                "y": 0.10000000149011612,
+                "z": -289.41015625
             },
             "outgoingIndices": [
-                344
+                111
             ]
         },
         {
             "position": {
-                "x": -636.2984619140625,
-                "y": 0.009998321533203125,
-                "z": -369.0521240234375
+                "x": -288.90460205078127,
+                "y": 0.10000000149011612,
+                "z": -288.3197021484375
             },
             "outgoingIndices": [
-                341
+                116
             ]
         },
         {
             "position": {
-                "x": -641.43212890625,
-                "y": 0.009998321533203125,
-                "z": -351.6321716308594
+                "x": -295.65338134765627,
+                "y": 0.10000000149011612,
+                "z": -295.69903564453127
             },
             "outgoingIndices": [
-                346
+                113
             ]
         },
         {
             "position": {
-                "x": -647.882568359375,
-                "y": 0.009998321533203125,
-                "z": -359.2736511230469
+                "x": -282.00445556640627,
+                "y": 0.10000000149011612,
+                "z": -294.6302490234375
             },
             "outgoingIndices": [
-                343
+                118
             ]
         },
         {
             "position": {
-                "x": -653.0562744140625,
-                "y": 0.009998321533203125,
-                "z": -341.8199462890625
+                "x": -288.75323486328127,
+                "y": 0.10000000149011612,
+                "z": -302.009521484375
             },
             "outgoingIndices": [
-                348
+                115
             ]
         },
         {
             "position": {
-                "x": -659.506591796875,
-                "y": 0.009998321533203125,
-                "z": -349.46142578125
+                "x": -275.1280517578125,
+                "y": 0.10000000149011612,
+                "z": -300.9190673828125
             },
             "outgoingIndices": [
-                345
+                120
             ]
         },
         {
             "position": {
-                "x": -664.640380859375,
-                "y": 0.009998321533203125,
-                "z": -332.0414733886719
+                "x": -281.8768310546875,
+                "y": 0.10000000149011612,
+                "z": -308.29833984375
             },
             "outgoingIndices": [
-                350
+                117
             ]
         },
         {
             "position": {
-                "x": -671.0906982421875,
-                "y": 0.009998321533203125,
-                "z": -339.6829528808594
+                "x": -268.25115966796877,
+                "y": 0.10000000149011612,
+                "z": -307.20831298828127
             },
             "outgoingIndices": [
-                347
+                122
             ]
         },
         {
             "position": {
-                "x": -676.2127685546875,
-                "y": 0.009998321533203125,
-                "z": -322.2728271484375
+                "x": -274.99993896484377,
+                "y": 0.10000000149011612,
+                "z": -314.587646484375
             },
             "outgoingIndices": [
-                352
+                119
             ]
         },
         {
             "position": {
-                "x": -682.6632080078125,
-                "y": 0.009998321533203125,
-                "z": -329.914306640625
+                "x": -261.39666748046877,
+                "y": 0.10000000149011612,
+                "z": -313.47711181640627
             },
             "outgoingIndices": [
-                349
+                124
             ]
         },
         {
             "position": {
-                "x": -687.7965087890625,
-                "y": 0.009998321533203125,
-                "z": -312.4947509765625
+                "x": -268.14544677734377,
+                "y": 0.10000000149011612,
+                "z": -320.85638427734377
             },
             "outgoingIndices": [
-                354
+                121
             ]
         },
         {
             "position": {
-                "x": -694.246826171875,
-                "y": 0.009998321533203125,
-                "z": -320.13623046875
+                "x": -254.5457000732422,
+                "y": 0.10000000149011612,
+                "z": -319.74267578125
             },
-            "outgoingIndices": [
-                351
-            ]
+            "outgoingIndices": []
         },
         {
             "position": {
-                "x": -699.384765625,
-                "y": 0.009998321533203125,
-                "z": -302.71270751953127
+                "x": -261.29443359375,
+                "y": 0.10000000149011612,
+                "z": -327.1219482421875
             },
             "outgoingIndices": [
-                356
+                123
             ]
         },
         {
             "position": {
-                "x": -705.835205078125,
-                "y": 0.009998321533203125,
-                "z": -310.35418701171877
+                "x": -416.0573425292969,
+                "y": 0.10000000149011612,
+                "z": -186.03582763671876
             },
             "outgoingIndices": [
-                353
+                128
             ]
         },
         {
             "position": {
-                "x": -710.9747314453125,
-                "y": 0.009998321533203125,
-                "z": -292.9292907714844
+                "x": -409.4874572753906,
+                "y": 0.10000000149011612,
+                "z": -178.496826171875
             },
             "outgoingIndices": [
-                358
+                246,
+                255
             ]
         },
         {
             "position": {
-                "x": -717.4251708984375,
-                "y": 0.009998321533203125,
-                "z": -300.5707702636719
+                "x": -424.4180908203125,
+                "y": 0.10000000149011612,
+                "z": -178.74978637695313
             },
             "outgoingIndices": [
-                355
+                130
             ]
         },
         {
             "position": {
-                "x": -722.564697265625,
-                "y": 0.009998321533203125,
-                "z": -283.1458740234375
+                "x": -417.84820556640627,
+                "y": 0.10000000149011612,
+                "z": -171.2108154296875
             },
             "outgoingIndices": [
-                360
+                127
             ]
         },
         {
             "position": {
-                "x": -729.01513671875,
-                "y": 0.009998321533203125,
-                "z": -290.787353515625
+                "x": -432.78314208984377,
+                "y": 0.10000000149011612,
+                "z": -171.46005249023438
             },
             "outgoingIndices": [
-                357
+                132
             ]
         },
         {
             "position": {
-                "x": -734.153076171875,
-                "y": 0.009998321533203125,
-                "z": -273.36383056640627
+                "x": -426.21319580078127,
+                "y": 0.10000000149011612,
+                "z": -163.92108154296876
             },
             "outgoingIndices": [
-                362
+                129
             ]
         },
         {
             "position": {
-                "x": -740.603515625,
-                "y": 0.009998321533203125,
-                "z": -281.00531005859377
+                "x": -441.175537109375,
+                "y": 0.10000000149011612,
+                "z": -164.14645385742188
             },
             "outgoingIndices": [
-                359
+                134
             ]
         },
         {
             "position": {
-                "x": -745.7366943359375,
-                "y": 0.009998321533203125,
-                "z": -263.58575439453127
+                "x": -434.6055908203125,
+                "y": 0.10000000149011612,
+                "z": -156.60748291015626
             },
             "outgoingIndices": [
-                364
+                131
             ]
         },
         {
             "position": {
-                "x": -752.1871337890625,
-                "y": 0.009998321533203125,
-                "z": -271.22723388671877
+                "x": -449.5672912597656,
+                "y": 0.10000000149011612,
+                "z": -156.8333740234375
             },
             "outgoingIndices": [
-                361
+                136
             ]
         },
         {
             "position": {
-                "x": -757.3092041015625,
-                "y": 0.009998321533203125,
-                "z": -253.81712341308595
+                "x": -442.9974060058594,
+                "y": 0.10000000149011612,
+                "z": -149.29440307617188
             },
             "outgoingIndices": [
-                366
+                133
             ]
         },
         {
             "position": {
-                "x": -763.759521484375,
-                "y": 0.009998321533203125,
-                "z": -261.4586181640625
+                "x": -457.98809814453127,
+                "y": 0.10000000149011612,
+                "z": -149.49502563476563
             },
             "outgoingIndices": [
-                363
+                138
             ]
         },
         {
             "position": {
-                "x": -768.893310546875,
-                "y": 0.009998321533203125,
-                "z": -244.03863525390626
+                "x": -451.41815185546877,
+                "y": 0.10000000149011612,
+                "z": -141.9560546875
             },
             "outgoingIndices": [
-                368
+                135
             ]
         },
         {
             "position": {
-                "x": -775.34375,
-                "y": 0.009998321533203125,
-                "z": -251.68011474609376
+                "x": -466.37994384765627,
+                "y": 0.10000000149011612,
+                "z": -142.18191528320313
             },
             "outgoingIndices": [
-                365
+                140
             ]
         },
         {
             "position": {
-                "x": -780.5174560546875,
-                "y": 0.009998321533203125,
-                "z": -234.22640991210938
+                "x": -459.80999755859377,
+                "y": 0.10000000149011612,
+                "z": -134.6429443359375
             },
             "outgoingIndices": [
-                370
+                137
             ]
         },
         {
             "position": {
-                "x": -786.9677734375,
-                "y": 0.009998321533203125,
-                "z": -241.86788940429688
+                "x": -474.7632751464844,
+                "y": 0.10000000149011612,
+                "z": -134.8761749267578
             },
             "outgoingIndices": [
-                367
+                142
             ]
         },
         {
             "position": {
-                "x": -792.1014404296875,
-                "y": 0.009998321533203125,
-                "z": -224.447998046875
+                "x": -468.1933898925781,
+                "y": 0.10000000149011612,
+                "z": -127.33718872070313
             },
             "outgoingIndices": [
-                372
+                139
             ]
         },
         {
             "position": {
-                "x": -798.5518798828125,
-                "y": 0.009998321533203125,
-                "z": -232.08950805664063
+                "x": -483.15478515625,
+                "y": 0.10000000149011612,
+                "z": -127.56336975097656
             },
             "outgoingIndices": [
-                369
+                144
             ]
         },
         {
             "position": {
-                "x": -803.686279296875,
-                "y": 0.009998321533203125,
-                "z": -214.66885375976563
+                "x": -476.58489990234377,
+                "y": 0.10000000149011612,
+                "z": -120.02438354492188
             },
             "outgoingIndices": [
-                374
+                141
             ]
         },
         {
             "position": {
-                "x": -810.13671875,
-                "y": 0.009998321533203125,
-                "z": -222.31036376953126
+                "x": -491.5496520996094,
+                "y": 0.10000000149011612,
+                "z": -120.24760437011719
             },
             "outgoingIndices": [
-                371
+                146
             ]
         },
         {
             "position": {
-                "x": -815.2333984375,
-                "y": 0.009998321533203125,
-                "z": -204.92166137695313
+                "x": -484.9797668457031,
+                "y": 0.10000000149011612,
+                "z": -112.70860290527344
             },
             "outgoingIndices": [
-                376
+                143
             ]
         },
         {
             "position": {
-                "x": -821.683837890625,
-                "y": 0.009998321533203125,
-                "z": -212.56314086914063
+                "x": -499.9457092285156,
+                "y": 0.10000000149011612,
+                "z": -112.93080139160156
             },
             "outgoingIndices": [
-                373
+                148
             ]
         },
         {
             "position": {
-                "x": -826.774658203125,
-                "y": 0.009998321533203125,
-                "z": -195.17935180664063
+                "x": -493.3758239746094,
+                "y": 0.10000000149011612,
+                "z": -105.39181518554688
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                145
+            ]
         },
         {
             "position": {
-                "x": -833.22509765625,
-                "y": 0.009998321533203125,
-                "z": -202.82086181640626
+                "x": -508.3417663574219,
+                "y": 0.10000000149011612,
+                "z": -105.61399841308594
             },
             "outgoingIndices": [
-                375
+                150
             ]
         },
         {
             "position": {
-                "x": -421.75042724609377,
-                "y": 0.009998321533203125,
-                "z": -171.93765258789063
+                "x": -501.7718811035156,
+                "y": 0.10000000149011612,
+                "z": -98.07501220703125
             },
             "outgoingIndices": [
-                380
+                147
             ]
         },
         {
             "position": {
-                "x": -427.84954833984377,
-                "y": 0.009998321533203125,
-                "z": -179.86233520507813
+                "x": -516.7366943359375,
+                "y": 0.10000000149011612,
+                "z": -98.29824829101563
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                152
+            ]
         },
         {
             "position": {
-                "x": -429.250244140625,
-                "y": 0.009998321533203125,
-                "z": -166.16552734375
+                "x": -510.1667785644531,
+                "y": 0.10000000149011612,
+                "z": -90.75924682617188
             },
             "outgoingIndices": [
-                382
+                149
             ]
         },
         {
             "position": {
-                "x": -435.349365234375,
-                "y": 0.009998321533203125,
-                "z": -174.09024047851563
+                "x": -525.128173828125,
+                "y": 0.10000000149011612,
+                "z": -90.98542785644531
             },
             "outgoingIndices": [
-                379
+                154
             ]
         },
         {
             "position": {
-                "x": -436.75384521484377,
-                "y": 0.009998321533203125,
-                "z": -160.3905029296875
+                "x": -518.5582275390625,
+                "y": 0.10000000149011612,
+                "z": -83.44644165039063
             },
             "outgoingIndices": [
-                384
+                151
             ]
         },
         {
             "position": {
-                "x": -442.85296630859377,
-                "y": 0.009998321533203125,
-                "z": -168.315185546875
+                "x": -533.511474609375,
+                "y": 0.10000000149011612,
+                "z": -83.6796875
             },
             "outgoingIndices": [
-                381
+                156
             ]
         },
         {
             "position": {
-                "x": -444.28204345703127,
-                "y": 0.009998321533203125,
-                "z": -154.5965576171875
+                "x": -526.941650390625,
+                "y": 0.10000000149011612,
+                "z": -76.14068603515625
             },
             "outgoingIndices": [
-                386
+                153
             ]
         },
         {
             "position": {
-                "x": -450.38116455078127,
-                "y": 0.009998321533203125,
-                "z": -162.521240234375
+                "x": -541.9033203125,
+                "y": 0.10000000149011612,
+                "z": -76.36656188964844
             },
             "outgoingIndices": [
-                383
+                158
             ]
         },
         {
             "position": {
-                "x": -451.8096923828125,
-                "y": 0.009998321533203125,
-                "z": -148.80300903320313
+                "x": -535.33349609375,
+                "y": 0.10000000149011612,
+                "z": -68.82757568359375
             },
             "outgoingIndices": [
-                388
+                155
             ]
         },
         {
             "position": {
-                "x": -457.9088134765625,
-                "y": 0.009998321533203125,
-                "z": -156.72769165039063
+                "x": -550.3240966796875,
+                "y": 0.10000000149011612,
+                "z": -69.02822875976563
             },
             "outgoingIndices": [
-                385
+                160
             ]
         },
         {
             "position": {
-                "x": -459.36334228515627,
-                "y": 0.009998321533203125,
-                "z": -142.98944091796876
+                "x": -543.7542724609375,
+                "y": 0.10000000149011612,
+                "z": -61.48923873901367
             },
             "outgoingIndices": [
-                390
+                157
             ]
         },
         {
             "position": {
-                "x": -465.46246337890627,
-                "y": 0.009998321533203125,
-                "z": -150.91412353515626
+                "x": -558.7159423828125,
+                "y": 0.10000000149011612,
+                "z": -61.71516036987305
             },
             "outgoingIndices": [
-                387
+                162
             ]
         },
         {
             "position": {
-                "x": -466.89105224609377,
-                "y": 0.009998321533203125,
-                "z": -137.19589233398438
+                "x": -552.14599609375,
+                "y": 0.10000000149011612,
+                "z": -54.17616653442383
             },
             "outgoingIndices": [
-                392
+                159
             ]
         },
         {
             "position": {
-                "x": -472.99017333984377,
-                "y": 0.009998321533203125,
-                "z": -145.12057495117188
+                "x": -567.1082763671875,
+                "y": 0.10000000149011612,
+                "z": -54.40157699584961
             },
             "outgoingIndices": [
-                389
+                164
             ]
         },
         {
             "position": {
-                "x": -474.4111328125,
-                "y": 0.009998321533203125,
-                "z": -131.40817260742188
+                "x": -560.5384521484375,
+                "y": 0.10000000149011612,
+                "z": -46.86258316040039
             },
             "outgoingIndices": [
-                394
+                161
             ]
         },
         {
             "position": {
-                "x": -480.51025390625,
-                "y": 0.009998321533203125,
-                "z": -139.33285522460938
+                "x": -575.4732666015625,
+                "y": 0.10000000149011612,
+                "z": -47.11185836791992
             },
             "outgoingIndices": [
-                391
+                166
             ]
         },
         {
             "position": {
-                "x": -481.93853759765627,
-                "y": 0.009998321533203125,
-                "z": -125.61483001708985
+                "x": -568.9034423828125,
+                "y": 0.10000000149011612,
+                "z": -39.5728645324707
             },
             "outgoingIndices": [
-                396
+                163
             ]
         },
         {
             "position": {
-                "x": -488.03765869140627,
-                "y": 0.009998321533203125,
-                "z": -133.53952026367188
+                "x": -583.833984375,
+                "y": 0.10000000149011612,
+                "z": -39.8258171081543
             },
-            "outgoingIndices": [
-                393
-            ]
+            "outgoingIndices": []
         },
         {
             "position": {
-                "x": -489.46893310546877,
-                "y": 0.009998321533203125,
-                "z": -119.81914520263672
+                "x": -577.26416015625,
+                "y": 0.10000000149011612,
+                "z": -32.28682327270508
             },
             "outgoingIndices": [
-                398
+                165
             ]
         },
         {
             "position": {
-                "x": -495.56805419921877,
-                "y": 0.009998321533203125,
-                "z": -127.74384307861328
+                "x": -37.18876647949219,
+                "y": 0.10000000149011612,
+                "z": -863.8511962890625
             },
             "outgoingIndices": [
-                395
+                170
             ]
+        },
+        {
+            "position": {
+                "x": -30.811235427856447,
+                "y": 0.10000000149011612,
+                "z": -856.1488037109375
+            },
+            "outgoingIndices": []
         },
         {
             "position": {
-                "x": -497.0003967285156,
-                "y": 0.009998321533203125,
-                "z": -114.02266693115235
+                "x": -64.39004516601563,
+                "y": 0.10000000149011612,
+                "z": -841.3287963867188
             },
             "outgoingIndices": [
-                400
+                172
             ]
         },
         {
             "position": {
-                "x": -503.0995178222656,
-                "y": 0.009998321533203125,
-                "z": -121.9473648071289
+                "x": -58.012516021728519,
+                "y": 0.10000000149011612,
+                "z": -833.6264038085938
             },
             "outgoingIndices": [
-                397
+                169
             ]
         },
         {
             "position": {
-                "x": -504.5318908691406,
-                "y": 0.009998321533203125,
-                "z": -108.22618865966797
+                "x": -91.60514831542969,
+                "y": 0.10000000149011612,
+                "z": -818.794921875
             },
             "outgoingIndices": [
-                402
+                174
             ]
         },
         {
             "position": {
-                "x": -510.6309814453125,
-                "y": 0.009998321533203125,
-                "z": -116.15088653564453
+                "x": -85.22761535644531,
+                "y": 0.10000000149011612,
+                "z": -811.092529296875
             },
             "outgoingIndices": [
-                399
+                171
             ]
         },
         {
             "position": {
-                "x": -512.0623168945313,
-                "y": 0.009998321533203125,
-                "z": -102.43050384521485
+                "x": -118.90935516357422,
+                "y": 0.10000000149011612,
+                "z": -796.187255859375
             },
             "outgoingIndices": [
-                404
+                176
             ]
         },
         {
             "position": {
-                "x": -518.1614379882813,
-                "y": 0.009998321533203125,
-                "z": -110.3552017211914
+                "x": -112.53182220458985,
+                "y": 0.10000000149011612,
+                "z": -788.48486328125
             },
             "outgoingIndices": [
-                401
+                173
             ]
         },
         {
             "position": {
-                "x": -519.5896606445313,
-                "y": 0.009998321533203125,
-                "z": -96.63719940185547
+                "x": -146.21165466308595,
+                "y": 0.10000000149011612,
+                "z": -773.5811767578125
             },
             "outgoingIndices": [
-                406
+                178
             ]
         },
         {
             "position": {
-                "x": -525.6887817382813,
-                "y": 0.009998321533203125,
-                "z": -104.56189727783203
+                "x": -139.83412170410157,
+                "y": 0.10000000149011612,
+                "z": -765.8787841796875
             },
             "outgoingIndices": [
-                403
+                175
             ]
         },
         {
             "position": {
-                "x": -527.1098022460938,
-                "y": 0.009998321533203125,
-                "z": -90.84944915771485
+                "x": -173.60824584960938,
+                "y": 0.10000000149011612,
+                "z": -750.8970336914063
             },
             "outgoingIndices": [
-                408
+                180
             ]
         },
         {
             "position": {
-                "x": -533.2089233398438,
-                "y": 0.009998321533203125,
-                "z": -98.7741470336914
+                "x": -167.230712890625,
+                "y": 0.10000000149011612,
+                "z": -743.1946411132813
             },
             "outgoingIndices": [
-                405
+                177
             ]
         },
         {
             "position": {
-                "x": -534.637451171875,
-                "y": 0.009998321533203125,
-                "z": -85.05587005615235
+                "x": -200.91064453125,
+                "y": 0.10000000149011612,
+                "z": -728.2908935546875
             },
             "outgoingIndices": [
-                410
+                182
             ]
         },
         {
             "position": {
-                "x": -540.736572265625,
-                "y": 0.009998321533203125,
-                "z": -92.9805679321289
+                "x": -194.53311157226563,
+                "y": 0.10000000149011612,
+                "z": -720.5885009765625
             },
             "outgoingIndices": [
-                407
+                179
             ]
         },
         {
             "position": {
-                "x": -542.1911010742188,
-                "y": 0.009998321533203125,
-                "z": -79.2423324584961
+                "x": -228.18553161621095,
+                "y": 0.10000000149011612,
+                "z": -705.70751953125
             },
             "outgoingIndices": [
-                412
+                184
             ]
         },
         {
             "position": {
-                "x": -548.2902221679688,
-                "y": 0.009998321533203125,
-                "z": -87.16703033447266
+                "x": -221.80799865722657,
+                "y": 0.10000000149011612,
+                "z": -698.005126953125
             },
             "outgoingIndices": [
-                409
+                181
             ]
         },
         {
             "position": {
-                "x": -549.71875,
-                "y": 0.009998321533203125,
-                "z": -73.44881439208985
+                "x": -255.48683166503907,
+                "y": 0.10000000149011612,
+                "z": -683.1022338867188
             },
             "outgoingIndices": [
-                414
+                186
             ]
         },
         {
             "position": {
-                "x": -555.81787109375,
-                "y": 0.009998321533203125,
-                "z": -81.3735122680664
+                "x": -249.10931396484376,
+                "y": 0.10000000149011612,
+                "z": -675.3998413085938
             },
             "outgoingIndices": [
-                411
+                183
             ]
         },
         {
             "position": {
-                "x": -557.2469482421875,
-                "y": 0.009998321533203125,
-                "z": -67.65486907958985
+                "x": -282.799072265625,
+                "y": 0.10000000149011612,
+                "z": -660.4879150390625
             },
             "outgoingIndices": [
-                416
+                188
             ]
         },
         {
             "position": {
-                "x": -563.3460693359375,
-                "y": 0.009998321533203125,
-                "z": -75.5795669555664
+                "x": -276.42156982421877,
+                "y": 0.10000000149011612,
+                "z": -652.7855224609375
             },
             "outgoingIndices": [
-                413
+                185
             ]
         },
         {
             "position": {
-                "x": -564.7505493164063,
-                "y": 0.009998321533203125,
-                "z": -61.87984848022461
+                "x": -310.11529541015627,
+                "y": 0.10000000149011612,
+                "z": -637.870361328125
             },
             "outgoingIndices": [
-                418
+                190
             ]
         },
         {
             "position": {
-                "x": -570.8496704101563,
-                "y": 0.009998321533203125,
-                "z": -69.8045425415039
+                "x": -303.73773193359377,
+                "y": 0.10000000149011612,
+                "z": -630.16796875
             },
             "outgoingIndices": [
-                415
+                187
             ]
         },
         {
             "position": {
-                "x": -572.2503662109375,
-                "y": 0.009998321533203125,
-                "z": -56.10771942138672
+                "x": -337.43145751953127,
+                "y": 0.10000000149011612,
+                "z": -615.2528076171875
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                192
+            ]
         },
         {
             "position": {
-                "x": -578.3494873046875,
-                "y": 0.009998321533203125,
-                "z": -64.03240966796875
+                "x": -331.05389404296877,
+                "y": 0.10000000149011612,
+                "z": -607.5504150390625
             },
             "outgoingIndices": [
-                417
+                189
             ]
         },
         {
             "position": {
-                "x": 57.08493423461914,
-                "y": 0.009998321533203125,
-                "z": -904.0651245117188
+                "x": -364.7437744140625,
+                "y": 0.10000000149011612,
+                "z": -592.638427734375
             },
             "outgoingIndices": [
-                422
+                194
             ]
         },
         {
             "position": {
-                "x": 50.91506576538086,
-                "y": 0.009998321533203125,
-                "z": -911.9348754882813
+                "x": -358.3662109375,
+                "y": 0.10000000149011612,
+                "z": -584.93603515625
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                191
+            ]
         },
         {
             "position": {
-                "x": 25.939611434936525,
-                "y": 0.009998321533203125,
-                "z": -879.6471557617188
+                "x": -392.0450439453125,
+                "y": 0.10000000149011612,
+                "z": -570.033203125
             },
             "outgoingIndices": [
-                424
+                196
             ]
         },
         {
             "position": {
-                "x": 19.769739151000978,
-                "y": 0.009998321533203125,
-                "z": -887.5169067382813
+                "x": -385.66754150390627,
+                "y": 0.10000000149011612,
+                "z": -562.330810546875
             },
             "outgoingIndices": [
-                421
+                193
             ]
         },
         {
             "position": {
-                "x": -5.221583366394043,
-                "y": 0.009998321533203125,
-                "z": -855.2167358398438
+                "x": -419.3199462890625,
+                "y": 0.10000000149011612,
+                "z": -547.4498291015625
             },
             "outgoingIndices": [
-                426
+                198
             ]
         },
         {
             "position": {
-                "x": -11.391453742980957,
-                "y": 0.009998321533203125,
-                "z": -863.0864868164063
+                "x": -412.9423828125,
+                "y": 0.10000000149011612,
+                "z": -539.7474365234375
             },
             "outgoingIndices": [
-                423
+                195
             ]
         },
         {
             "position": {
-                "x": -36.48482894897461,
-                "y": 0.009998321533203125,
-                "z": -830.7063598632813
+                "x": -446.622314453125,
+                "y": 0.10000000149011612,
+                "z": -524.84375
             },
             "outgoingIndices": [
-                428
+                200
             ]
         },
         {
             "position": {
-                "x": -42.65469741821289,
-                "y": 0.009998321533203125,
-                "z": -838.5761108398438
+                "x": -440.24481201171877,
+                "y": 0.10000000149011612,
+                "z": -517.141357421875
             },
             "outgoingIndices": [
-                425
+                197
             ]
         },
         {
             "position": {
-                "x": -67.745849609375,
-                "y": 0.009998321533203125,
-                "z": -806.1978149414063
+                "x": -474.0189208984375,
+                "y": 0.10000000149011612,
+                "z": -502.15960693359377
             },
             "outgoingIndices": [
-                430
+                202
             ]
         },
         {
             "position": {
-                "x": -73.91571044921875,
-                "y": 0.009998321533203125,
-                "z": -814.0675659179688
+                "x": -467.641357421875,
+                "y": 0.10000000149011612,
+                "z": -494.4571533203125
             },
             "outgoingIndices": [
-                427
+                199
             ]
         },
         {
             "position": {
-                "x": -99.11489868164063,
-                "y": 0.009998321533203125,
-                "z": -781.6044311523438
+                "x": -501.3211669921875,
+                "y": 0.10000000149011612,
+                "z": -479.55352783203127
             },
             "outgoingIndices": [
-                432
+                204
             ]
         },
         {
             "position": {
-                "x": -105.28475952148438,
-                "y": 0.009998321533203125,
-                "z": -789.4741821289063
+                "x": -494.943603515625,
+                "y": 0.10000000149011612,
+                "z": -471.85113525390627
             },
             "outgoingIndices": [
-                429
+                201
             ]
         },
         {
             "position": {
-                "x": -130.37603759765626,
-                "y": 0.009998321533203125,
-                "z": -757.0957641601563
+                "x": -528.6253662109375,
+                "y": 0.10000000149011612,
+                "z": -456.94586181640627
             },
             "outgoingIndices": [
-                434
+                206
             ]
         },
         {
             "position": {
-                "x": -136.54591369628907,
-                "y": 0.009998321533203125,
-                "z": -764.9655151367188
+                "x": -522.2479248046875,
+                "y": 0.10000000149011612,
+                "z": -449.24346923828127
             },
             "outgoingIndices": [
-                431
+                203
             ]
         },
         {
             "position": {
-                "x": -161.60562133789063,
-                "y": 0.009998321533203125,
-                "z": -732.6117553710938
+                "x": -555.8404541015625,
+                "y": 0.10000000149011612,
+                "z": -434.41204833984377
             },
             "outgoingIndices": [
-                436
+                208
             ]
         },
         {
             "position": {
-                "x": -167.77548217773438,
-                "y": 0.009998321533203125,
-                "z": -740.4815063476563
+                "x": -549.462890625,
+                "y": 0.10000000149011612,
+                "z": -426.70965576171877
             },
             "outgoingIndices": [
-                433
+                205
             ]
         },
         {
             "position": {
-                "x": -192.865478515625,
-                "y": 0.009998321533203125,
-                "z": -708.1039428710938
+                "x": -583.041748046875,
+                "y": 0.10000000149011612,
+                "z": -411.88958740234377
             },
             "outgoingIndices": [
-                438
+                264,
+                273
             ]
         },
         {
             "position": {
-                "x": -199.03533935546876,
-                "y": 0.009998321533203125,
-                "z": -715.9736938476563
+                "x": -576.6641845703125,
+                "y": 0.10000000149011612,
+                "z": -404.18719482421877
             },
             "outgoingIndices": [
-                435
+                207
             ]
         },
         {
             "position": {
-                "x": -224.13800048828126,
-                "y": 0.009998321533203125,
-                "z": -683.5863647460938
+                "x": -417.1455383300781,
+                "y": 0.10000000149011612,
+                "z": -197.93600463867188
             },
             "outgoingIndices": [
-                440
+                211
             ]
         },
         {
             "position": {
-                "x": -230.307861328125,
-                "y": 0.009998321533203125,
-                "z": -691.4561157226563
+                "x": -414.56781005859377,
+                "y": 0.10000000149011612,
+                "z": -195.7428436279297
             },
             "outgoingIndices": [
-                437
+                212
             ]
         },
         {
             "position": {
-                "x": -255.41493225097657,
-                "y": 0.009998321533203125,
-                "z": -659.0652465820313
+                "x": -411.8332214355469,
+                "y": 0.10000000149011612,
+                "z": -193.8440704345703
             },
             "outgoingIndices": [
-                442
+                213
             ]
         },
         {
             "position": {
-                "x": -261.5848083496094,
-                "y": 0.009998321533203125,
-                "z": -666.9349975585938
+                "x": -408.9862060546875,
+                "y": 0.10000000149011612,
+                "z": -192.30174255371095
             },
             "outgoingIndices": [
-                439
+                214
             ]
         },
         {
             "position": {
-                "x": -286.69189453125,
-                "y": 0.009998321533203125,
-                "z": -634.5440673828125
+                "x": -406.0710754394531,
+                "y": 0.10000000149011612,
+                "z": -191.177978515625
             },
             "outgoingIndices": [
-                444
+                215
             ]
         },
         {
             "position": {
-                "x": -292.86175537109377,
-                "y": 0.009998321533203125,
-                "z": -642.413818359375
+                "x": -403.13214111328127,
+                "y": 0.10000000149011612,
+                "z": -190.5348358154297
             },
             "outgoingIndices": [
-                441
+                216
             ]
         },
         {
             "position": {
-                "x": -317.9643249511719,
-                "y": 0.009998321533203125,
-                "z": -610.0264892578125
+                "x": -400.2137756347656,
+                "y": 0.10000000149011612,
+                "z": -190.43443298339845
             },
             "outgoingIndices": [
-                446
+                217
             ]
         },
         {
             "position": {
-                "x": -324.1341857910156,
-                "y": 0.009998321533203125,
-                "z": -617.896240234375
+                "x": -397.3603515625,
+                "y": 0.10000000149011612,
+                "z": -190.93882751464845
             },
             "outgoingIndices": [
-                443
+                218
             ]
         },
         {
             "position": {
-                "x": -349.2242736816406,
-                "y": 0.009998321533203125,
-                "z": -585.5187377929688
+                "x": -394.6161804199219,
+                "y": 0.10000000149011612,
+                "z": -192.11009216308595
             },
             "outgoingIndices": [
-                448
+                84
             ]
         },
         {
             "position": {
-                "x": -355.3941345214844,
-                "y": 0.009998321533203125,
-                "z": -593.3884887695313
+                "x": -418.3485412597656,
+                "y": 0.10000000149011612,
+                "z": -198.9984893798828
             },
             "outgoingIndices": [
-                445
+                220
             ]
         },
         {
             "position": {
-                "x": -380.4538879394531,
-                "y": 0.009998321533203125,
-                "z": -561.03466796875
+                "x": -417.2234802246094,
+                "y": 0.10000000149011612,
+                "z": -197.55819702148438
             },
             "outgoingIndices": [
-                450
+                221
             ]
         },
         {
             "position": {
-                "x": -386.6237487792969,
-                "y": 0.009998321533203125,
-                "z": -568.9044189453125
+                "x": -416.1976623535156,
+                "y": 0.10000000149011612,
+                "z": -196.06378173828126
             },
             "outgoingIndices": [
-                447
+                222
             ]
         },
         {
             "position": {
-                "x": -411.7149963378906,
-                "y": 0.009998321533203125,
-                "z": -536.5260009765625
+                "x": -415.3218994140625,
+                "y": 0.10000000149011612,
+                "z": -194.5384521484375
             },
             "outgoingIndices": [
-                452
+                223
             ]
         },
         {
             "position": {
-                "x": -417.8848571777344,
-                "y": 0.009998321533203125,
-                "z": -544.395751953125
+                "x": -414.64678955078127,
+                "y": 0.10000000149011612,
+                "z": -193.00537109375
             },
             "outgoingIndices": [
-                449
+                224
             ]
         },
         {
             "position": {
-                "x": -443.0839538574219,
-                "y": 0.009998321533203125,
-                "z": -511.9327697753906
+                "x": -414.22314453125,
+                "y": 0.10000000149011612,
+                "z": -191.48777770996095
             },
             "outgoingIndices": [
-                454
+                225
             ]
         },
         {
             "position": {
-                "x": -449.2538146972656,
-                "y": 0.009998321533203125,
-                "z": -519.802490234375
+                "x": -414.1016540527344,
+                "y": 0.10000000149011612,
+                "z": -190.00881958007813
             },
             "outgoingIndices": [
-                451
+                226
             ]
         },
         {
             "position": {
-                "x": -474.34490966796877,
-                "y": 0.009998321533203125,
-                "z": -487.42413330078127
+                "x": -414.33306884765627,
+                "y": 0.10000000149011612,
+                "z": -188.5917205810547
             },
             "outgoingIndices": [
-                456
+                227
             ]
         },
         {
             "position": {
-                "x": -480.5147705078125,
-                "y": 0.009998321533203125,
-                "z": -495.29388427734377
+                "x": -414.968017578125,
+                "y": 0.10000000149011612,
+                "z": -187.2596435546875
             },
             "outgoingIndices": [
-                453
+                126
             ]
         },
         {
             "position": {
-                "x": -505.6080627441406,
-                "y": 0.009998321533203125,
-                "z": -462.913818359375
+                "x": -400.079345703125,
+                "y": 0.10000000149011612,
+                "z": -200.4835205078125
             },
             "outgoingIndices": [
-                458
+                229
             ]
         },
         {
             "position": {
-                "x": -511.7779235839844,
-                "y": 0.009998321533203125,
-                "z": -470.7835693359375
+                "x": -401.4255676269531,
+                "y": 0.10000000149011612,
+                "z": -200.0657501220703
             },
             "outgoingIndices": [
-                455
+                230
             ]
         },
         {
             "position": {
-                "x": -536.769287109375,
-                "y": 0.009998321533203125,
-                "z": -438.4833984375
+                "x": -402.7997741699219,
+                "y": 0.10000000149011612,
+                "z": -200.0758056640625
             },
             "outgoingIndices": [
-                460
+                231
             ]
         },
         {
             "position": {
-                "x": -542.939208984375,
-                "y": 0.009998321533203125,
-                "z": -446.3531494140625
+                "x": -404.1884765625,
+                "y": 0.10000000149011612,
+                "z": -200.453125
             },
             "outgoingIndices": [
-                457
+                232
             ]
         },
         {
             "position": {
-                "x": -567.9146728515625,
-                "y": 0.009998321533203125,
-                "z": -414.0654296875
+                "x": -405.5783996582031,
+                "y": 0.10000000149011612,
+                "z": -201.1371612548828
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                233
+            ]
         },
         {
             "position": {
-                "x": -574.0845947265625,
-                "y": 0.009998321533203125,
-                "z": -421.93511962890627
+                "x": -406.9561462402344,
+                "y": 0.10000000149011612,
+                "z": -202.06736755371095
             },
             "outgoingIndices": [
-                459
+                234
             ]
         },
         {
             "position": {
-                "x": -568.663818359375,
-                "y": 0.009998321533203125,
-                "z": -392.28326416015627
+                "x": -408.308349609375,
+                "y": 0.10000000149011612,
+                "z": -203.18316650390626
             },
             "outgoingIndices": [
-                464
+                235
             ]
         },
         {
             "position": {
-                "x": -576.5361328125,
-                "y": 0.009998321533203125,
-                "z": -386.11676025390627
+                "x": -409.62164306640627,
+                "y": 0.10000000149011612,
+                "z": -204.42404174804688
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                236
+            ]
         },
         {
             "position": {
-                "x": -561.134033203125,
-                "y": 0.009998321533203125,
-                "z": -382.6705627441406
+                "x": -410.8826599121094,
+                "y": 0.10000000149011612,
+                "z": -205.72938537597657
             },
             "outgoingIndices": [
-                466
+                41
             ]
         },
         {
             "position": {
-                "x": -569.0064697265625,
-                "y": 0.009998321533203125,
-                "z": -376.5040588378906
+                "x": -400.72821044921877,
+                "y": 0.10000000149011612,
+                "z": -199.60728454589845
             },
             "outgoingIndices": [
-                463
+                238
             ]
         },
         {
             "position": {
-                "x": -553.6005859375,
-                "y": 0.009998321533203125,
-                "z": -373.052978515625
+                "x": -402.5228576660156,
+                "y": 0.10000000149011612,
+                "z": -197.97964477539063
             },
             "outgoingIndices": [
-                468
+                239
             ]
         },
         {
             "position": {
-                "x": -561.472900390625,
-                "y": 0.009998321533203125,
-                "z": -366.886474609375
+                "x": -404.1991882324219,
+                "y": 0.10000000149011612,
+                "z": -196.46929931640626
             },
             "outgoingIndices": [
-                465
+                240
             ]
         },
         {
             "position": {
-                "x": -546.0423583984375,
-                "y": 0.009998321533203125,
-                "z": -363.40386962890627
+                "x": -405.7980651855469,
+                "y": 0.10000000149011612,
+                "z": -195.03880310058595
             },
             "outgoingIndices": [
-                470
+                241
             ]
         },
         {
             "position": {
-                "x": -553.9146728515625,
-                "y": 0.009998321533203125,
-                "z": -357.23736572265627
+                "x": -407.3604736328125,
+                "y": 0.10000000149011612,
+                "z": -193.6507110595703
             },
             "outgoingIndices": [
-                467
+                242
             ]
         },
         {
             "position": {
-                "x": -538.4847412109375,
-                "y": 0.009998321533203125,
-                "z": -353.7554931640625
+                "x": -408.92730712890627,
+                "y": 0.10000000149011612,
+                "z": -192.26759338378907
             },
             "outgoingIndices": [
-                472
+                243
             ]
         },
         {
             "position": {
-                "x": -546.3570556640625,
-                "y": 0.009998321533203125,
-                "z": -347.5889892578125
+                "x": -410.5395202636719,
+                "y": 0.10000000149011612,
+                "z": -190.8519744873047
             },
             "outgoingIndices": [
-                469
+                244
             ]
         },
         {
             "position": {
-                "x": -530.90087890625,
-                "y": 0.009998321533203125,
-                "z": -344.07373046875
+                "x": -412.2379455566406,
+                "y": 0.10000000149011612,
+                "z": -189.36643981933595
             },
             "outgoingIndices": [
-                474
+                245
             ]
         },
         {
             "position": {
-                "x": -538.7733154296875,
-                "y": 0.009998321533203125,
-                "z": -337.9072265625
+                "x": -414.0635986328125,
+                "y": 0.10000000149011612,
+                "z": -187.77352905273438
             },
             "outgoingIndices": [
-                471
+                126
             ]
         },
         {
             "position": {
-                "x": -523.34326171875,
-                "y": 0.009998321533203125,
-                "z": -334.42529296875
+                "x": -407.2532043457031,
+                "y": 0.10000000149011612,
+                "z": -180.895751953125
             },
             "outgoingIndices": [
-                476
+                247
             ]
         },
         {
             "position": {
-                "x": -531.215576171875,
-                "y": 0.009998321533203125,
-                "z": -328.2587890625
+                "x": -405.7033386230469,
+                "y": 0.10000000149011612,
+                "z": -183.53805541992188
             },
             "outgoingIndices": [
-                473
+                248
             ]
         },
         {
             "position": {
-                "x": -515.793212890625,
-                "y": 0.009998321533203125,
-                "z": -324.7865905761719
+                "x": -404.7889709472656,
+                "y": 0.10000000149011612,
+                "z": -186.37042236328126
             },
             "outgoingIndices": [
-                478
+                249
             ]
         },
         {
             "position": {
-                "x": -523.66552734375,
-                "y": 0.009998321533203125,
-                "z": -318.6200866699219
+                "x": -404.4612731933594,
+                "y": 0.10000000149011612,
+                "z": -189.3394775390625
             },
             "outgoingIndices": [
-                475
+                250
             ]
         },
         {
             "position": {
-                "x": -508.2357482910156,
-                "y": 0.009998321533203125,
-                "z": -315.1385192871094
+                "x": -404.67132568359377,
+                "y": 0.10000000149011612,
+                "z": -192.3919677734375
             },
             "outgoingIndices": [
-                480
+                251
             ]
         },
         {
             "position": {
-                "x": -516.108154296875,
-                "y": 0.009998321533203125,
-                "z": -308.9720153808594
+                "x": -405.3703308105469,
+                "y": 0.10000000149011612,
+                "z": -195.47450256347657
             },
             "outgoingIndices": [
-                477
+                252
             ]
         },
         {
             "position": {
-                "x": -500.6753234863281,
-                "y": 0.009998321533203125,
-                "z": -305.4866027832031
+                "x": -406.5093688964844,
+                "y": 0.10000000149011612,
+                "z": -198.5337677001953
             },
             "outgoingIndices": [
-                482
+                253
             ]
         },
         {
             "position": {
-                "x": -508.5476989746094,
-                "y": 0.009998321533203125,
-                "z": -299.3200988769531
+                "x": -408.0395812988281,
+                "y": 0.10000000149011612,
+                "z": -201.51644897460938
             },
             "outgoingIndices": [
-                479
+                254
             ]
         },
         {
             "position": {
-                "x": -493.11383056640627,
-                "y": 0.009998321533203125,
-                "z": -295.83331298828127
+                "x": -409.912109375,
+                "y": 0.10000000149011612,
+                "z": -204.3692169189453
             },
             "outgoingIndices": [
-                484
+                41
             ]
         },
         {
             "position": {
-                "x": -500.9862060546875,
-                "y": 0.009998321533203125,
-                "z": -289.66680908203127
+                "x": -407.4730224609375,
+                "y": 0.10000000149011612,
+                "z": -180.2525634765625
             },
             "outgoingIndices": [
-                481
+                256
             ]
         },
         {
             "position": {
-                "x": -485.55230712890627,
-                "y": 0.009998321533203125,
-                "z": -286.1799621582031
+                "x": -405.6285095214844,
+                "y": 0.10000000149011612,
+                "z": -181.8620147705078
             },
             "outgoingIndices": [
-                486
+                257
             ]
         },
         {
             "position": {
-                "x": -493.4246826171875,
-                "y": 0.009998321533203125,
-                "z": -280.0134582519531
+                "x": -403.9124755859375,
+                "y": 0.10000000149011612,
+                "z": -183.36302185058595
             },
             "outgoingIndices": [
-                483
+                258
             ]
         },
         {
             "position": {
-                "x": -477.99188232421877,
-                "y": 0.009998321533203125,
-                "z": -276.52801513671877
+                "x": -402.28363037109377,
+                "y": 0.10000000149011612,
+                "z": -184.79336547851563
             },
             "outgoingIndices": [
-                488
+                259
             ]
         },
         {
             "position": {
-                "x": -485.8642578125,
-                "y": 0.009998321533203125,
-                "z": -270.36151123046877
+                "x": -400.7005920410156,
+                "y": 0.10000000149011612,
+                "z": -186.19091796875
             },
             "outgoingIndices": [
-                485
+                260
             ]
         },
         {
             "position": {
-                "x": -470.4344787597656,
-                "y": 0.009998321533203125,
-                "z": -266.8799743652344
+                "x": -399.1220397949219,
+                "y": 0.10000000149011612,
+                "z": -187.59347534179688
             },
             "outgoingIndices": [
-                490
+                261
             ]
         },
         {
             "position": {
-                "x": -478.3068542480469,
-                "y": 0.009998321533203125,
-                "z": -260.7134704589844
+                "x": -397.5066223144531,
+                "y": 0.10000000149011612,
+                "z": -189.03887939453126
             },
             "outgoingIndices": [
-                487
+                262
             ]
         },
         {
             "position": {
-                "x": -462.8844299316406,
-                "y": 0.009998321533203125,
-                "z": -257.2412414550781
+                "x": -395.81298828125,
+                "y": 0.10000000149011612,
+                "z": -190.56492614746095
             },
             "outgoingIndices": [
-                492
+                263
             ]
         },
         {
             "position": {
-                "x": -470.7568054199219,
-                "y": 0.009998321533203125,
-                "z": -251.07476806640626
+                "x": -393.999755859375,
+                "y": 0.10000000149011612,
+                "z": -192.20948791503907
             },
             "outgoingIndices": [
-                489
+                84
             ]
         },
         {
             "position": {
-                "x": -455.3267517089844,
-                "y": 0.009998321533203125,
-                "z": -247.59283447265626
+                "x": -585.7922973632813,
+                "y": 0.10000000149011612,
+                "z": -409.0120849609375
             },
             "outgoingIndices": [
-                494
+                265
             ]
         },
         {
             "position": {
-                "x": -463.1991271972656,
-                "y": 0.009998321533203125,
-                "z": -241.42636108398438
+                "x": -587.5877685546875,
+                "y": 0.10000000149011612,
+                "z": -405.8183288574219
             },
             "outgoingIndices": [
-                491
+                266
             ]
         },
         {
             "position": {
-                "x": -447.7429504394531,
-                "y": 0.009998321533203125,
-                "z": -237.91110229492188
+                "x": -588.5149536132813,
+                "y": 0.10000000149011612,
+                "z": -402.37603759765627
             },
             "outgoingIndices": [
-                496
+                267
             ]
         },
         {
             "position": {
-                "x": -455.6153259277344,
-                "y": 0.009998321533203125,
-                "z": -231.74459838867188
+                "x": -588.66064453125,
+                "y": 0.10000000149011612,
+                "z": -398.7530822753906
             },
             "outgoingIndices": [
-                493
+                268
             ]
         },
         {
             "position": {
-                "x": -440.1853332519531,
-                "y": 0.009998321533203125,
-                "z": -228.26272583007813
+                "x": -588.1114501953125,
+                "y": 0.10000000149011612,
+                "z": -395.0172119140625
             },
             "outgoingIndices": [
-                498
+                269
             ]
         },
         {
             "position": {
-                "x": -448.0577087402344,
-                "y": 0.009998321533203125,
-                "z": -222.09622192382813
+                "x": -586.9542846679688,
+                "y": 0.10000000149011612,
+                "z": -391.23626708984377
             },
             "outgoingIndices": [
-                495
+                270
             ]
         },
         {
             "position": {
-                "x": -432.62713623046877,
-                "y": 0.009998321533203125,
-                "z": -218.61367797851563
+                "x": -585.2757568359375,
+                "y": 0.10000000149011612,
+                "z": -387.4779968261719
             },
             "outgoingIndices": [
-                500
+                271
             ]
         },
         {
             "position": {
-                "x": -440.49951171875,
-                "y": 0.009998321533203125,
-                "z": -212.44717407226563
+                "x": -583.1627197265625,
+                "y": 0.10000000149011612,
+                "z": -383.81024169921877
             },
             "outgoingIndices": [
-                497
+                272
             ]
         },
         {
             "position": {
-                "x": -425.0935974121094,
-                "y": 0.009998321533203125,
-                "z": -208.99606323242188
+                "x": -580.701904296875,
+                "y": 0.10000000149011612,
+                "z": -380.30078125
             },
             "outgoingIndices": [
-                502
+                0
             ]
         },
         {
             "position": {
-                "x": -432.9659729003906,
-                "y": 0.009998321533203125,
-                "z": -202.82958984375
+                "x": -585.6989135742188,
+                "y": 0.10000000149011612,
+                "z": -409.6636962890625
             },
             "outgoingIndices": [
-                499
+                274
             ]
         },
         {
             "position": {
-                "x": -417.56390380859377,
-                "y": 0.009998321533203125,
-                "z": -199.38336181640626
+                "x": -588.1082153320313,
+                "y": 0.10000000149011612,
+                "z": -407.59576416015627
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                275
+            ]
         },
         {
             "position": {
-                "x": -425.436279296875,
-                "y": 0.009998321533203125,
-                "z": -193.21685791015626
+                "x": -590.3291015625,
+                "y": 0.10000000149011612,
+                "z": -405.643310546875
             },
             "outgoingIndices": [
-                501
+                276
             ]
         },
         {
             "position": {
-                "x": -402.6309814453125,
-                "y": 0.009998321533203125,
-                "z": -197.99832153320313
+                "x": -592.4207763671875,
+                "y": 0.10000000149011612,
+                "z": -403.76373291015627
             },
             "outgoingIndices": [
-                506
+                277
             ]
         },
         {
             "position": {
-                "x": -396.3690185546875,
-                "y": 0.009998321533203125,
-                "z": -190.20169067382813
+                "x": -594.4427490234375,
+                "y": 0.10000000149011612,
+                "z": -401.91455078125
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                278
+            ]
         },
         {
             "position": {
-                "x": -394.892822265625,
-                "y": 0.009998321533203125,
-                "z": -204.21336364746095
+                "x": -596.4541625976563,
+                "y": 0.10000000149011612,
+                "z": -400.0532531738281
             },
             "outgoingIndices": [
-                508
+                279
             ]
         },
         {
             "position": {
-                "x": -388.63079833984377,
-                "y": 0.009998321533203125,
-                "z": -196.41673278808595
+                "x": -598.5143432617188,
+                "y": 0.10000000149011612,
+                "z": -398.1373291015625
             },
             "outgoingIndices": [
-                505
+                280
             ]
         },
         {
             "position": {
-                "x": -387.15069580078127,
-                "y": 0.009998321533203125,
-                "z": -210.4315643310547
+                "x": -600.6827392578125,
+                "y": 0.10000000149011612,
+                "z": -396.1242370605469
             },
             "outgoingIndices": [
-                510
+                281
             ]
         },
         {
             "position": {
-                "x": -380.88873291015627,
-                "y": 0.009998321533203125,
-                "z": -202.6349334716797
+                "x": -603.0186157226563,
+                "y": 0.10000000149011612,
+                "z": -393.9714660644531
             },
             "outgoingIndices": [
-                507
+                42
             ]
         },
         {
             "position": {
-                "x": -379.38323974609377,
-                "y": 0.0099945068359375,
-                "z": -216.6701202392578
+                "x": -572.2737426757813,
+                "y": 0.10000000149011612,
+                "z": -385.66876220703127
             },
             "outgoingIndices": [
-                512
+                283
             ]
         },
         {
             "position": {
-                "x": -373.1212158203125,
-                "y": 0.0099945068359375,
-                "z": -208.8734893798828
+                "x": -573.9996337890625,
+                "y": 0.10000000149011612,
+                "z": -387.7477111816406
             },
             "outgoingIndices": [
-                509
+                284
             ]
         },
         {
             "position": {
-                "x": -371.61627197265627,
-                "y": 0.0099945068359375,
-                "z": -222.9082489013672
+                "x": -575.6245727539063,
+                "y": 0.10000000149011612,
+                "z": -389.8984680175781
             },
             "outgoingIndices": [
-                514
+                285
             ]
         },
         {
             "position": {
-                "x": -365.35430908203127,
-                "y": 0.0099945068359375,
-                "z": -215.1116180419922
+                "x": -577.0589599609375,
+                "y": 0.10000000149011612,
+                "z": -392.08795166015627
             },
             "outgoingIndices": [
-                511
+                286
             ]
         },
         {
             "position": {
-                "x": -363.82257080078127,
-                "y": 0.0099945068359375,
-                "z": -229.16790771484376
+                "x": -578.213623046875,
+                "y": 0.10000000149011612,
+                "z": -394.2830810546875
             },
             "outgoingIndices": [
-                516
+                287
             ]
         },
         {
             "position": {
-                "x": -357.560546875,
-                "y": 0.0099945068359375,
-                "z": -221.37127685546876
+                "x": -578.9992065429688,
+                "y": 0.10000000149011612,
+                "z": -396.4508972167969
             },
             "outgoingIndices": [
-                513
+                288
             ]
         },
         {
             "position": {
-                "x": -356.05560302734377,
-                "y": 0.0099945068359375,
-                "z": -235.40606689453126
+                "x": -579.326416015625,
+                "y": 0.10000000149011612,
+                "z": -398.5582580566406
             },
             "outgoingIndices": [
-                518
+                289
             ]
         },
         {
             "position": {
-                "x": -349.79364013671877,
-                "y": 0.0099945068359375,
-                "z": -227.60943603515626
+                "x": -579.1058349609375,
+                "y": 0.10000000149011612,
+                "z": -400.5721130371094
             },
             "outgoingIndices": [
-                515
+                290
             ]
         },
         {
             "position": {
-                "x": -348.29644775390627,
-                "y": 0.0099945068359375,
-                "z": -241.63790893554688
+                "x": -578.2481689453125,
+                "y": 0.10000000149011612,
+                "z": -402.4594421386719
             },
             "outgoingIndices": [
-                520
+                209
             ]
         },
         {
             "position": {
-                "x": -342.03448486328127,
-                "y": 0.0099945068359375,
-                "z": -233.84127807617188
+                "x": -573.561767578125,
+                "y": 0.10000000149011612,
+                "z": -386.7774963378906
             },
             "outgoingIndices": [
-                517
+                292
             ]
         },
         {
             "position": {
-                "x": -340.52984619140627,
-                "y": 0.009990692138671875,
-                "z": -247.87582397460938
+                "x": -576.8431396484375,
+                "y": 0.10000000149011612,
+                "z": -389.5553283691406
             },
             "outgoingIndices": [
-                522
+                293
             ]
         },
         {
             "position": {
-                "x": -334.267822265625,
-                "y": 0.009990692138671875,
-                "z": -240.07919311523438
+                "x": -580.3242797851563,
+                "y": 0.10000000149011612,
+                "z": -391.9517822265625
             },
             "outgoingIndices": [
-                519
+                294
             ]
         },
         {
             "position": {
-                "x": -332.76007080078127,
-                "y": 0.009990692138671875,
-                "z": -254.1162109375
+                "x": -583.9490966796875,
+                "y": 0.10000000149011612,
+                "z": -393.8905334472656
             },
             "outgoingIndices": [
-                524
+                295
             ]
         },
         {
             "position": {
-                "x": -326.49810791015627,
-                "y": 0.009990692138671875,
-                "z": -246.319580078125
+                "x": -587.66162109375,
+                "y": 0.10000000149011612,
+                "z": -395.29522705078127
             },
             "outgoingIndices": [
-                521
+                296
             ]
         },
         {
             "position": {
-                "x": -324.98919677734377,
-                "y": 0.009990692138671875,
-                "z": -260.3575134277344
+                "x": -591.4059448242188,
+                "y": 0.10000000149011612,
+                "z": -396.08953857421877
             },
             "outgoingIndices": [
-                526
+                297
             ]
         },
         {
             "position": {
-                "x": -318.72723388671877,
-                "y": 0.009990692138671875,
-                "z": -252.56088256835938
+                "x": -595.1260375976563,
+                "y": 0.10000000149011612,
+                "z": -396.1971435546875
             },
             "outgoingIndices": [
-                523
+                298
             ]
         },
         {
             "position": {
-                "x": -317.21832275390627,
-                "y": 0.009990692138671875,
-                "z": -266.59881591796877
+                "x": -598.7659301757813,
+                "y": 0.10000000149011612,
+                "z": -395.541748046875
             },
             "outgoingIndices": [
-                528
+                299
             ]
         },
         {
             "position": {
-                "x": -310.95635986328127,
-                "y": 0.009990692138671875,
-                "z": -258.80218505859377
+                "x": -602.2697143554688,
+                "y": 0.10000000149011612,
+                "z": -394.0469665527344
             },
             "outgoingIndices": [
-                525
+                42
             ]
         },
         {
             "position": {
-                "x": -309.4486083984375,
-                "y": 0.009990692138671875,
-                "z": -272.8392028808594
+                "x": -596.34521484375,
+                "y": 0.10000000149011612,
+                "z": -386.5238342285156
             },
             "outgoingIndices": [
-                530
+                301
             ]
         },
         {
             "position": {
-                "x": -303.18658447265627,
-                "y": 0.009990692138671875,
-                "z": -265.0425720214844
+                "x": -594.0437622070313,
+                "y": 0.10000000149011612,
+                "z": -388.6457824707031
             },
             "outgoingIndices": [
-                527
+                302
             ]
         },
         {
             "position": {
-                "x": -301.681884765625,
-                "y": 0.00998687744140625,
-                "z": -279.07708740234377
+                "x": -591.9075317382813,
+                "y": 0.10000000149011612,
+                "z": -390.6302490234375
             },
             "outgoingIndices": [
-                532
+                303
             ]
         },
         {
             "position": {
-                "x": -295.419921875,
-                "y": 0.00998687744140625,
-                "z": -271.28045654296877
+                "x": -589.8779907226563,
+                "y": 0.10000000149011612,
+                "z": -392.5191345214844
             },
             "outgoingIndices": [
-                529
+                304
             ]
         },
         {
             "position": {
-                "x": -293.92279052734377,
-                "y": 0.00998687744140625,
-                "z": -285.3089599609375
+                "x": -587.8966064453125,
+                "y": 0.10000000149011612,
+                "z": -394.354248046875
             },
             "outgoingIndices": [
-                534
+                305
             ]
         },
         {
             "position": {
-                "x": -287.66082763671877,
-                "y": 0.00998687744140625,
-                "z": -277.5123291015625
+                "x": -585.9049072265625,
+                "y": 0.10000000149011612,
+                "z": -396.1773986816406
             },
             "outgoingIndices": [
-                531
+                306
             ]
         },
         {
             "position": {
-                "x": -286.15582275390627,
-                "y": 0.00998687744140625,
-                "z": -291.547119140625
+                "x": -583.8443603515625,
+                "y": 0.10000000149011612,
+                "z": -398.03045654296877
             },
             "outgoingIndices": [
-                536
+                307
             ]
         },
         {
             "position": {
-                "x": -279.89385986328127,
-                "y": 0.00998687744140625,
-                "z": -283.75048828125
+                "x": -581.6563720703125,
+                "y": 0.10000000149011612,
+                "z": -399.9552307128906
             },
             "outgoingIndices": [
-                533
+                308
             ]
         },
         {
             "position": {
-                "x": -278.36212158203127,
-                "y": 0.00998687744140625,
-                "z": -297.8067626953125
+                "x": -579.2825317382813,
+                "y": 0.10000000149011612,
+                "z": -401.9934997558594
             },
             "outgoingIndices": [
-                538
+                209
             ]
         },
         {
             "position": {
-                "x": -272.10009765625,
-                "y": 0.00998687744140625,
-                "z": -290.0101318359375
+                "x": -596.8524780273438,
+                "y": 0.10000000149011612,
+                "z": -385.6400146484375
             },
             "outgoingIndices": [
-                535
+                310
             ]
         },
         {
             "position": {
-                "x": -270.59521484375,
-                "y": 0.00998687744140625,
-                "z": -304.04486083984377
+                "x": -594.748046875,
+                "y": 0.10000000149011612,
+                "z": -386.3828430175781
             },
             "outgoingIndices": [
-                540
+                311
             ]
         },
         {
             "position": {
-                "x": -264.33319091796877,
-                "y": 0.00998687744140625,
-                "z": -296.24822998046877
+                "x": -592.583740234375,
+                "y": 0.10000000149011612,
+                "z": -386.5259094238281
             },
             "outgoingIndices": [
-                537
+                312
             ]
         },
         {
             "position": {
-                "x": -262.8277587890625,
-                "y": 0.009983062744140625,
-                "z": -310.2834167480469
+                "x": -590.3859252929688,
+                "y": 0.10000000149011612,
+                "z": -386.1440124511719
             },
             "outgoingIndices": [
-                542
+                313
             ]
         },
         {
             "position": {
-                "x": -256.5657958984375,
-                "y": 0.009983062744140625,
-                "z": -302.4867858886719
+                "x": -588.18115234375,
+                "y": 0.10000000149011612,
+                "z": -385.3119812011719
             },
             "outgoingIndices": [
-                539
+                314
             ]
         },
         {
             "position": {
-                "x": -255.0856475830078,
-                "y": 0.009983062744140625,
-                "z": -316.5016174316406
+                "x": -585.995849609375,
+                "y": 0.10000000149011612,
+                "z": -384.1046142578125
             },
             "outgoingIndices": [
-                544
+                315
             ]
         },
         {
             "position": {
-                "x": -248.8236541748047,
-                "y": 0.009983062744140625,
-                "z": -308.7049865722656
+                "x": -583.8566284179688,
+                "y": 0.10000000149011612,
+                "z": -382.5966491699219
             },
             "outgoingIndices": [
-                541
+                316
             ]
         },
         {
             "position": {
-                "x": -247.3474578857422,
-                "y": 0.009983062744140625,
-                "z": -322.7166748046875
+                "x": -581.7899780273438,
+                "y": 0.10000000149011612,
+                "z": -380.8629455566406
             },
-            "outgoingIndices": []
+            "outgoingIndices": [
+                317
+            ]
         },
         {
             "position": {
-                "x": -241.08546447753907,
-                "y": 0.009983062744140625,
-                "z": -314.9200439453125
+                "x": -579.822265625,
+                "y": 0.10000000149011612,
+                "z": -378.9782409667969
             },
             "outgoingIndices": [
-                543
+                0
             ]
         }
     ]

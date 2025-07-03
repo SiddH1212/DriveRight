@@ -79,8 +79,8 @@ public class RoadGenerator : MonoBehaviour
                 Vector3 worldUp = splineContainer.transform.up;
                 Vector3 right = Vector3.Cross(worldTangent, worldUp).normalized * width;
 
-                pIn.Add(worldPos - right);
-                pOut.Add(worldPos + right);
+                pIn.Add(worldPos + right);
+                pOut.Add(worldPos - right);
                 tangents.Add(worldTangent);
             }
         }
@@ -190,7 +190,7 @@ public class RoadGenerator : MonoBehaviour
 
             // triangles
             int b = i * 4;
-            tris.AddRange(new[]{ b, b+3, b+2,   b+3, b, b+1 });
+            tris.AddRange(new[]{ b, b+2, b+3,   b+1, b, b+3 });
 
             runningOffset = nextU;
         }
