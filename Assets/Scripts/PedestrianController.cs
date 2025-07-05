@@ -18,10 +18,10 @@ public class PedestrianTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") == false) return;
         if (pedestrianAnimator.GetBool("isWalking") == true){
-            gameManager.UpdateScore(-20, "Did not stop for pedestrian crossing");
+            gameManager.UpdateScore(-20, "Did not wait for the pedestrian to cross");
         }
         else{
-            gameManager.UpdateScore(+5, "Stopped for pedestrian");
+            gameManager.UpdateScore(+5, "Waited for the pedestrian to cross");
         }
     }
 }

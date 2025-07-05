@@ -15,22 +15,32 @@ public class LevelComplete : MonoBehaviour
     public Button leftButton, rightButton;
     private string imageDir = "/Captures/";
     private int idx = 0;
+    private bool done= false;
     [SerializeField] private InputActionReference left, right;
 
-    void OnTriggerEnter(Collider collider){
+    void Update()
+    {
+        if (done == true)
+        {
+            indicator1.SetActive(false);
+            indicator2.SetActive(false);
+        }
+    }
+    void OnTriggerEnter(Collider collider)
+    {
         if (collider.gameObject.name != "Body") return;
         gameManager.SaveAllViolationImages();
         // debug.text = "triggered";
-        // LevelUI.SetActive(false);
+        LevelUI.SetActive(false);
         LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = $"Reached Destination Successfully    Final Score: {gameManager.score}";
         LevelEndUI.SetActive(true);
+        done = true;
+        Time.timeScale = 0.0f;
         leftButton.onClick.AddListener(PreviousImage);
         rightButton.onClick.AddListener(NextImage);
-        indicator1.SetActive(false);
-        indicator2.SetActive(false);
-        Time.timeScale = 0.0f;
         SaveScore();
         DisplayImage(idx);
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     void DisplayImage(int idx)
@@ -54,8 +64,8 @@ public class LevelComplete : MonoBehaviour
         }
         left.action.Enable();
         right.action.Enable();
-        left.action.started += leftStart;
-        right.action.started += rightStart;
+        // left.action.started += leftStart;
+        // right.action.started += rightStart;
     }
     void SaveScore()
     {
@@ -74,23 +84,25 @@ public class LevelComplete : MonoBehaviour
         PlayerPrefs.SetInt("LastScore", finalScore);
         PlayerPrefs.Save();
     }
-    void leftStart(InputAction.CallbackContext callbackContext)
-    {
-        PreviousImage();
-    }
-    void rightStart(InputAction.CallbackContext callbackContext)
-    {
-        NextImage();
-    }
+    // void leftStart(InputAction.CallbackContext callbackContext)
+    // {
+    //     PreviousImage();
+    // }
+    // void rightStart(InputAction.CallbackContext callbackContext)
+    // {
+    //     NextImage();
+    // }
 
     public void NextImage()
     {
+        Debug.Log("Next");
         idx++;
         idx %= gameManager.fileCount;
         DisplayImage(idx);
     }
 
     public void PreviousImage(){
+        Debug.Log("Previous");
         idx--;
         idx = (idx+gameManager.fileCount)%gameManager.fileCount;
         DisplayImage(idx);

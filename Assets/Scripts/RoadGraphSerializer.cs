@@ -30,6 +30,7 @@ public static class RoadGraphSerializer
             {
                 "VR" => "graph_data.dat",
                 "EasyMobile" => "graph_data_0.dat",
+                "Mobile2" => "graph_data.dat",
                 _ => throw new NotImplementedException()
             };
         }
