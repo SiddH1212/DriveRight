@@ -30,7 +30,7 @@ public class YieldViolationDetector : MonoBehaviour
 
     void OnTriggerExit(Collider collider){
         if (collider.gameObject.name == "Body" && inside){
-            gameManager.UpdateScore(-5, $"Failed to Slow on a Yield Sign");
+            gameManager.UpdateScore(-5, $"Failed to Slow on Yield Sign (Slowed till {minSpeed.ToString("0.0")}, limit {speedThresh})");
         }
     }
 }

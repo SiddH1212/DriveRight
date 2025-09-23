@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class StartMobile : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class StartMobile : MonoBehaviour
     public TextMeshProUGUI player, previousScore;
     public Transform scoreListParent;
     public Button Play, start, stats, quit, back1, back2;
+    [SerializeField] private GameObject firstCanvasFirst, nameCanvasFirst, scoreCanvasFirst;
     void Start()
     {
         firstCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
         Play.onClick.AddListener(onClickPlay);
@@ -35,7 +38,7 @@ public class StartMobile : MonoBehaviour
         // firstCanvas.SetActive(false);
         // nameCanvas.SetActive(true);
         // player.text = $"You are {playerName}";
-        SceneManager.LoadScene("VR");
+        SceneManager.LoadScene("Mobile2");
     }
     // string GetNextAvailablePlayerName()
     // {
@@ -88,6 +91,8 @@ public class StartMobile : MonoBehaviour
         firstCanvas.SetActive(false);
         scoreCanvas.SetActive(true);
         LoadAndDisplayScores();
+        EventSystem.current.SetSelectedGameObject(scoreCanvasFirst);
+
     }
 
     public void onClickBack()
@@ -95,5 +100,14 @@ public class StartMobile : MonoBehaviour
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
         firstCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null); // clear first
+        EventSystem.current.SetSelectedGameObject(firstCanvasFirst); // reassign focus
+    }
+    void OnDestroy()
+    {
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 }

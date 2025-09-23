@@ -1,5 +1,23 @@
 {
   "dependencies": {
+    "com.de-panther.webxr": {
+      "version": "0.22.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "3.2.13"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.de-panther.webxr-interactions": {
+      "version": "0.22.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.de-panther.webxr": "0.22.0"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.google.xr.cardboard": {
       "version": "https://github.com/googlevr/cardboard-xr-plugin.git",
       "depth": 0,
