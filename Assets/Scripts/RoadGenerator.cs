@@ -192,8 +192,8 @@ public class RoadGenerator : MonoBehaviour
 
             // triangles
             int b = i * 4;
-            // tris.AddRange(new[]{ b, b+2, b+3,   b+1, b, b+3 });
-            tris.AddRange(new[]{ b, b+3, b+2,   b+3, b, b+1 });
+            tris.AddRange(new[]{ b, b+2, b+3,   b+1, b, b+3 });
+            // tris.AddRange(new[]{ b, b+3, b+2,   b+3, b, b+1 });
             runningOffset = nextU;
         }
 
