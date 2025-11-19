@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public GameObject mainCam;
     public int fileCount = 0;
     public List<string> messageList = new List<string>();
+    [HideInInspector] public List<LaneNode> currentPath = new List<LaneNode>();
+    // private Pathfinder pathfinder;
+    [SerializeField] private Transform destination;
+    // [SerializeField] private PathRenderer pathRenderer;
 
     private List<Texture2D> violationImages = new List<Texture2D>();
     void Awake()

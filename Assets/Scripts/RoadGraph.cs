@@ -79,6 +79,31 @@ public class RoadGraph : MonoBehaviour
         // Debug.Log(closestDistSq);
         return closestNode;
     }
+    public List<LaneNode> GetClosestNodes(Vector3 position, int maxCount = 10, float maxDistance = 50f)
+    {
+        List<(float distSq, LaneNode node)> candidates = new();
+
+        float maxDistSq = maxDistance * maxDistance;
+
+        foreach (var node in Nodes)
+        {
+            float distSq = (node.Position - position).sqrMagnitude;
+            if (distSq <= maxDistSq)
+            {
+                candidates.Add((distSq, node));
+            }
+        }
+
+        candidates.Sort((a, b) => a.distSq.CompareTo(b.distSq));
+
+        List<LaneNode> result = new();
+        for (int i = 0; i < Mathf.Min(maxCount, candidates.Count); i++)
+        {
+            result.Add(candidates[i].node);
+        }
+
+        return result;
+    }
 
     public List<LaneNode> GetNearbyNodes(Vector3 fromPosition, Vector3 toPosition, float radius = 8f, float angleThresh = 0.7f)
     {
