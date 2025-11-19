@@ -1,9 +1,11 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Splines;
 using Unity.Mathematics;
 using System;
+using System.Linq;
 
 public class SplineIntersectionCreator : EditorWindow
 {
@@ -43,7 +45,6 @@ public class SplineIntersectionCreator : EditorWindow
 
         GUILayout.Space(8);
         intersectionMaterial = (Material)EditorGUILayout.ObjectField("Intersection Material:", intersectionMaterial, typeof(Material), false);
-        // intersectionMaterial = (Material)Resources.Load("IntersectionMaterial");
         GUILayout.Space(8);
         EditorGUI.BeginDisabledGroup(endpoints.Count < 2 || intersectionMaterial == null);
         if (GUILayout.Button("Create Intersection", GUILayout.Height(30)))
@@ -53,7 +54,6 @@ public class SplineIntersectionCreator : EditorWindow
 
     private void CreateIntersection()
     {
-
         var worldPointsTangents = new List<List<Vector3>>();
         var incomingLanePoints = new List<List<Vector3>>();
         var outgoingLanePoints = new List<List<Vector3>>();
@@ -154,7 +154,6 @@ public class SplineIntersectionCreator : EditorWindow
             }
         }
 
-        // Debug.Log(vertsLocal.Count);
         var mesh = new Mesh();
         var vertices = new List<Vector3>();
         for (int i = 0; i < vertsLocal.Count; i++) vertices.Add(vertsLocal[i]);
@@ -167,10 +166,31 @@ public class SplineIntersectionCreator : EditorWindow
         mc.sharedMesh = mesh;
         mc.sharedMaterial = Resources.Load<PhysicMaterial>("Materials/Road");
 
-        // add debugger
-        // var dbg = meshGO.AddComponent<IntersectionDebugger>(); dbg.originalPoints = worldPoints; dbg.sortedPoints = sorted;
         Selection.activeGameObject = meshGO;
         meshGO.layer = LayerMask.NameToLayer("Ground");
+
+        // --- Debugger: attach IntersectionDebugger and fill point lists for scene gizmos ---
+        var dbg = meshGO.AddComponent<IntersectionDebugger>();
+
+        // originalPoints: the raw world points we computed (before sorting)
+        dbg.originalPoints = worldPointsTangents.Select(wp => wp[0]).ToList();
+
+        // sortedPoints: the points after clockwise sorting
+        dbg.sortedPoints = sorted.Select(wp => wp[0]).ToList();
+
+        // edge end points: gather unique incoming/outgoing lane endpoints used for graph connections
+        var edgeEnds = new List<Vector3>();
+        void AddUniquePoint(Vector3 p)
+        {
+            if (!edgeEnds.Any(e => Vector3.Distance(e, p) < 0.01f)) edgeEnds.Add(p);
+        }
+
+        foreach (var list in incomingLanePoints) foreach (var p in list) AddUniquePoint(p);
+        foreach (var list in outgoingLanePoints) foreach (var p in list) AddUniquePoint(p);
+        dbg.edgeEndPoints = edgeEnds;
+
+        // show labels by default in the debugger
+        dbg.showLabels = true;
 
         // whenever this intersection is created, connect the unconnected lane centerpoint Node at the end of road-1, to the unconnected lanepoint centerpoint at the start of road-2 and road-3 for the corresponding lane, depicting the reasonable paths to be followed by a vehicle from that incoming unconnected end node on road-1
         var graph = FindObjectOfType<RoadGraph>();
@@ -184,7 +204,6 @@ public class SplineIntersectionCreator : EditorWindow
         // Create center nodes if needed
         LaneNode GetOrCreateNode(Vector3 pos, float maxDistance = 2f)
         {
-            // pos = meshGO.transform.InverseTransformPoint(pos);
             var node = graph.GetClosestNode(pos, maxDistance);
             if (node == null)
             {
@@ -219,7 +238,6 @@ public class SplineIntersectionCreator : EditorWindow
                         Vector3 pd = Vector3.Lerp(pa, pc, t);
                         Vector3 pe = Vector3.Lerp(pc, pb, t);
                         Vector3 pf = Vector3.Lerp(pd, pe, t);
-                        // Debug.Log(p1 + " " + p2 + " " + pf + " " + pc);
                         var toNode = GetOrCreateNode(pf, 0.01f);
                         if (!fromNode.Outgoing.Contains(toNode)) fromNode.Outgoing.Add(toNode);
                         fromNode = toNode;
@@ -231,36 +249,55 @@ public class SplineIntersectionCreator : EditorWindow
     }
 }
 
-
 // Intersection Debugging
-// [ExecuteAlways]
+[ExecuteAlways]
 public class IntersectionDebugger : MonoBehaviour
 {
     public List<Vector3> originalPoints = new List<Vector3>();
     public List<Vector3> sortedPoints = new List<Vector3>();
+    public List<Vector3> edgeEndPoints = new List<Vector3>();
+    public bool showLabels = false;
+
+    // Radii for the spheres are public so you can tweak in inspector if needed
+    public float originalRadius = 0.08f;
+    public float sortedRadius = 0.12f;
+    public float edgeRadius = 0.14f;
+
     void OnDrawGizmos()
     {
-        if (originalPoints != null)
+        if (originalPoints != null && originalPoints.Count > 0)
         {
             Gizmos.color = Color.blue;
             for (int i = 0; i < originalPoints.Count; i++)
             {
-                Gizmos.DrawSphere(originalPoints[i], 0.1f);
+                Gizmos.DrawSphere(originalPoints[i], originalRadius);
 #if UNITY_EDITOR
-                Handles.Label(originalPoints[i], $"O{i}");
+                if (showLabels) Handles.Label(originalPoints[i], $"O{i}");
 #endif
             }
         }
-        if (sortedPoints != null)
+        if (sortedPoints != null && sortedPoints.Count > 0)
         {
             Gizmos.color = Color.red;
             for (int i = 0; i < sortedPoints.Count; i++)
             {
-                Gizmos.DrawSphere(sortedPoints[i], 0.15f);
+                Gizmos.DrawSphere(sortedPoints[i], sortedRadius);
 #if UNITY_EDITOR
-                Handles.Label(sortedPoints[i], $"S{i}");
+                if (showLabels) Handles.Label(sortedPoints[i], $"S{i}");
+#endif
+            }
+        }
+        if (edgeEndPoints != null && edgeEndPoints.Count > 0)
+        {
+            Gizmos.color = Color.green;
+            for (int i = 0; i < edgeEndPoints.Count; i++)
+            {
+                Gizmos.DrawSphere(edgeEndPoints[i], edgeRadius);
+#if UNITY_EDITOR
+                if (showLabels) Handles.Label(edgeEndPoints[i], $"E{i}");
 #endif
             }
         }
     }
 }
+

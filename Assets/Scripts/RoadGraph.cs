@@ -31,7 +31,7 @@ public class RoadGraph : MonoBehaviour
 
         // StartCoroutine(LoadGraphCoroutine());
 
-        // RebuildGraph();
+        RebuildGraph();
     }
 
     // {

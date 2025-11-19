@@ -79,10 +79,10 @@ public class RoadGenerator : MonoBehaviour
                 Vector3 worldUp = splineContainer.transform.up;
                 Vector3 right = Vector3.Cross(worldTangent, worldUp).normalized * width;
 
-                // pIn.Add(worldPos + right);
-                // pOut.Add(worldPos - right);
-                pIn.Add(worldPos - right);
-                pOut.Add(worldPos + right);
+                pIn.Add(worldPos + right);
+                pOut.Add(worldPos - right);
+                // pIn.Add(worldPos - right);
+                // pOut.Add(worldPos + right);
                 tangents.Add(worldTangent);
             }
         }
@@ -209,11 +209,27 @@ public class RoadGenerator : MonoBehaviour
 
         // ensure material & texture
         var rend = meshFilter.GetComponent<Renderer>();
-        if (rend.sharedMaterial == null)
-            rend.sharedMaterial = Resources.Load<Material>("RoadMaterial");
-        if (texture != null)
-            rend.sharedMaterial.mainTexture = texture;
+        // if (rend.sharedMaterial == null)
+        //     rend.sharedMaterial = Resources.Load<Material>("RoadMaterial");
+        // if (texture != null)
+        //     rend.sharedMaterial.mainTexture = texture;
+        // if (rend.material == null)
+        // rend.material = new Material(Resources.Load<Material>("RoadMaterial"));
 
+        // if (texture != null)
+        //     rend.material.mainTexture = texture;
+
+       if (rend.sharedMaterial == null)
+            rend.sharedMaterial = Resources.Load<Material>("RoadMaterial");
+
+        if (texture != null)
+        {
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            rend.GetPropertyBlock(block);
+            block.SetTexture("_BaseMap", texture); // <-- URP Lit property
+            rend.SetPropertyBlock(block);
+        }
+        
         gameObject.layer = LayerMask.NameToLayer("Ground");
     }
 
