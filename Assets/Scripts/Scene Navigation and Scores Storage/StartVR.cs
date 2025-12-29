@@ -10,14 +10,16 @@ public class StartVR : MonoBehaviour
     public GameObject firstCanvas, nameCanvas, scoreCanvas, scoreLinePrefab;
     public TextMeshProUGUI player, previousScore;
     public Transform scoreListParent;
-    public Button Play, start, stats, quit, back1, back2;
+    public Button Play, start, stats, quit, back1, back2, Basic, Advanced;
     void Start()
     {
         firstCanvas.SetActive(true);
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
         Play.onClick.AddListener(onClickPlay);
-        start.onClick.AddListener(onClickStart);
+        Basic.onClick.AddListener(() => onClickScene("Basic"));
+        Advanced.onClick.AddListener(() => onClickScene("Advanced"));
+        // start.onClick.AddListener(onClickStart);
         stats.onClick.AddListener(checkStats);
         quit.onClick.AddListener(onClickQuit);
         back1.onClick.AddListener(onClickBack);
@@ -32,10 +34,26 @@ public class StartVR : MonoBehaviour
         // SessionManager.Instance.playerName = playerName;
 
         // // Show the player name on screen
-        // firstCanvas.SetActive(false);
-        // nameCanvas.SetActive(true);
+        firstCanvas.SetActive(false);
+        nameCanvas.SetActive(true);
         // player.text = $"You are {playerName}";
-        SceneManager.LoadScene("VR");
+        // SceneManager.LoadScene("VR");
+    }
+    public void onClickScene(string sceneName)
+    {
+    
+        if(sceneName == "Basic")
+        {
+            SceneManager.LoadScene("VR");
+        }
+        else if(sceneName == "Advanced")
+        {
+            SceneManager.LoadScene("Night_Quest");
+        }
+        else
+        {
+            Debug.LogError($"Unknown scene name: {sceneName}");
+        }
     }
     // string GetNextAvailablePlayerName()
     // {
@@ -52,10 +70,10 @@ public class StartVR : MonoBehaviour
     //         }
     //     }
     // }
-    public void onClickStart()
-    {
-        SceneManager.LoadScene("VR");
-    }
+    // public void onClickStart()
+    // {
+    //     SceneManager.LoadScene("VR");
+    // }
     public void onClickQuit()
     {
         Application.Quit();
