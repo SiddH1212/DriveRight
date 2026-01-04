@@ -11,16 +11,19 @@ public class StartMobile : MonoBehaviour
     public GameObject firstCanvas, nameCanvas, scoreCanvas, scoreLinePrefab;
     public TextMeshProUGUI player, previousScore;
     public Transform scoreListParent;
-    public Button Play, start, stats, quit, back1, back2;
+    public Button Play, start, stats, quit, back1, back2, Basic, Advanced;
     [SerializeField] private GameObject firstCanvasFirst, nameCanvasFirst, scoreCanvasFirst;
     void Start()
     {
         firstCanvas.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
+        if (InputMode.IsControllerConnected())
+            EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
         Play.onClick.AddListener(onClickPlay);
-        start.onClick.AddListener(onClickStart);
+        Basic.onClick.AddListener(() => onClickScene("Basic"));
+        Advanced.onClick.AddListener(() => onClickScene("Advanced"));
+        // start.onClick.AddListener(onClickStart);
         stats.onClick.AddListener(checkStats);
         quit.onClick.AddListener(onClickQuit);
         back1.onClick.AddListener(onClickBack);
@@ -33,12 +36,14 @@ public class StartMobile : MonoBehaviour
 
         // // Store it in SessionManager (if used)
         // SessionManager.Instance.playerName = playerName;
-
+        Debug.Log("Play button clicked");
         // // Show the player name on screen
-        // firstCanvas.SetActive(false);
-        // nameCanvas.SetActive(true);
+        firstCanvas.SetActive(false);
+        nameCanvas.SetActive(true);
+        if (InputMode.IsControllerConnected())
+            EventSystem.current.SetSelectedGameObject(nameCanvasFirst);
         // player.text = $"You are {playerName}";
-        SceneManager.LoadScene("Mobile2");
+        // SceneManager.LoadScene("Mobile2");
     }
     // string GetNextAvailablePlayerName()
     // {
@@ -55,9 +60,25 @@ public class StartMobile : MonoBehaviour
     //         }
     //     }
     // }
-    public void onClickStart()
+    // public void onClickStart()
+    // {
+    //     SceneManager.LoadScene("VR");
+    // }
+    public void onClickScene(string sceneName)
     {
-        SceneManager.LoadScene("VR");
+    
+        if(sceneName == "Basic")
+        {
+            SceneManager.LoadScene("Mobile2");
+        }
+        else if(sceneName == "Advanced")
+        {
+            SceneManager.LoadScene("Night_Mobile");
+        }
+        else
+        {
+            Debug.LogError($"Unknown scene name: {sceneName}");
+        }
     }
     public void onClickQuit()
     {
@@ -91,7 +112,8 @@ public class StartMobile : MonoBehaviour
         firstCanvas.SetActive(false);
         scoreCanvas.SetActive(true);
         LoadAndDisplayScores();
-        EventSystem.current.SetSelectedGameObject(scoreCanvasFirst);
+        if (InputMode.IsControllerConnected())
+            EventSystem.current.SetSelectedGameObject(scoreCanvasFirst);
 
     }
 
@@ -100,8 +122,10 @@ public class StartMobile : MonoBehaviour
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
         firstCanvas.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null); // clear first
-        EventSystem.current.SetSelectedGameObject(firstCanvasFirst); // reassign focus
+        if (InputMode.IsControllerConnected()){
+            EventSystem.current.SetSelectedGameObject(null); // clear first
+            EventSystem.current.SetSelectedGameObject(firstCanvasFirst); // reassign focus
+        }
     }
     void OnDestroy()
     {

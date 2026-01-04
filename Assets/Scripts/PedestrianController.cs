@@ -3,7 +3,7 @@ using UnityEngine;
 public class PedestrianTrigger : MonoBehaviour
 {
     public Animator pedestrianAnimator;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
 
     private void OnTriggerEnter(Collider other)
     {

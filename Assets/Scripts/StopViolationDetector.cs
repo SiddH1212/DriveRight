@@ -5,7 +5,7 @@ using UnityEngine;
 public class StopViolationDetector : MonoBehaviour
 {
     [SerializeField] private float speedThresh = 2f;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
     private float minSpeed = float.MaxValue;
     private bool inside = false;
 

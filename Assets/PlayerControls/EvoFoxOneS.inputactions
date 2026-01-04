@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "8c404b2b-146c-4d27-9fce-903572d35dbd",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -99,6 +99,15 @@
                     "name": "Back",
                     "type": "Button",
                     "id": "45199c0c-b718-4539-8ff2-c2f9eb420a40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Accelerate",
+                    "type": "Button",
+                    "id": "25e9b3fd-4d9f-4e71-950f-0667cc4bf7ff",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -224,6 +233,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "592ddcce-22e0-422c-870d-950813dcaf9f",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accelerate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

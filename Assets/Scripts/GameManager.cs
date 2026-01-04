@@ -3,58 +3,68 @@ using TMPro;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections;
-public class GameManager : MonoBehaviour
+
+public class GameManager : GameManagerBase
 {
-    public int score = 100;
     public TextMeshProUGUI scoreText;
     public GameObject mainCam;
-    public int fileCount = 0;
-    public List<string> messageList = new List<string>();
     [HideInInspector] public List<LaneNode> currentPath = new List<LaneNode>();
     // private Pathfinder pathfinder;
     [SerializeField] private Transform destination;
     // [SerializeField] private PathRenderer pathRenderer;
 
     private List<Texture2D> violationImages = new List<Texture2D>();
+
     void Awake()
     {
         Time.timeScale = 1.0f;
     }
+
     public void Start()
     {
         // var roadGraph = FindObjectOfType<RoadGraph>();
         // roadGraph.RebuildGraph();
     }
 
-    public void ReportLightCross(string lightColor)
+    public override void ReportLightCross(string lightColor)
     {
         int deltaScore;
-        if (lightColor == "Red"){
+        if (lightColor == "Red")
+        {
             deltaScore = -20;
         }
-        else if (lightColor == "Yellow"){
+        else if (lightColor == "Yellow")
+        {
             deltaScore = 0;
         }
-        else{
+        else
+        {
             deltaScore = 5;
         }
 
         UpdateScore(deltaScore, $"{lightColor} crossed by the vehicle");
     }
-    public void UpdateScore(int deltaScore, string message = ""){
+
+    public override void UpdateScore(int deltaScore, string message = "")
+    {
         score += deltaScore;
-        if (deltaScore > 0) {
+
+        if (deltaScore > 0)
+        {
             Debug.Log($"Score = {score} \t (+{deltaScore}) \n{message}");
             UpdateScoreText($"Score = {score} \t (+{deltaScore}) \n{message}");
             messageList.Add($"{message} \t (+{deltaScore})");
         }
-        else{
+        else
+        {
             Debug.Log($"Score = {score} \t ({deltaScore}) \n{message}");
             UpdateScoreText($"Score = {score} \t ({deltaScore}) \n{message}");
             messageList.Add($"{message} \t ({deltaScore})");
         }
     }
-    void UpdateScoreText(string message){
+
+    void UpdateScoreText(string message)
+    {
         scoreText.text = message;
         CaptureViolationImage();
     }
@@ -66,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CaptureViolationImageCoroutine()
     {
-        yield return new WaitForEndOfFrame(); // wait until UI + scene is fully rendered
+        yield return new WaitForEndOfFrame();
 
         int width = Screen.width;
         int height = Screen.height;
@@ -76,14 +86,11 @@ public class GameManager : MonoBehaviour
         image.Apply();
 
         violationImages.Add(image);
-
-        // Debug.Log("Captured violation screenshot (stored in memory)");
-        fileCount++ ;
+        fileCount++;
     }
 
-    public void SaveAllViolationImages()
+    public override void SaveAllViolationImages()
     {
-        // string path = Application.dataPath + "/Captures/";
         string path = Path.Combine(Application.persistentDataPath, "Captures");
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
@@ -91,12 +98,16 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < violationImages.Count; i++)
         {
             byte[] bytes = violationImages[i].EncodeToPNG();
-            // File.WriteAllBytes(path + "violation_" + i + ".png", bytes);
             File.WriteAllBytes(Path.Combine(path, $"violation_{i}.png"), bytes);
         }
 
         Debug.Log($"Saved {violationImages.Count} violation screenshots to {path}");
-        violationImages.Clear(); // clear memory after saving
+        violationImages.Clear();
+    }
+
+    public override void SaveImage(int idx)
+    {
+        // intentionally empty
     }
 
     // void OnDestroy()

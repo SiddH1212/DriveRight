@@ -24,7 +24,7 @@ public class NPCController : MonoBehaviour
     [SerializeField] private RoadGraph roadGraph;
     private bool TailgatingMax = false, TailgatingMid = false, TailgatingMin = false;
     private float currentSpeed;             // Current speed adjusted dynamically
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
     private int vehicleLayerMask;           // Layer mask to detect only vehicles
     private NPCIndicator npcIndicator = null;
 

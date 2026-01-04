@@ -3,153 +3,223 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
-
 public class CarController : MonoBehaviour
 {
-    private float horizontalInput, verticalInput;
-    private float currentSteerAngle, currentbrakeForce;
-    // private bool isBraking;
-    [SerializeField]
-    private InputActionReference brake;
-    private float thresh = 1e-3f;
+    /* ---------------- INPUT ---------------- */
+
+    [SerializeField] private InputActionReference steer;
+    [SerializeField] private InputActionReference accelerate;
+    [SerializeField] private InputActionReference brake;
+    [SerializeField] private InputActionReference toggleGear;
+
+    /* ---------------- STATE ---------------- */
+
+    private float horizontalInput;
+    private float verticalInput;
+    private float currentSteerAngle;
+    private float currentBrakeForce;
+
+    private bool isReverse = false; // false = Drive, true = Reverse
+
+    /* ---------------- UI ---------------- */
+
     public TextMeshProUGUI speedText;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
 
-    // Car Params
-    [SerializeField] private float motorForce, brakeForce, maxSteerAngle, steerSensitivity, steerReturn;
+    /* ---------------- CAR PARAMS ---------------- */
 
-    // Wheel Colliders
-    [SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
-    [SerializeField] private WheelCollider rearLeftWheelCollider, rearRightWheelCollider;
+    [SerializeField] private float motorForce = 1500f;
+    [SerializeField] private float brakeForce = 3000f;
+    [SerializeField] private float maxSteerAngle = 30f;
+    [SerializeField] private float steerSensitivity = 1.5f;
+    [SerializeField] private float steerReturn = 4f;
 
-    // Wheels
-    [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
-    [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+    /* ---------------- WHEELS ---------------- */
+
+    [SerializeField] private WheelCollider frontLeftWheelCollider;
+    [SerializeField] private WheelCollider frontRightWheelCollider;
+    [SerializeField] private WheelCollider rearLeftWheelCollider;
+    [SerializeField] private WheelCollider rearRightWheelCollider;
+
+    [SerializeField] private Transform frontLeftWheelTransform;
+    [SerializeField] private Transform frontRightWheelTransform;
+    [SerializeField] private Transform rearLeftWheelTransform;
+    [SerializeField] private Transform rearRightWheelTransform;
+
+    /* ---------------- VISUALS ---------------- */
+
     [SerializeField] private Transform steeringWheel;
     [SerializeField] private RectTransform speedNeedle;
     [SerializeField] private float needleMinAngle = 127f;
     [SerializeField] private float needleMaxAngle = -127f;
     [SerializeField] private float maxSpeed = 220f;
+
     private Vector3 prevPos;
-    
+    private const float steerDeadzone = 0.05f;
+
+    /* ===================== UNITY ===================== */
+
     void Start()
     {
+        steer.action.Enable();
+        accelerate.action.Enable();
         brake.action.Enable();
+        toggleGear.action.Enable();
+
         brake.action.started += BrakeOn;
         brake.action.canceled += BrakeOff;
-        prevPos = transform.position;        
+        toggleGear.action.started += ToggleGear;
+
+        prevPos = transform.position;
+        isReverse = false;
     }
-    private void FixedUpdate()
+
+    void FixedUpdate()
     {
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-        Vector3 deltaPos = transform.position - prevPos;
-        float speed = Vector3.Magnitude(deltaPos / Time.deltaTime) * 3.6f; // convert to km/h
-        speedText.text = $"Speed: {MathF.Round(speed)} km/h";
-        prevPos = transform.position;
-        UpdateSpeedometer(speed);
+        UpdateSpeed();
     }
+
+    private void OnDestroy()
+    {
+        steer.action.Disable();
+        accelerate.action.Disable();
+        toggleGear.action.Disable();
+
+        brake.action.started -= BrakeOn;
+        brake.action.canceled -= BrakeOff;
+        toggleGear.action.started -= ToggleGear;
+    }
+
+    /* ===================== INPUT ===================== */
 
     private void GetInput()
     {
-        // Steering Input
-        horizontalInput = Input.GetAxis("Horizontal");
+        Vector2 steerInput = steer.action.ReadValue<Vector2>();
+        horizontalInput = Mathf.Abs(steerInput.x) < steerDeadzone ? 0f : steerInput.x;
 
-        // Acceleration Input
-        verticalInput = Input.GetAxis("Vertical");
-
-        // Braking Input
-        // isBraking = Input.GetKey(KeyCode.Space);
+        verticalInput = accelerate.action.ReadValue<float>();
     }
-    private void BrakeOn(InputAction.CallbackContext context)
+
+    private void ToggleGear(InputAction.CallbackContext ctx)
     {
-        currentbrakeForce = brakeForce;
-        Debug.Log("Breaking");
+        // float speed = (transform.position - prevPos).magnitude / Time.deltaTime;
+
+        // // Prevent gear switch at speed
+        // if (speed > 1.5f) return;
+
+        isReverse = !isReverse;
+        Debug.Log(isReverse ? "Gear: REVERSE" : "Gear: DRIVE");
     }
 
-    private void BrakeOff(InputAction.CallbackContext context)
+    private void BrakeOn(InputAction.CallbackContext ctx)
     {
-        currentbrakeForce = 0f;
-        Debug.Log("Resuming");
+        currentBrakeForce = brakeForce;
     }
+
+    private void BrakeOff(InputAction.CallbackContext ctx)
+    {
+        currentBrakeForce = 0f;
+    }
+
+    /* ===================== MOTOR ===================== */
 
     private void HandleMotor()
     {
-        // Rear wheel drive
+        float gearDirection = isReverse ? -1f : 1f;
+        float motorInput = verticalInput * gearDirection;
 
-        // frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        // frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        rearRightWheelCollider.motorTorque = verticalInput * motorForce;
-        // currentbrakeForce = isBraking ? brakeForce : 0f;
+        rearLeftWheelCollider.motorTorque = motorInput * motorForce;
+        rearRightWheelCollider.motorTorque = motorInput * motorForce;
+
         ApplyBraking();
     }
 
     private void ApplyBraking()
     {
-        frontRightWheelCollider.brakeTorque = currentbrakeForce;
-        frontLeftWheelCollider.brakeTorque = currentbrakeForce;
-        // Rear wheel braking
-        rearLeftWheelCollider.brakeTorque = currentbrakeForce;
-        rearRightWheelCollider.brakeTorque = currentbrakeForce;
+        frontLeftWheelCollider.brakeTorque = currentBrakeForce;
+        frontRightWheelCollider.brakeTorque = currentBrakeForce;
+        rearLeftWheelCollider.brakeTorque = currentBrakeForce;
+        rearRightWheelCollider.brakeTorque = currentBrakeForce;
     }
+
+    /* ===================== STEERING ===================== */
 
     private void HandleSteering()
     {
-        currentSteerAngle = Math.Min(maxSteerAngle, currentSteerAngle + steerSensitivity * horizontalInput);
-        currentSteerAngle = Math.Max(-maxSteerAngle, currentSteerAngle);
+        currentSteerAngle += steerSensitivity * horizontalInput;
+        currentSteerAngle = Mathf.Clamp(currentSteerAngle, -maxSteerAngle, maxSteerAngle);
 
-        if (horizontalInput == 0)
-        {
-            if (currentSteerAngle > thresh) currentSteerAngle -= currentSteerAngle / 90 * steerReturn * steerSensitivity;
-            else if (currentSteerAngle < -thresh) currentSteerAngle -= currentSteerAngle / 90 * steerReturn * steerSensitivity;
-            else currentSteerAngle = 0f;
-        }
+        if (horizontalInput == 0f)
+            currentSteerAngle = Mathf.Lerp(currentSteerAngle, 0f, Time.deltaTime * steerReturn);
+
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
 
-        float currentSteerWheelRoation = -currentSteerAngle;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, currentSteerWheelRoation);
-        steeringWheel.localRotation = Quaternion.Slerp(steeringWheel.localRotation, targetRotation, Time.deltaTime * 5f);
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, -currentSteerAngle);
+        steeringWheel.localRotation = Quaternion.Slerp(
+            steeringWheel.localRotation,
+            targetRotation,
+            Time.deltaTime * 5f
+        );
     }
+
+    /* ===================== VISUALS ===================== */
 
     private void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    private void UpdateSingleWheel(WheelCollider wheel, Transform wheelTransform)
     {
-        Vector3 pos;
-        Quaternion rot;
-        wheelCollider.GetWorldPose(out pos, out rot);
-        wheelTransform.rotation = rot;
+        wheel.GetWorldPose(out Vector3 pos, out Quaternion rot);
         wheelTransform.position = pos;
+        wheelTransform.rotation = rot;
     }
-    void UpdateSpeedometer(float speed)
+
+    private void UpdateSpeed()
     {
-        float clampedSpeed = Mathf.Clamp(speed, 0, maxSpeed);
-        float t = clampedSpeed / maxSpeed;
+        Vector3 deltaPos = transform.position - prevPos;
+        float speed = deltaPos.magnitude / Time.deltaTime * 3.6f;
+        prevPos = transform.position;
+
+        speedText.text = $"Speed: {Mathf.Round(speed)} km/h";
+        UpdateSpeedometer(speed);
+    }
+
+    private void UpdateSpeedometer(float speed)
+    {
+        float t = Mathf.Clamp01(speed / maxSpeed);
         float angle = Mathf.Lerp(needleMinAngle, needleMaxAngle, t);
         speedNeedle.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
-    void OnCollisionEnter(Collision collision)
+    /* ===================== COLLISION ===================== */
+
+    private void OnCollisionEnter(Collision collision)
     {
-        // Debug.Log($"Player collided with smth {collision.collider.gameObject.layer}");
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Vehicles"))
         {
-            gameManager.UpdateScore(-10, $"Collided with vechicle: {collision.collider.attachedRigidbody.gameObject.name}");
+            gameManager.UpdateScore(
+                -10,
+                $"Collided with vehicle: {collision.collider.attachedRigidbody.name}"
+            );
         }
     }
-    private void OnDestroy()
+    /// <summary>
+    /// Called by UISwitcher (true = Reverse, false = Drive)
+    /// </summary>
+    public void SetReverseFromUIToggle(bool reverse)
     {
-        brake.action.started -= BrakeOn;
-        brake.action.canceled -= BrakeOff;
+        isReverse = reverse;
+        Debug.Log(isReverse ? "Gear (UI): REVERSE" : "Gear (UI): DRIVE");
     }
+
 }

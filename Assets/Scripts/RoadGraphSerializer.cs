@@ -32,6 +32,7 @@ public static class RoadGraphSerializer
                 "EasyMobile" => "graph_data_0.dat",
                 "Mobile2" => "graph_data.dat",
                 "Night_Quest" => "graph_data_night.dat",
+                "Night_Mobile" => "graph_data_night.dat",
                 _ => throw new NotImplementedException()
             };
         }

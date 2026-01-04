@@ -5,82 +5,120 @@ using UnityEngine.InputSystem;
 public class CarIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject leftIndicator, rightIndicator, leftArrow, rightArrow;
-    public bool rightOn = false, leftOn = false;
-    private Coroutine rightBlinkCoroutine = null, leftBlinkCoroutine = null;
-    [SerializeField] private InputActionReference left, right, off;
-    private bool rightIndicated = false, leftIndicated=false, stoppedIndicator=false;
+    [SerializeField] private InputActionReference left, right;
+
+    public bool leftOn = false;
+    public bool rightOn = false;
+
+    private Coroutine leftBlinkCoroutine;
+    private Coroutine rightBlinkCoroutine;
+
     void Start()
     {
         left.action.Enable();
         right.action.Enable();
-        off.action.Enable();
-        left.action.started += leftStart;
-        right.action.started += rightStart;
-        off.action.started += offStart;
-        leftIndicator.SetActive(false);  leftArrow.SetActive(false);
-        rightIndicator.SetActive(false); rightArrow.SetActive(false);
-    }
-    void leftStart(InputAction.CallbackContext callbackContext)
-    {
-        leftIndicated = true;
-    }
-    void rightStart(InputAction.CallbackContext callbackContext)
-    {
-        rightIndicated = true;
-    }
-    void offStart(InputAction.CallbackContext callbackContext)
-    {
-        stoppedIndicator = true;
-    }
-    void Update()
-    {
-        // bool rightIndicated = Input.GetKeyDown(KeyCode.Period);
-        // bool leftIndicated = Input.GetKeyDown(KeyCode.Comma);
-        // float horizontalInput = Input.GetAxis("Horizontal");
 
-        // bool stoppedIndicator = Input.GetKeyDown(KeyCode.Slash); // ||
-                                // (rightOn && (horizontalInput < 0)) ||
-                                // (leftOn && (horizontalInput > 0));
+        left.action.started += OnLeftPressed;
+        right.action.started += OnRightPressed;
 
-        if (rightIndicated && !rightOn)
-        {
-            rightOn = true;
-            rightBlinkCoroutine = StartCoroutine(Blink(rightIndicator, rightArrow));
-        }
-        else if (leftIndicated && !leftOn)
-        {
-            leftOn = true;
-            leftBlinkCoroutine = StartCoroutine(Blink(leftIndicator, leftArrow));
-        }
-        else if (stoppedIndicator && (rightOn || leftOn))
+        TurnOffVisuals();
+    }
+
+    private void OnDestroy()
+    {
+        left.action.started -= OnLeftPressed;
+        right.action.started -= OnRightPressed;
+    }
+
+    /* ---------------- INPUT ---------------- */
+
+    private void OnLeftPressed(InputAction.CallbackContext ctx)
+    {
+        if (leftOn)
         {
             TurnOffIndicators();
         }
+        else
+        {
+            TurnOnLeft();
+        }
     }
 
-    IEnumerator Blink(GameObject indicator, GameObject indicationArrow)
+    private void OnRightPressed(InputAction.CallbackContext ctx)
+    {
+        if (rightOn)
+        {
+            TurnOffIndicators();
+        }
+        else
+        {
+            TurnOnRight();
+        }
+    }
+
+    /* ---------------- STATE ---------------- */
+
+    private void TurnOnLeft()
+    {
+        TurnOffIndicators();
+
+        leftOn = true;
+        leftBlinkCoroutine = StartCoroutine(
+            Blink(leftIndicator, leftArrow)
+        );
+    }
+
+    private void TurnOnRight()
+    {
+        TurnOffIndicators();
+
+        rightOn = true;
+        rightBlinkCoroutine = StartCoroutine(
+            Blink(rightIndicator, rightArrow)
+        );
+    }
+
+    public void TurnOffIndicators()
+    {
+        if (leftBlinkCoroutine != null)
+        {
+            StopCoroutine(leftBlinkCoroutine);
+            leftBlinkCoroutine = null;
+        }
+
+        if (rightBlinkCoroutine != null)
+        {
+            StopCoroutine(rightBlinkCoroutine);
+            rightBlinkCoroutine = null;
+        }
+
+        leftOn = false;
+        rightOn = false;
+
+        TurnOffVisuals();
+    }
+
+    private void TurnOffVisuals()
+    {
+        leftIndicator.SetActive(false);
+        leftArrow.SetActive(false);
+        rightIndicator.SetActive(false);
+        rightArrow.SetActive(false);
+    }
+
+    /* ---------------- BLINK ---------------- */
+
+    private IEnumerator Blink(GameObject indicator, GameObject arrow)
     {
         while (true)
         {
             indicator.SetActive(true);
-            indicationArrow.SetActive(true);
+            arrow.SetActive(true);
             yield return new WaitForSeconds(0.5f);
+
             indicator.SetActive(false);
-            indicationArrow.SetActive(false);
+            arrow.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
-    }
-
-    public void TurnOffIndicators(){
-        if (rightBlinkCoroutine != null) StopCoroutine(rightBlinkCoroutine);
-        if (leftBlinkCoroutine != null) StopCoroutine(leftBlinkCoroutine);
-
-        rightOn = false;
-        leftOn = false;
-        leftIndicated = false;
-        rightIndicated = false;
-        stoppedIndicator = false;
-        leftIndicator.SetActive(false);  leftArrow.SetActive(false);
-        rightIndicator.SetActive(false); rightArrow.SetActive(false);
     }
 }

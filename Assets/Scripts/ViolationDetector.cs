@@ -6,7 +6,7 @@ public class ViolationDetector : MonoBehaviour
 {
     [Header("References")]
     public GameObject player;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
     private CarIndicator carIndicator;
     private float relaxationTime = 2f;
     private char indication = 'F'; // forward
@@ -189,7 +189,7 @@ public class ViolationDetector : MonoBehaviour
         }
 
         // To check car alignment
-        float alignment = Vector3.Dot(player.transform.forward.normalized, -correctDir.normalized);
+        float alignment = Vector3.Dot(player.transform.forward.normalized, correctDir.normalized);
 
         // Report violation or return to correct
         if (onRoad && !correctWay && Time.time > prevTime + relaxationTime)

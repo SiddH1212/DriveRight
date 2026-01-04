@@ -3,7 +3,7 @@ using UnityEngine;
 public class RedLightViolationDetector : MonoBehaviour
 {
     public LightController lightController;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
 
     private void OnTriggerEnter(Collider other)
     {

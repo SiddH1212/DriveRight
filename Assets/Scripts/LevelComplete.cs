@@ -10,7 +10,7 @@ public class LevelComplete : MonoBehaviour
     public GameObject LevelUI;
     public TextMeshProUGUI debug;
     public GameObject LevelEndUI;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
     public GameObject indicator1, indicator2;
     public Button leftButton, rightButton;
     private string imageDir = "/Captures/";

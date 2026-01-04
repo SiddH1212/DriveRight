@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class YieldViolationDetector : MonoBehaviour
 {
     [SerializeField] private float speedThresh = 6f;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
     private float minSpeed = float.MaxValue;
     private bool inside = false;
 

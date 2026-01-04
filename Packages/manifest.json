@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "com.google.xr.cardboard": "file:C:/Users/siddh/Downloads/cardboard-xr-plugin-1.29.0/cardboard-xr-plugin-1.29.0",
     "com.unity.2d.sprite": "1.0.0",
+    "com.unity.feature.mobile": "1.0.0",
     "com.unity.formats.fbx": "4.2.1",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.render-pipelines.universal": "14.0.11",

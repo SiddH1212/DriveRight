@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpeedViolationDetector : MonoBehaviour
 {
     private int speedLimit;
-    public GameManager gameManager;
+    public GameManagerBase gameManager;
     public float minPenalty = 5f;
     public float maxPenalty = 100f;
 

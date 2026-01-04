@@ -6,16 +6,13 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class GameManagerMobile : MonoBehaviour
+public class GameManagerMobile : GameManagerBase
 {
     public int initialScore = 100;
-    [HideInInspector] public int score = 100;
     public TextMeshProUGUI scoreText;
-    public GameObject mainCam;
+    // public GameObject mainCam;
     public InputActionReference backToMenu;
     private float relaxationTime = 5f;  
-    public int fileCount = 0;
-    public List<string> messageList = new List<string>();
     public List<string> imagePaths = new List<string>();
     public List<float> timeStamps = new List<float>();
     public List<float> deltaScores = new List<float>();
@@ -23,10 +20,12 @@ public class GameManagerMobile : MonoBehaviour
 
     private List<Texture2D> violationImages = new List<Texture2D>();
     private HashSet <int> savedIndexes = new HashSet <int>();
+
     void Awake()
     {
         Time.timeScale = 1.0f;
     }
+
     public void Start()
     {
         // var roadGraph = FindObjectOfType<RoadGraph>();
@@ -35,18 +34,19 @@ public class GameManagerMobile : MonoBehaviour
         scoreText.text = "";
         backToMenu.action.Enable();
         backToMenu.action.started += back;
-
     }
+
     private void back(InputAction.CallbackContext callbackContext)
     {
         SceneManager.LoadScene("Start_Mobile");
     }
+
     private void OnDestroy()
     {
         backToMenu.action.started -= back;
     }
 
-    public void ReportLightCross(string lightColor)
+    public override void ReportLightCross(string lightColor)
     {
         int deltaScore;
         if (lightColor == "Red")
@@ -64,15 +64,16 @@ public class GameManagerMobile : MonoBehaviour
 
         UpdateScore(deltaScore, $"{lightColor} light crossed by the vehicle");
     }
-    public void UpdateScore(int deltaScore, string message = "")
+
+    public override void UpdateScore(int deltaScore, string message = "")
     {
         score += deltaScore;
         deltaScores.Add(deltaScore);
         timeStamps.Add(Time.time);
+
         if (deltaScore > 0)
         {
             Debug.Log($"Score = {score} \t (+{deltaScore}) \n{message}");
-            // UpdateScoreText($"Score = {score} \t (+{deltaScore}) \n{message}");
             scoreText.color = Color.green;
             StartCoroutine(UpdateMessage(message, relaxationTime));
             messageList.Add($"{message} \t (+{deltaScore})");
@@ -80,13 +81,12 @@ public class GameManagerMobile : MonoBehaviour
         else
         {
             Debug.Log($"Score = {score} \t ({deltaScore}) \n{message}");
-            // UpdateScoreText($"Score = {score} \t ({deltaScore}) \n{message}");
-            // UpdateScoreText($"{message}");
             scoreText.color = Color.red;
             StartCoroutine(UpdateMessage(message, relaxationTime));
             messageList.Add($"{message} \t ({deltaScore})");
         }
     }
+
     void UpdateScoreText(string message)
     {
         scoreText.text = message;
@@ -98,7 +98,6 @@ public class GameManagerMobile : MonoBehaviour
         StartCoroutine(CaptureViolationImageCoroutine());
     }
 
-    // Coroutine for the message to stop being displayed after 'time' seconds
     private IEnumerator UpdateMessage(string message, float time)
     {
         UpdateScoreText(message);
@@ -108,7 +107,7 @@ public class GameManagerMobile : MonoBehaviour
 
     private IEnumerator CaptureViolationImageCoroutine()
     {
-        yield return new WaitForEndOfFrame(); // wait until UI + scene is fully rendered
+        yield return new WaitForEndOfFrame();
 
         int width = Screen.width;
         int height = Screen.height;
@@ -122,12 +121,10 @@ public class GameManagerMobile : MonoBehaviour
         string imagePath = Path.Combine(path, $"violation_{fileCount}.png");
         imagePaths.Add(imagePath);
 
-        // Debug.Log("Captured violation screenshot (stored in memory)");
         fileCount++;
     }
 
-
-    public void SaveAllViolationImages()
+    public override void SaveAllViolationImages()
     {
         string path = Path.Combine(Application.persistentDataPath, "Captures");
         if (!Directory.Exists(path))
@@ -142,10 +139,10 @@ public class GameManagerMobile : MonoBehaviour
         }
 
         Debug.Log($"Saved {violationImages.Count} violation screenshots to {path}");
-        violationImages.Clear(); // clear memory after saving
+        violationImages.Clear();
     }
 
-    public void SaveImage(int idx)
+    public override void SaveImage(int idx)
     {
         string path = Path.Combine(Application.persistentDataPath, "Captures");
         Debug.Log(idx);
@@ -156,18 +153,16 @@ public class GameManagerMobile : MonoBehaviour
         Debug.Log($"Saved image for event {idx + 1}");
     }
 
-    public void SaveRelevantViolationImages(int idx){
-        int prevIdx = (idx - 1 + fileCount)%fileCount;
+    public void SaveRelevantViolationImages(int idx)
+    {
+        int prevIdx = (idx - 1 + fileCount) % fileCount;
         int nextIdx = (idx + 1) % fileCount;
 
-        if (!savedIndexes.Contains(nextIdx)){
+        if (!savedIndexes.Contains(nextIdx))
             SaveImage(nextIdx);
-        }
-        if (!savedIndexes.Contains(prevIdx)){
-            SaveImage(prevIdx);
-        }
 
-        return;
+        if (!savedIndexes.Contains(prevIdx))
+            SaveImage(prevIdx);
     }
 
     // void OnDestroy()
