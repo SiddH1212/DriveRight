@@ -1,0 +1,71 @@
+Dragon.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+Backview-Body
+bounds:1099,1108,788,935
+Backview-Head
+bounds:2,1383,1095,660
+Backview-L Ear
+bounds:461,138,457,581
+Blush
+bounds:920,194,525,88
+rotate:90
+Body
+bounds:1099,324,782,932
+rotate:90
+Eye highlight
+bounds:1010,396,323,54
+rotate:90
+Head
+bounds:2,721,1095,660
+Mouth-Angry
+bounds:1889,1226,266,157
+rotate:90
+Mouth-Confuse
+bounds:2,2,345,132
+Mouth-Happy
+bounds:349,22,178,112
+Mouth-Sad
+bounds:1586,63,207,75
+Pupil
+bounds:1586,140,445,182
+R Ear
+bounds:2,136,457,583
+Tear
+bounds:1889,1149,107,75
+eyeBase
+bounds:1010,66,574,256
+qMark
+bounds:1795,36,102,186
+rotate:90
+tearDrop
+bounds:920,140,52,85
+rotate:90
+upEyelid
+bounds:1889,1494,549,156
+rotate:90
+
+Dragon_2.png
+size:1024,1024
+filter:Linear,Linear
+pma:true
+Backview-R Ear
+bounds:2,441,432,568
+Hair
+bounds:436,462,317,361
+rotate:90
+L Arm
+bounds:786,227,233,219
+rotate:90
+L Ear
+bounds:2,7,432,568
+rotate:90
+L Leg
+bounds:786,2,183,223
+R Arm
+bounds:572,198,212,262
+R Leg
+bounds:799,564,166,215
+dwnEyelid
+bounds:436,781,549,228

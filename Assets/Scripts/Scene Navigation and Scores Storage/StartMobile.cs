@@ -1,137 +1,196 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class StartMobile : MonoBehaviour
 {
-    public GameObject firstCanvas, nameCanvas, scoreCanvas, scoreLinePrefab;
-    public TextMeshProUGUI player, previousScore;
+    /* ---------------- UI REFERENCES ---------------- */
+
+    public GameObject firstCanvas, nameCanvas, scoreCanvas;
+    public TextMeshProUGUI previousScore;
     public Transform scoreListParent;
-    public Button Play, start, stats, quit, back1, back2, Basic, Advanced;
-    [SerializeField] private GameObject firstCanvasFirst, nameCanvasFirst, scoreCanvasFirst;
+    public GameObject Loading;
+    public Button Play, stats, quit, back1, back2, Basic, Advanced;
+    public TMP_InputField nameInputField;
+    public Toggle showTextToggle;
+
+    [SerializeField] private GameObject firstCanvasFirst;
+    [SerializeField] private GameObject nameCanvasFirst;
+    [SerializeField] private GameObject scoreCanvasFirst;
+
+    /* ---------------- SESSION ---------------- */
+
+    private static bool prefsClearedThisSession = false;
+
+    /* ===================== UNITY ===================== */
+
+    void Awake()
+    {
+        // Match Desktop behavior: clear prefs once per app session
+        if (!prefsClearedThisSession)
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            prefsClearedThisSession = true;
+            Debug.Log("PlayerPrefs cleared at game start (Mobile)");
+        }
+    }
+
     void Start()
     {
         firstCanvas.SetActive(true);
-        if (InputMode.IsControllerConnected())
-            EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
-        Play.onClick.AddListener(onClickPlay);
-        Basic.onClick.AddListener(() => onClickScene("Basic"));
-        Advanced.onClick.AddListener(() => onClickScene("Advanced"));
-        // start.onClick.AddListener(onClickStart);
-        stats.onClick.AddListener(checkStats);
-        quit.onClick.AddListener(onClickQuit);
-        back1.onClick.AddListener(onClickBack);
-        back2.onClick.AddListener(onClickBack);
+
+        if (InputMode.IsControllerConnected())
+            EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
+
+        Play.onClick.AddListener(OnClickPlay);
+        Basic.onClick.AddListener(() => OnClickStart("Basic"));
+        Advanced.onClick.AddListener(() => OnClickStart("Advanced"));
+        stats.onClick.AddListener(CheckStats);
+        quit.onClick.AddListener(OnClickQuit);
+        back1.onClick.AddListener(OnClickBack);
+        back2.onClick.AddListener(OnClickBack);
+        Loading.SetActive(false);
     }
 
-    public void onClickPlay()
-    {
-        // string playerName = GetNextAvailablePlayerName();
+    /* ===================== FLOW ===================== */
 
-        // // Store it in SessionManager (if used)
-        // SessionManager.Instance.playerName = playerName;
-        Debug.Log("Play button clicked");
-        // // Show the player name on screen
+    private void OnClickPlay()
+    {
         firstCanvas.SetActive(false);
         nameCanvas.SetActive(true);
+
         if (InputMode.IsControllerConnected())
             EventSystem.current.SetSelectedGameObject(nameCanvasFirst);
-        // player.text = $"You are {playerName}";
-        // SceneManager.LoadScene("Mobile2");
     }
-    // string GetNextAvailablePlayerName()
-    // {
-    //     int lastID = PlayerPrefs.GetInt("LastPlayerID", 0);
 
-    //     // Look for the next unused or unsaved name
-    //     while (true)
-    //     {
-    //         lastID++;
-    //         string key = $"Player{lastID}";
-    //         if (!PlayerPrefs.HasKey($"Score_{key}"))
-    //         {
-    //             return key;
-    //         }
-    //     }
-    // }
-    // public void onClickStart()
-    // {
-    //     SceneManager.LoadScene("VR");
-    // }
-    public void onClickScene(string sceneName)
+    public void OnConfirmName()
     {
-    
-        if(sceneName == "Basic")
+        string playerName = nameInputField.text.Trim();
+
+        // Desktop-compatible fallback
+        if (string.IsNullOrEmpty(playerName))
         {
-            SceneManager.LoadScene("Mobile2");
+            int lastID = PlayerPrefs.GetInt("LastPlayerID", 0) + 1;
+            PlayerPrefs.SetInt("LastPlayerID", lastID);
+            playerName = $"Player{lastID}";
         }
-        else if(sceneName == "Advanced")
-        {
-            SceneManager.LoadScene("Night_Mobile");
-        }
-        else
-        {
-            Debug.LogError($"Unknown scene name: {sceneName}");
-        }
+
+        PlayerPrefs.SetString("PlayerName", playerName);
+
+        // Track all players (Desktop-compatible)
+        string allPlayers = PlayerPrefs.GetString("AllPlayers", "");
+        var players = new HashSet<string>(
+            allPlayers.Split(',', System.StringSplitOptions.RemoveEmptyEntries)
+        );
+        players.Add(playerName);
+
+        PlayerPrefs.SetString("AllPlayers", string.Join(",", players));
+
+        if (!PlayerPrefs.HasKey($"Score_{playerName}"))
+            PlayerPrefs.SetInt($"Score_{playerName}", 0);
+
+        PlayerPrefs.Save();
+
+        // Match Desktop behavior
+        GameManager.SelectedshowText = showTextToggle.isOn;
+
+        Debug.Log($"Player name set: {playerName}");
     }
-    public void onClickQuit()
+
+    private void OnClickStart(string mode)
+    {
+        Loading.SetActive(true);
+
+        if (mode == "Basic")
+            StartCoroutine(LoadSceneAsync("Mobile2"));
+        else if (mode == "Advanced")
+            StartCoroutine(LoadSceneAsync("Night_Mobile"));
+        else
+            Debug.LogError($"Unknown mode: {mode}");
+    }
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        // 1. Start loading
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        // 2. Prevent automatic scene switch
+        loadOperation.allowSceneActivation = false;
+
+        // 3. While still loading...
+        while (loadOperation.progress < 0.9f)
+        {
+            // Progress is happening here (0 → 0.9)
+            yield return null; // ← THIS keeps the game alive
+        }
+
+        // 4. Scene is ready → switch
+        loadOperation.allowSceneActivation = true;
+    }
+
+    private void OnClickQuit()
     {
         Application.Quit();
     }
-    void LoadAndDisplayScores()
-    {
-        // Clear existing entries
-        foreach (Transform child in scoreListParent)
-        {
-            Destroy(child.gameObject);
-        }
-        // string allKeys = PlayerPrefs.GetString("ScoreKeys", "");
-        // Debug.Log($"Loaded ScoreKeys: {allKeys}");
-        // var keyList = new HashSet<string>(allKeys.Split(','));
-        // foreach (var key in keyList)
-        // {
-        //     if (string.IsNullOrWhiteSpace(key)) continue;
 
-        //     int score = PlayerPrefs.GetInt($"Score_{key}", -1);
-        //     Debug.Log($"Found score for {key}: {score}");
+    /* ===================== STATS ===================== */
 
-        //     GameObject entry = Instantiate(scoreLinePrefab, scoreListParent);
-        //     entry.GetComponent<TextMeshProUGUI>().text = $"{key}: {score}";
-        // }
-        int score = PlayerPrefs.GetInt("LastScore");
-        previousScore.text = $"Previous Score: {score}";
-    }
-    public void checkStats()
+    private void CheckStats()
     {
         firstCanvas.SetActive(false);
         scoreCanvas.SetActive(true);
         LoadAndDisplayScores();
+
         if (InputMode.IsControllerConnected())
             EventSystem.current.SetSelectedGameObject(scoreCanvasFirst);
-
     }
 
-    public void onClickBack()
+    private void LoadAndDisplayScores()
+    {
+        string allPlayers = PlayerPrefs.GetString("AllPlayers", "");
+
+        if (string.IsNullOrEmpty(allPlayers))
+        {
+            previousScore.text = "No previous scores";
+            return;
+        }
+
+        var players = allPlayers.Split(',', System.StringSplitOptions.RemoveEmptyEntries);
+        string displayText = "";
+
+        foreach (var p in players)
+        {
+            int score = PlayerPrefs.GetInt($"Score_{p}", 0);
+            displayText += $"{p}: {score}\n";
+        }
+
+        previousScore.text = displayText;
+    }
+
+    /* ===================== NAVIGATION ===================== */
+
+    private void OnClickBack()
     {
         nameCanvas.SetActive(false);
         scoreCanvas.SetActive(false);
         firstCanvas.SetActive(true);
-        if (InputMode.IsControllerConnected()){
-            EventSystem.current.SetSelectedGameObject(null); // clear first
-            EventSystem.current.SetSelectedGameObject(firstCanvasFirst); // reassign focus
-        }
-    }
-    void OnDestroy()
-    {
-        if (EventSystem.current != null)
+
+        if (InputMode.IsControllerConnected())
         {
             EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (EventSystem.current != null)
+            EventSystem.current.SetSelectedGameObject(null);
     }
 }

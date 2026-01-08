@@ -21,7 +21,7 @@ public class RoadGraph : MonoBehaviour
     // public string loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_08.dat"; //Application.streamingAssetsPath + "/graph_data.dat";
     // public string savePath = Application.streamingAssetsPath + "/graph_data.dat";
     [HideInInspector] public List<LaneNode> Nodes = new List<LaneNode>();
-
+    public bool IsReady {get; private set;} = false;
     void Start()
     {
         // loadPath = "/Users/mehulmathur/Desktop/Main Folder 0/Python Files/srfp/data_files/json_data/graph_data_08.dat";
@@ -57,7 +57,9 @@ public class RoadGraph : MonoBehaviour
         else
         {
             Debug.Log("RoadGraph loaded with " + Nodes.Count + " nodes.");
+            IsReady = true;
         }
+        
     }
 
     public LaneNode GetClosestNode(Vector3 position, float maxDistance = 2f)
@@ -226,6 +228,7 @@ public class RoadGraph : MonoBehaviour
             }
         }
         */
+        IsReady = true;
     }
 
     // (Debuggin) gizmo-draw the graph

@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 5cba7079354604bd2926f27f4be70df8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Sans Kannada
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c503141590cc2473283a0b447659654c, type: 3}
+  - {fileID: 12800000, guid: c2b90616c153b4019bb161cb16c58ef0, type: 3}
+  - {fileID: 12800000, guid: 02f73e617e0834a6ea180c4a9c6cf4fe, type: 3}
+  - {fileID: 12800000, guid: b6a5b94fd629a4e46911ce462df08ba9, type: 3}
+  - {fileID: 12800000, guid: f6f4a082ac28b43ffbeea84cdfcdfe9d, type: 3}
+  - {fileID: 12800000, guid: 719bf71690dd14966bc46017466300f6, type: 3}
+  - {fileID: 12800000, guid: 55d03bb70456442e18aba89cb8c26da4, type: 3}
+  - {fileID: 12800000, guid: 6af78ae50a0164ba1bea03668d7aed27, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

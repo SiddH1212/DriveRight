@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour
 {
-    private Renderer redRenderer, yellowRenderer, greenRenderer;
-    private TextMeshPro timer;
+    [SerializeField]private Renderer redRenderer, yellowRenderer, greenRenderer;
+    [SerializeField]private TextMeshPro timer;
     private bool isRed = false;
     private bool isYellow = false;
     private bool isGreen = false;
     void Awake()
     {
-        redRenderer = transform.Find("Traffic_Lights/Red_Light").GetComponent<Renderer>();
-        yellowRenderer = transform.Find("Traffic_Lights/Yellow_Light").GetComponent<Renderer>();
-        greenRenderer = transform.Find("Traffic_Lights/Green_Light").GetComponent<Renderer>();
-        timer = transform.Find("Timer").Find("Display").GetComponent<TextMeshPro>();
-        if (timer == null) Debug.Log("Timer not found");
+        // redRenderer = transform.Find("Traffic_Lights/Red_Light").GetComponent<Renderer>();
+        // yellowRenderer = transform.Find("Traffic_Lights/Yellow_Light").GetComponent<Renderer>();
+        // greenRenderer = transform.Find("Traffic_Lights/Green_Light").GetComponent<Renderer>();
+        // timer = transform.Find("Timer").Find("Display").GetComponent<TextMeshPro>();
+        // if (timer == null) Debug.Log("Timer not found");
     }
 
     public void SetLightState(bool red, bool yellow, bool green)

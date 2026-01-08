@@ -81,6 +81,8 @@ public class NPCController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!gameManager.gameplayActive)
+            return;
         if (currentNode == null || targetNode == null) return;
 
         MoveTowardsTarget();

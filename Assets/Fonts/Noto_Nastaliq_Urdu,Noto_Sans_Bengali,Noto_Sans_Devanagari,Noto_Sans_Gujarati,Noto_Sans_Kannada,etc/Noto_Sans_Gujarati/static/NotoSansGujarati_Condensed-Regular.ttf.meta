@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c66c1a14cc7db446a8f32ee5fee08711
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Sans Gujarati Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 03ccdfad8944b4208b5c237e1a4243ed, type: 3}
+  - {fileID: 12800000, guid: 54c55832051c242ef8d80daa98a5b957, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

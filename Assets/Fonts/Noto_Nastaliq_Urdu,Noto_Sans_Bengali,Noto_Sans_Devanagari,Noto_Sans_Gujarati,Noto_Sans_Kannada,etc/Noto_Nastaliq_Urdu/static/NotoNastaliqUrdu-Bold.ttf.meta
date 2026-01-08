@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c8c86d467a79d46aba45aa2c4c5f915d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Nastaliq Urdu
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f7127c0bebd9748ffb746b78b2fe3d6c, type: 3}
+  - {fileID: 12800000, guid: 12e0e27529ba14437875aebca8b27456, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

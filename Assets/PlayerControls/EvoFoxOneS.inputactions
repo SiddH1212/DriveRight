@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "8c404b2b-146c-4d27-9fce-903572d35dbd",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -108,6 +108,15 @@
                     "name": "Accelerate",
                     "type": "Button",
                     "id": "25e9b3fd-4d9f-4e71-950f-0667cc4bf7ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "2ce37654-96e7-4605-869b-c7da8b4ce94d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -244,6 +253,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58c8c104-5949-4345-a79a-b8edb17d130e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Map",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

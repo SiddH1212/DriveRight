@@ -1,0 +1,57 @@
+Red light crossed by the vehicle
+Yellow light crossed by the vehicle
+Green light crossed by the vehicle
+
+Changed Lane to left without indicating
+Changed Lane to right without indicating
+
+Collided with another vechicle
+
+Collided with Pedestrian
+
+Driving too close behind another vehicle: severity 3/3
+Driving too close behind another vehicle: severity 2/3
+Driving too close behind another vehicle: severity 1/3
+
+Did not wait for the pedestrian to cross
+Waited for the pedestrian to cross
+
+Overspeeding — driving above the speed limit
+Following speed limit
+
+Stopped at a stop sign
+Failed to Stop on Stop Sign
+
+Driving outside the road
+
+Did not indicate before U-turn
+Wrong Indication before U-turn
+U-turn should be made from the right lane
+Correctly indicated U-turn
+
+Left turn should be made from the left lane
+Correctly indicated left turn
+Right turn should be made from the right lane
+Correctly indicated right turn
+
+Did not indicate appropriately before turning
+Wrong indication before turning
+Indicated without turning
+
+Wrong Way
+
+Slowed at a Yield sign
+Failed to Slow on a Yield Sign
+
+Speed
+Time Elapsed
+Time Limit
+
+Reached Destination Successfully
+Final Score
+Event Number
+
+Continue Straight
+Continue Straight on the next intersection
+Take the next right
+Take the next left

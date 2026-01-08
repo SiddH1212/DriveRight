@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: bb88add7a20f6480784926b3b1dafcf7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Sans Telugu Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2756254d611e94b3cb3c651b15085fb0, type: 3}
+  - {fileID: 12800000, guid: 58d152def9be24f38a12010e4f1e4d35, type: 3}
+  - {fileID: 12800000, guid: 5516094d1650245e28dc26302a28879e, type: 3}
+  - {fileID: 12800000, guid: 69b4dd5c424f64523b56ceca37c7d249, type: 3}
+  - {fileID: 12800000, guid: d2e71ba64db2a410cb22561a09da6e9c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

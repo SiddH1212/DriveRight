@@ -1,0 +1,58 @@
+Monster.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+Backview_ L leg
+bounds:1508,164,291,276
+Backview_Body
+bounds:2,274,1504,1726
+Backview_L arm
+bounds:1076,3,269,387
+rotate:90
+Backview_R arm
+bounds:1801,207,234,334
+Eye shine
+bounds:1778,543,418,174
+rotate:90
+Eyebrow
+bounds:1508,963,557,325
+rotate:90
+Eyes-Base
+bounds:1508,1522,480,478
+Mouth-Angry
+bounds:1835,1041,479,123
+rotate:90
+Mouth-Happy
+bounds:2,14,549,258
+Mouth-Sad
+bounds:1465,2,392,160
+dwnEyelid
+bounds:553,26,521,246
+qMark
+bounds:1859,19,102,186
+upEyelid
+bounds:1508,442,519,268
+rotate:90
+
+Monster_2.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+Backview_R leg
+bounds:1508,1374,299,279
+Body
+bounds:2,273,1504,1726
+L arm
+bounds:391,37,234,334
+rotate:90
+L leg
+bounds:1508,1095,299,277
+Mouth-Confuse
+bounds:727,139,345,132
+Pupil
+bounds:1508,1655,347,344
+R arm
+bounds:2,2,269,387
+rotate:90
+R leg
+bounds:1508,817,291,276

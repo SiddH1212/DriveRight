@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: a3d8f5d9cbef941df8bac15953e0aad3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Sans Malayalam ExtraCondensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 93ce43d8fefbb4a32bd2e4a42fd09334, type: 3}
+  - {fileID: 12800000, guid: 31f69b27478b2400b9d7706052d8d086, type: 3}
+  - {fileID: 12800000, guid: 92a054116736f486da004f76e1ff17c9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

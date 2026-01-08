@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 558bad1291c9b4a66b3447f81f56f63b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Sans Malayalam
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c14e82270bfa941bea4093e6d6635eb1, type: 3}
+  - {fileID: 12800000, guid: e45a8ac1157de471ba802b9ccf47ac6b, type: 3}
+  - {fileID: 12800000, guid: 523c1470f02a041669d1193ca2797c97, type: 3}
+  - {fileID: 12800000, guid: d241639161d8144a2be3568bc92009ad, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

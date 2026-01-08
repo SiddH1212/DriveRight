@@ -11,6 +11,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private InputActionReference accelerate;
     [SerializeField] private InputActionReference brake;
     [SerializeField] private InputActionReference toggleGear;
+    [SerializeField] private InputActionReference MapToggle;
 
     /* ---------------- STATE ---------------- */
 
@@ -25,6 +26,8 @@ public class CarController : MonoBehaviour
 
     public TextMeshProUGUI speedText;
     public GameManagerBase gameManager;
+    [SerializeField] private GameObject minimap;
+    private bool minimapVisible = true;
 
     /* ---------------- CAR PARAMS ---------------- */
 
@@ -58,6 +61,7 @@ public class CarController : MonoBehaviour
     private const float steerDeadzone = 0.05f;
 
     /* ===================== UNITY ===================== */
+    public GameObject minimapCam;
 
     void Start()
     {
@@ -65,22 +69,26 @@ public class CarController : MonoBehaviour
         accelerate.action.Enable();
         brake.action.Enable();
         toggleGear.action.Enable();
-
+        MapToggle.action.Enable();
         brake.action.started += BrakeOn;
         brake.action.canceled += BrakeOff;
         toggleGear.action.started += ToggleGear;
-
+        MapToggle.action.started += ToggleMinimap;
+        minimapCam.SetActive(minimapVisible);
         prevPos = transform.position;
         isReverse = false;
     }
 
     void FixedUpdate()
     {
+        if(!gameManager.gameplayActive)
+            return;
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
         UpdateSpeed();
+        UpdateUI();
     }
 
     private void OnDestroy()
@@ -88,18 +96,19 @@ public class CarController : MonoBehaviour
         steer.action.Disable();
         accelerate.action.Disable();
         toggleGear.action.Disable();
-
+        MapToggle.action.Disable();
         brake.action.started -= BrakeOn;
         brake.action.canceled -= BrakeOff;
         toggleGear.action.started -= ToggleGear;
+        MapToggle.action.started -= ToggleMinimap;
     }
 
     /* ===================== INPUT ===================== */
 
     private void GetInput()
     {
-        Vector2 steerInput = steer.action.ReadValue<Vector2>();
-        horizontalInput = Mathf.Abs(steerInput.x) < steerDeadzone ? 0f : steerInput.x;
+        float steerInput = steer.action.ReadValue<float>();
+        horizontalInput = Mathf.Abs(steerInput) < steerDeadzone ? 0f : steerInput;
 
         verticalInput = accelerate.action.ReadValue<float>();
     }
@@ -126,7 +135,13 @@ public class CarController : MonoBehaviour
     }
 
     /* ===================== MOTOR ===================== */
-
+    private void ToggleMinimap(InputAction.CallbackContext ctx)
+    {
+        minimapVisible = !minimapVisible;
+        minimap.SetActive(minimapVisible);
+        minimapCam.SetActive(minimapVisible);
+        Debug.Log(minimapVisible ? "Minimap ON" : "Minimap OFF");
+    }
     private void HandleMotor()
     {
         float gearDirection = isReverse ? -1f : 1f;
@@ -190,7 +205,7 @@ public class CarController : MonoBehaviour
         float speed = deltaPos.magnitude / Time.deltaTime * 3.6f;
         prevPos = transform.position;
 
-        speedText.text = $"Speed: {Mathf.Round(speed)} km/h";
+        // speedText.text = $"Speed: {Mathf.Round(speed)} km/h";
         UpdateSpeedometer(speed);
     }
 
@@ -221,5 +236,18 @@ public class CarController : MonoBehaviour
         isReverse = reverse;
         Debug.Log(isReverse ? "Gear (UI): REVERSE" : "Gear (UI): DRIVE");
     }
+    private void UpdateUI()
+    {
+        speedText.font = LanguageTranslator.Instance.GetFont();
 
+        string speedTranslated = LanguageTranslator.Instance.Translate("Speed");
+        string timeTranslated = LanguageTranslator.Instance.Translate("Time Elapsed");
+        string timeLimitTranslated = LanguageTranslator.Instance.Translate("Time Limit");
+
+        string formattedElapsed = TimeSpan.FromSeconds(gameManager.elapsedTime).ToString(@"hh\:mm\:ss");
+        string formattedLimit = TimeSpan.FromSeconds(gameManager.timeLimit).ToString(@"hh\:mm\:ss");
+
+        speedText.text = $" {timeTranslated}: {formattedElapsed}\n {timeLimitTranslated}: {formattedLimit}";
+        
+    }
 }

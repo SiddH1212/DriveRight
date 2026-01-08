@@ -29,7 +29,7 @@ public static class RoadGraphSerializer
             return sceneName switch
             {
                 "VR" => "graph_data.dat",
-                "EasyMobile" => "graph_data_0.dat",
+                // "EasyMobile" => "graph_data_0.dat",
                 "Mobile2" => "graph_data.dat",
                 "Night_Quest" => "graph_data_night.dat",
                 "Night_Mobile" => "graph_data_night.dat",
