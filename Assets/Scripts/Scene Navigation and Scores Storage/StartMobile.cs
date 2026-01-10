@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.IO;
 using System.Collections;
 
 public class StartMobile : MonoBehaviour
@@ -38,6 +39,7 @@ public class StartMobile : MonoBehaviour
             prefsClearedThisSession = true;
             Debug.Log("PlayerPrefs cleared at game start (Mobile)");
         }
+        ClearCaptureDirectory();
     }
 
     void Start()
@@ -99,7 +101,7 @@ public class StartMobile : MonoBehaviour
         PlayerPrefs.Save();
 
         // Match Desktop behavior
-        GameManager.SelectedshowText = showTextToggle.isOn;
+        GameManagerBase.SelectedshowText = showTextToggle.isOn;
 
         Debug.Log($"Player name set: {playerName}");
     }
@@ -172,6 +174,28 @@ public class StartMobile : MonoBehaviour
 
         previousScore.text = displayText;
     }
+    private void ClearCaptureDirectory()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "Captures");
+
+        if (!Directory.Exists(path))
+            return;
+
+        try
+        {
+            foreach (string file in Directory.GetFiles(path))
+            {
+                File.Delete(file);
+            }
+
+            Debug.Log("Cleared Captures directory (Mobile)");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"Failed to clear Captures directory: {e.Message}");
+        }
+    }
+
 
     /* ===================== NAVIGATION ===================== */
 

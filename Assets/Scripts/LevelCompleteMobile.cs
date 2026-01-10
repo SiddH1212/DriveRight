@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.IO;
 
 public class LevelCompleteMobile : MonoBehaviour
 {
@@ -19,12 +18,144 @@ public class LevelCompleteMobile : MonoBehaviour
 
     private int idx = 0;
     private bool completed = false;
+    private Texture2D runtimeTexture;
+
 
     void Start()
     {
         LevelUI.SetActive(true);
         LevelEndUI.SetActive(false);
+    }
 
+    void OnDestroy()
+    {
+        left.action.Disable();
+        right.action.Disable();
+
+        if (runtimeTexture != null)
+        {
+            Destroy(runtimeTexture);
+            runtimeTexture = null;
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (completed || !col.CompareTag("Player")) return;
+        completed = true;
+
+        SetupNavigation();
+        SaveScore();
+
+        LevelUI.SetActive(false);
+        LevelEndUI.SetActive(true);
+
+        ApplyFonts();
+
+        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
+            LanguageTranslator.Instance.Translate("Reached Destination Successfully");
+
+        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().color = Color.green;
+
+        LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().text =
+            $"{LanguageTranslator.Instance.Translate("Final Score")}: {gameManager.score}/100";
+
+        LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text =
+            GetRankText(gameManager.score);
+
+        Time.timeScale = 0f;
+
+        if (gameManager.ViolationCount > 0)
+        {
+            // idx = gameManager.ViolationCount - 1;
+            idx=0;
+            DisplayImage(idx);
+        }
+    }
+
+    public void ShowLevelComplete(int finalScore)
+    {
+        if (completed) return;
+        completed = true;
+
+        gameManager.score = Mathf.Max(0, finalScore);
+        SetupNavigation();
+        SaveScore();
+
+        LevelUI.SetActive(false);
+        LevelEndUI.SetActive(true);
+        ApplyFonts();
+
+        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
+            LanguageTranslator.Instance.Translate("Failed to Reach Destination");
+
+        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().color = Color.red;
+
+        LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().text =
+            $"{LanguageTranslator.Instance.Translate("Final Score")}: {gameManager.score}/100";
+
+        LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = "";
+
+        Time.timeScale = 0f;
+
+        if (gameManager.ViolationCount > 0)
+        {
+            // idx = gameManager.ViolationCount - 1;
+            idx=0;
+            DisplayImage(idx);
+        }
+    }
+
+   void DisplayImage(int index)
+    {
+        if (index < 0 || index >= gameManager.ViolationCount) return;
+
+        var record = gameManager.GetViolation(index);
+        if (string.IsNullOrEmpty(record.imagePath) || !File.Exists(record.imagePath))
+            return;
+
+        // Destroy ONLY the previous runtime texture
+        if (runtimeTexture != null)
+        {
+            Destroy(runtimeTexture);
+            runtimeTexture = null;
+        }
+
+        byte[] bytes = File.ReadAllBytes(record.imagePath);
+
+        runtimeTexture = new Texture2D(2, 2, TextureFormat.RGB24, false);
+        runtimeTexture.LoadImage(bytes);
+
+        var raw = LevelEndUI.transform
+            .Find("Violation_Image")
+            .GetComponent<RawImage>();
+
+        raw.texture = runtimeTexture;
+
+        var text = LevelEndUI.transform
+            .Find("Violation_Text")
+            .GetComponent<TextMeshProUGUI>();
+
+        text.text = $"Event {index + 1}: {record.message}";
+        text.color = record.deltaScore < 0 ? Color.red : Color.green;
+    }
+
+    public void NextImage()
+    {
+        if (gameManager.ViolationCount == 0) return;
+        idx = (idx + 1) % gameManager.ViolationCount;
+        DisplayImage(idx);
+    }
+
+    public void PreviousImage()
+    {
+        if (gameManager.ViolationCount == 0) return;
+        idx = (idx - 1 + gameManager.ViolationCount) % gameManager.ViolationCount;
+        DisplayImage(idx);
+    }
+
+    void SetupNavigation()
+    {
         left.action.Enable();
         right.action.Enable();
 
@@ -35,113 +166,29 @@ public class LevelCompleteMobile : MonoBehaviour
         rightButton.onClick.AddListener(NextImage);
     }
 
-    void OnDestroy()
+    void ApplyFonts()
     {
-        left.action.Disable();
-        right.action.Disable();
+        var font = LanguageTranslator.Instance.GetFont();
+
+        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().font = font;
+        LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().font = font;
+        LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>().font = font;
+        LevelEndUI.transform.Find("Violation_Text").GetComponent<TextMeshProUGUI>().font = font;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void SaveScore()
     {
-        if (completed) return;
-        if (!collider.CompareTag("Player")) return;
-
-        completed = true;
-
-        // Clamp score
-        if (gameManager.score < 0)
-            gameManager.score = 0;
-
-        // Save scores (desktop parity)
         PlayerPrefs.SetInt("LastScore", gameManager.score);
-        string playerName = PlayerPrefs.GetString("PlayerName", "Unknown");
-        PlayerPrefs.SetInt($"Score_{playerName}", gameManager.score);
+        string name = PlayerPrefs.GetString("PlayerName", "Unknown");
+        PlayerPrefs.SetInt($"Score_{name}", gameManager.score);
         PlayerPrefs.Save();
-
-        // UI swap
-        LevelUI.SetActive(false);
-        LevelEndUI.SetActive(true);
-        Time.timeScale = 0f;
-
-        // Title
-        LevelEndUI.transform.Find("Title")
-            .GetComponent<TextMeshProUGUI>().text =
-            "Reached Destination Successfully";
-
-        // Score text
-        LevelEndUI.transform.Find("Score")
-            .GetComponent<TextMeshProUGUI>().text =
-            $"Final Score: {gameManager.score}/100";
-
-        // Rank text (desktop parity)
-        var rankText = LevelEndUI.transform.Find("Rank")
-            .GetComponent<TextMeshProUGUI>();
-
-        if (gameManager.score > 75)
-            rankText.text = "Safe Driving! Excellent Score";
-        else if (gameManager.score > 50)
-            rankText.text = "Defensive Driving! Good Score";
-        else if (gameManager.score > 25)
-            rankText.text = "Moderate Driving! Fair Score";
-        else
-            rankText.text = "Risky Driving! Poor Score";
-
-        rankText.color = Color.yellow;
-
-        // Save & show first violation (KEEP MOBILE LOGIC)
-        gameManager.SaveImage(idx);
-        DisplayImage(idx);
-
-        // Disable trigger visuals
-        if (TryGetComponent(out MeshRenderer mr))
-            mr.enabled = false;
     }
 
-    void DisplayImage(int index)
+    string GetRankText(int score)
     {
-        if (gameManager.fileCount == 0) return;
-
-        index = Mathf.Clamp(index, 0, gameManager.fileCount - 1);
-
-        string imagePath = Path.Combine(
-            Application.persistentDataPath,
-            "Captures",
-            $"violation_{index}.png"
-        );
-
-        if (!File.Exists(imagePath)) return;
-
-        byte[] bytes = File.ReadAllBytes(imagePath);
-        Texture2D tex = new Texture2D(2, 2);
-        tex.LoadImage(bytes);
-
-        LevelEndUI.transform.Find("Violation_Image")
-            .GetComponent<RawImage>().texture = tex;
-
-        string message = gameManager.messageList[index];
-        var text = LevelEndUI.transform.Find("Violation_Text")
-            .GetComponent<TextMeshProUGUI>();
-
-        text.text = $"Event {index + 1}: {message}";
-        text.color = gameManager.deltaScores[index] < 0 ? Color.red : Color.green;
-
-        // KEEP MOBILE CONTEXT SAVE
-        gameManager.SaveRelevantViolationImages(index);
-    }
-
-    public void NextImage()
-    {
-        if (!completed) return;
-
-        idx = (idx + 1) % gameManager.fileCount;
-        DisplayImage(idx);
-    }
-
-    public void PreviousImage()
-    {
-        if (!completed) return;
-
-        idx = (idx - 1 + gameManager.fileCount) % gameManager.fileCount;
-        DisplayImage(idx);
+        if (score > 75) return LanguageTranslator.Instance.Translate("Safe Driving! Excellent Score");
+        if (score > 50) return LanguageTranslator.Instance.Translate("Defensive Driving! Good Score");
+        if (score > 25) return LanguageTranslator.Instance.Translate("Moderate Driving! Fair Score");
+        return LanguageTranslator.Instance.Translate("Risky Driving! Poor Score");
     }
 }
