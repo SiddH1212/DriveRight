@@ -64,7 +64,8 @@ public class LevelCompleteMobile : MonoBehaviour
             GetRankText(gameManager.score);
 
         Time.timeScale = 0f;
-
+        if (TryGetComponent(out MeshRenderer mr))
+            mr.enabled = false;
         if (gameManager.ViolationCount > 0)
         {
             // idx = gameManager.ViolationCount - 1;

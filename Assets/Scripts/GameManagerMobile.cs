@@ -36,7 +36,7 @@ public class GameManagerMobile : GameManagerBase
     /* ===================== AUDIO ===================== */
 
     [SerializeField] private AudioSource violationAudioSource;
-    [SerializeField] private AudioClip violationClip;
+    // [SerializeField] private AudioClip violationClip;
     [SerializeField] private float violationSoundCooldown = 0.5f;
     private float lastViolationSoundTime = -10f;
 
@@ -301,8 +301,9 @@ public class GameManagerMobile : GameManagerBase
     {
         if (Time.time - lastViolationSoundTime < violationSoundCooldown)
             return;
-
-        violationAudioSource?.PlayOneShot(violationClip);
+        // if(!violationAudioSource.gameObject.activeInHierarchy)
+        //     violationAudioSource.gameObject.SetActive(true);
+        violationAudioSource?.Play();
         lastViolationSoundTime = Time.time;
     }
 
