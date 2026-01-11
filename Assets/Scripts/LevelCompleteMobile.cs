@@ -20,7 +20,6 @@ public class LevelCompleteMobile : MonoBehaviour
     private bool completed = false;
     private Texture2D runtimeTexture;
 
-
     void Start()
     {
         LevelUI.SetActive(true);
@@ -33,10 +32,7 @@ public class LevelCompleteMobile : MonoBehaviour
         right.action.Disable();
 
         if (runtimeTexture != null)
-        {
             Destroy(runtimeTexture);
-            runtimeTexture = null;
-        }
     }
 
     void OnTriggerEnter(Collider col)
@@ -49,12 +45,10 @@ public class LevelCompleteMobile : MonoBehaviour
 
         LevelUI.SetActive(false);
         LevelEndUI.SetActive(true);
-
         ApplyFonts();
 
         LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
             LanguageTranslator.Instance.Translate("Reached Destination Successfully");
-
         LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().color = Color.green;
 
         LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().text =
@@ -64,12 +58,11 @@ public class LevelCompleteMobile : MonoBehaviour
             GetRankText(gameManager.score);
 
         Time.timeScale = 0f;
-        if (TryGetComponent(out MeshRenderer mr))
-            mr.enabled = false;
+
         if (gameManager.ViolationCount > 0)
         {
-            // idx = gameManager.ViolationCount - 1;
-            idx=0;
+            idx = 0;
+            gameManager.SaveRelevantViolationImages(idx);
             DisplayImage(idx);
         }
     }
@@ -89,52 +82,46 @@ public class LevelCompleteMobile : MonoBehaviour
 
         LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
             LanguageTranslator.Instance.Translate("Failed to Reach Destination");
-
         LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().color = Color.red;
 
         LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().text =
             $"{LanguageTranslator.Instance.Translate("Final Score")}: {gameManager.score}/100";
 
-        LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = "";
-
         Time.timeScale = 0f;
 
         if (gameManager.ViolationCount > 0)
         {
-            // idx = gameManager.ViolationCount - 1;
-            idx=0;
+            idx = 0;
+            gameManager.SaveRelevantViolationImages(idx);
             DisplayImage(idx);
         }
     }
 
-   void DisplayImage(int index)
+    void DisplayImage(int index)
     {
         if (index < 0 || index >= gameManager.ViolationCount) return;
 
-        var record = gameManager.GetViolation(index);
-        if (string.IsNullOrEmpty(record.imagePath) || !File.Exists(record.imagePath))
-            return;
+        gameManager.SaveRelevantViolationImages(index);
 
-        // Destroy ONLY the previous runtime texture
+        string path = Path.Combine(
+            Application.persistentDataPath,
+            "Captures",
+            $"violation_{index}.png"
+        );
+
+        if (!File.Exists(path)) return;
+
         if (runtimeTexture != null)
-        {
             Destroy(runtimeTexture);
-            runtimeTexture = null;
-        }
-
-        byte[] bytes = File.ReadAllBytes(record.imagePath);
 
         runtimeTexture = new Texture2D(2, 2, TextureFormat.RGB24, false);
-        runtimeTexture.LoadImage(bytes);
+        runtimeTexture.LoadImage(File.ReadAllBytes(path));
 
-        var raw = LevelEndUI.transform
-            .Find("Violation_Image")
-            .GetComponent<RawImage>();
+        LevelEndUI.transform.Find("Violation_Image")
+            .GetComponent<RawImage>().texture = runtimeTexture;
 
-        raw.texture = runtimeTexture;
-
-        var text = LevelEndUI.transform
-            .Find("Violation_Text")
+        var record = gameManager.GetViolation(index);
+        var text = LevelEndUI.transform.Find("Violation_Text")
             .GetComponent<TextMeshProUGUI>();
 
         text.text = $"Event {index + 1}: {record.message}";
@@ -162,6 +149,9 @@ public class LevelCompleteMobile : MonoBehaviour
 
         left.action.started += _ => PreviousImage();
         right.action.started += _ => NextImage();
+
+        leftButton.onClick.RemoveAllListeners();
+        rightButton.onClick.RemoveAllListeners();
 
         leftButton.onClick.AddListener(PreviousImage);
         rightButton.onClick.AddListener(NextImage);

@@ -36,7 +36,6 @@ public class GameManagerMobile : GameManagerBase
     /* ===================== AUDIO ===================== */
 
     [SerializeField] private AudioSource violationAudioSource;
-    // [SerializeField] private AudioClip violationClip;
     [SerializeField] private float violationSoundCooldown = 0.5f;
     private float lastViolationSoundTime = -10f;
 
@@ -102,13 +101,10 @@ public class GameManagerMobile : GameManagerBase
             CountDown.text = i.ToString();
             yield return new WaitForSecondsRealtime(1f);
         }
-
         CountDown.text = "Go!";
         yield return new WaitForSecondsRealtime(1f);
         CountDown.text = "";
     }
-
-    /* ===================== TIME ===================== */
 
     private IEnumerator HandleTimeExpired()
     {
@@ -146,13 +142,8 @@ public class GameManagerMobile : GameManagerBase
         if (deltaScore < 0)
             PlayViolationSound();
 
-        // Restore legacy tracking
-        // messageList.Add($"{message} ({deltaScore:+#;-#;0})");
-        // deltaScores.Add(deltaScore);
-        // timeStamps.Add(Time.time);
-
         StartCoroutine(UpdateScoreMessage(message, 5f));
-        StartCoroutine(CaptureAndSaveViolation(deltaScore, message));
+        StartCoroutine(CaptureViolation(deltaScore, message));
     }
 
     private IEnumerator UpdateScoreMessage(string message, float duration)
@@ -166,47 +157,59 @@ public class GameManagerMobile : GameManagerBase
             scoreText.text = "";
     }
 
-    private IEnumerator CaptureAndSaveViolation(int deltaScore, string message)
+    private IEnumerator CaptureViolation(int deltaScore, string message)
     {
         yield return new WaitForEndOfFrame();
 
-        Texture2D tex = new Texture2D(
+        Texture2D image = new Texture2D(
             Screen.width,
             Screen.height,
             TextureFormat.RGB24,
             false
         );
 
-        tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        tex.Apply();
+        image.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        image.Apply();
 
-        var record = new ViolationRecord
+        violations.Add(new ViolationRecord
         {
+            image = image,
             imagePath = null,
             message = $"{message} ({deltaScore:+#;-#;0})",
             deltaScore = deltaScore,
             time = elapsedTime
-        };
-
-        violations.Add(record);
-        SaveViolationToDisk(violations.Count - 1, tex);
+        });
     }
 
-    private void SaveViolationToDisk(int idx, Texture2D tex)
+    /* ===================== SAVING ===================== */
+
+    public override void SaveImage(int idx)
     {
+        if (idx < 0 || idx >= violations.Count) return;
         if (savedIndexes.Contains(idx)) return;
+        if (violations[idx].image == null) return;
 
         string dir = Path.Combine(Application.persistentDataPath, "Captures");
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
 
         string path = Path.Combine(dir, $"violation_{idx}.png");
-        File.WriteAllBytes(path, tex.EncodeToPNG());
+        File.WriteAllBytes(path, violations[idx].image.EncodeToPNG());
 
-        Destroy(tex); // SAFE: runtime texture
-
+        Destroy(violations[idx].image); // runtime texture only
+        violations[idx].image = null;
         violations[idx].imagePath = path;
+
         savedIndexes.Add(idx);
+    }
+
+    public void SaveRelevantViolationImages(int idx)
+    {
+        if (violations.Count == 0) return;
+
+        SaveImage(idx);
+        SaveImage((idx - 1 + violations.Count) % violations.Count);
+        SaveImage((idx + 1) % violations.Count);
     }
 
     /* ===================== NOTIFICATIONS ===================== */
@@ -287,8 +290,8 @@ public class GameManagerMobile : GameManagerBase
         if (currentPath == null || currentPath.Count == 0)
             return true;
 
-        int checkCount = Mathf.Min(2, currentPath.Count);
         float minDist = float.MaxValue;
+        int checkCount = Mathf.Min(2, currentPath.Count);
 
         for (int i = 0; i < checkCount; i++)
             minDist = Mathf.Min(minDist,
@@ -301,8 +304,7 @@ public class GameManagerMobile : GameManagerBase
     {
         if (Time.time - lastViolationSoundTime < violationSoundCooldown)
             return;
-        // if(!violationAudioSource.gameObject.activeInHierarchy)
-        //     violationAudioSource.gameObject.SetActive(true);
+
         violationAudioSource?.Play();
         lastViolationSoundTime = Time.time;
     }
