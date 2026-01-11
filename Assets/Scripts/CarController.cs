@@ -28,6 +28,7 @@ public class CarController : MonoBehaviour
     public GameManagerBase gameManager;
     [SerializeField] private GameObject minimap;
     private bool minimapVisible = true;
+    [SerializeField] private TextMeshProUGUI Gear;
 
     /* ---------------- CAR PARAMS ---------------- */
 
@@ -77,6 +78,8 @@ public class CarController : MonoBehaviour
         minimapCam.SetActive(minimapVisible);
         prevPos = transform.position;
         isReverse = false;
+        speedText.font = LanguageTranslator.Instance.GetFont();
+
     }
 
     void FixedUpdate()
@@ -107,7 +110,17 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        float steerInput = steer.action.ReadValue<float>();
+        // Vector2 steerInput = steer.action.ReadValue<Vector2>();
+        // horizontalInput = Mathf.Abs(steerInput.x) < steerDeadzone ? 0f : steerInput.x;
+        // float steerInput = steer.action.ReadValue<float>();
+       float steerInput = SimpleInput.GetAxis("Horizontal");
+
+        // Fallback if SimpleInput returns 0 (no touch input)
+        if (Mathf.Approximately(steerInput, 0f))
+        {
+            steerInput = Input.GetAxis("Horizontal");
+        }
+
         horizontalInput = Mathf.Abs(steerInput) < steerDeadzone ? 0f : steerInput;
 
         verticalInput = accelerate.action.ReadValue<float>();
@@ -121,7 +134,7 @@ public class CarController : MonoBehaviour
         // if (speed > 1.5f) return;
 
         isReverse = !isReverse;
-        Debug.Log(isReverse ? "Gear: REVERSE" : "Gear: DRIVE");
+        Gear.text=isReverse ? "R" : "D";
     }
 
     private void BrakeOn(InputAction.CallbackContext ctx)
@@ -238,16 +251,26 @@ public class CarController : MonoBehaviour
     }
     private void UpdateUI()
     {
-        speedText.font = LanguageTranslator.Instance.GetFont();
+        // string speedTranslated = LanguageTranslator.Instance.Translate("Speed");
+        // string timeTranslated = LanguageTranslator.Instance.Translate("Time Elapsed");
+        // string timeLimitTranslated = LanguageTranslator.Instance.Translate("Time Limit");
+        string timeTranslated = LanguageTranslator.Instance.Translate("Time");
+        float remainingTime = Mathf.Max(
+            0f,
+            gameManager.timeLimit - gameManager.elapsedTime
+        );
 
-        string speedTranslated = LanguageTranslator.Instance.Translate("Speed");
-        string timeTranslated = LanguageTranslator.Instance.Translate("Time Elapsed");
-        string timeLimitTranslated = LanguageTranslator.Instance.Translate("Time Limit");
-
-        string formattedElapsed = TimeSpan.FromSeconds(gameManager.elapsedTime).ToString(@"hh\:mm\:ss");
-        string formattedLimit = TimeSpan.FromSeconds(gameManager.timeLimit).ToString(@"hh\:mm\:ss");
-
-        speedText.text = $" {timeTranslated}: {formattedElapsed}\n {timeLimitTranslated}: {formattedLimit}";
-        
+        // string formattedElapsed = TimeSpan.FromSeconds(gameManager.elapsedTime).ToString(@"hh\:mm\:ss");
+        // string formattedLimit = TimeSpan.FromSeconds(gameManager.timeLimit).ToString(@"hh\:mm\:ss");
+        string formattedTime = FormatTime(remainingTime);
+        // speedText.text = $" {timeTranslated}: {formattedElapsed}\n {timeLimitTranslated}: {formattedLimit}";
+        speedText.text = $"{timeTranslated}: {formattedTime}";
     }
+    private string FormatTime(float seconds)
+    {
+        return TimeSpan
+            .FromSeconds(seconds)
+            .ToString(@"mm\:ss");
+    }
+
 }

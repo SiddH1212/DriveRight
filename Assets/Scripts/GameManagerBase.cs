@@ -1,21 +1,38 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 public abstract class GameManagerBase : MonoBehaviour
 {
     public int score;
-    public int fileCount = 0;
-    public static bool SelectedshowText;
+    public static bool SelectedshowText = true;
+
     public float elapsedTime;
     public float timeLimit = 100f;
-    public List<string> messageList = new List<string>();
-    public List<float> deltaScores = new();
-    [NonSerialized] public List<LaneNode> currentPath;
+
     public bool gameplayActive;
+    public bool graceActive;
+
+    [NonSerialized] public List<LaneNode> currentPath;
 
     public abstract void ReportLightCross(string lightColor);
     public abstract void UpdateScore(int deltaScore, string message = "");
     public abstract void SaveAllViolationImages();
-    public abstract void SaveImage(int idx);
+
+    [System.Serializable]
+    public class ViolationRecord
+    {
+        public string imagePath;     // SOURCE OF TRUTH
+        public string message;
+        public int deltaScore;
+        public float time;
+    }
+
+    public List<ViolationRecord> violations = new();
+    public int ViolationCount => violations.Count;
+
+    public ViolationRecord GetViolation(int index)
+    {
+        return violations[index];
+    }
 }

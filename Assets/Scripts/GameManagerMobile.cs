@@ -1,12 +1,11 @@
 using UnityEngine;
 using TMPro;
-using System; 
+using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
 
 public class GameManagerMobile : GameManagerBase
 {
@@ -23,12 +22,8 @@ public class GameManagerMobile : GameManagerBase
 
     /* ===================== TIME ===================== */
 
-    
     public float gracePeriod = 30f;
-
-
     private bool timerExpired;
-    private bool graceActive;
 
     /* ===================== INPUT ===================== */
 
@@ -36,30 +31,29 @@ public class GameManagerMobile : GameManagerBase
 
     /* ===================== INTERNAL ===================== */
 
-    private float relaxationTime = 5f;
-    private List<Texture2D> violationImages = new();
     private HashSet<int> savedIndexes = new();
+
     /* ===================== AUDIO ===================== */
 
     [SerializeField] private AudioSource violationAudioSource;
     [SerializeField] private AudioClip violationClip;
     [SerializeField] private float violationSoundCooldown = 0.5f;
-
     private float lastViolationSoundTime = -10f;
 
     /* ===================== UNITY ===================== */
+
     private Pathfinder pathfinder;
     [SerializeField] private Transform destination;
     [SerializeField] private PathRenderer pathRenderer;
-    public float updateInterval = 0.3f;     // Interval (sec) after which the rendered path is updated
-    public float deviationThreshold = 20f;  // After how much deviation should we recalculate the path
-    public float cutThreshold = 5f;         // After being how close to the next node show we discard the current node on the path
+    public float updateInterval = 0.3f;
+    public float deviationThreshold = 20f;
+    public float cutThreshold = 5f;
     public DisplayInstructions instructionDisplay;
     public LevelCompleteMobile levelComplete;
     private Vector3 lastPathStartPos;
 
     [SerializeField] private Transform player;
-    [SerializeField]private TextMeshProUGUI CountDown;
+    [SerializeField] private TextMeshProUGUI CountDown;
 
     void Awake()
     {
@@ -83,15 +77,15 @@ public class GameManagerMobile : GameManagerBase
 
         yield return StartCoroutine(InitializePathfinding());
         yield return StartCoroutine(StartupCountdown(5));
-        gameplayActive = true;
 
+        gameplayActive = true;
         StartCoroutine(UpdatePathLoop());
     }
 
     void Update()
     {
-        if (!gameplayActive)
-        return;
+        if (!gameplayActive) return;
+
         elapsedTime += Time.deltaTime;
 
         if (!timerExpired && elapsedTime >= timeLimit)
@@ -100,6 +94,7 @@ public class GameManagerMobile : GameManagerBase
             StartCoroutine(HandleTimeExpired());
         }
     }
+
     IEnumerator StartupCountdown(int seconds)
     {
         for (int i = seconds; i > 0; i--)
@@ -107,14 +102,10 @@ public class GameManagerMobile : GameManagerBase
             CountDown.text = i.ToString();
             yield return new WaitForSecondsRealtime(1f);
         }
+
         CountDown.text = "Go!";
         yield return new WaitForSecondsRealtime(1f);
         CountDown.text = "";
-    }
-
-    private void OnDestroy()
-    {
-        backToMenu.action.started -= BackToMenu;
     }
 
     /* ===================== TIME ===================== */
@@ -128,14 +119,8 @@ public class GameManagerMobile : GameManagerBase
         while (elapsedTime < graceEnd)
             yield return null;
 
-        if (graceActive)
-            EndLevel();
-    }
-
-    private void EndLevel()
-    {
-        SaveRelevantViolationImages(fileCount - 1);
-        SceneManager.LoadScene("Start_Mobile");
+        if (graceActive && levelComplete != null)
+            levelComplete.ShowLevelComplete(0);
     }
 
     /* ===================== SCORING ===================== */
@@ -155,40 +140,73 @@ public class GameManagerMobile : GameManagerBase
 
     public override void UpdateScore(int deltaScore, string message = "")
     {
-        Debug.Log($"UpdateScore called at {Time.time}, delta = {deltaScore}");
         score += deltaScore;
-
         scoreText.color = deltaScore >= 0 ? Color.green : Color.red;
-        StartCoroutine(UpdateScoreMessage(message, relaxationTime));
 
-        messageList.Add($"{message} ({deltaScore:+#;-#;0})");
-        // Play violation sound ONLY for negative scores
         if (deltaScore < 0)
-        {
             PlayViolationSound();
-        }
-    }
-    private void PlayViolationSound()
-    {
-        if (violationAudioSource == null || violationClip == null)
-            return;
 
-        // Prevent rapid spam
-        if (Time.time - lastViolationSoundTime < violationSoundCooldown)
-            return;
-        Debug.Log($"Playing violation sound at {Time.time}");
-        violationAudioSource.PlayOneShot(violationClip);
-        lastViolationSoundTime = Time.time;
+        // Restore legacy tracking
+        // messageList.Add($"{message} ({deltaScore:+#;-#;0})");
+        // deltaScores.Add(deltaScore);
+        // timeStamps.Add(Time.time);
+
+        StartCoroutine(UpdateScoreMessage(message, 5f));
+        StartCoroutine(CaptureAndSaveViolation(deltaScore, message));
     }
+
     private IEnumerator UpdateScoreMessage(string message, float duration)
     {
-        scoreText.text = message;
-        CaptureViolationImage();
+        if (!string.IsNullOrEmpty(message))
+            scoreText.text = message;
 
         yield return new WaitForSeconds(duration);
 
         if (scoreText.text == message)
             scoreText.text = "";
+    }
+
+    private IEnumerator CaptureAndSaveViolation(int deltaScore, string message)
+    {
+        yield return new WaitForEndOfFrame();
+
+        Texture2D tex = new Texture2D(
+            Screen.width,
+            Screen.height,
+            TextureFormat.RGB24,
+            false
+        );
+
+        tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        tex.Apply();
+
+        var record = new ViolationRecord
+        {
+            imagePath = null,
+            message = $"{message} ({deltaScore:+#;-#;0})",
+            deltaScore = deltaScore,
+            time = elapsedTime
+        };
+
+        violations.Add(record);
+        SaveViolationToDisk(violations.Count - 1, tex);
+    }
+
+    private void SaveViolationToDisk(int idx, Texture2D tex)
+    {
+        if (savedIndexes.Contains(idx)) return;
+
+        string dir = Path.Combine(Application.persistentDataPath, "Captures");
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        string path = Path.Combine(dir, $"violation_{idx}.png");
+        File.WriteAllBytes(path, tex.EncodeToPNG());
+
+        Destroy(tex); // SAFE: runtime texture
+
+        violations[idx].imagePath = path;
+        savedIndexes.Add(idx);
     }
 
     /* ===================== NOTIFICATIONS ===================== */
@@ -212,109 +230,58 @@ public class GameManagerMobile : GameManagerBase
         notifCoroutine = null;
     }
 
-    /* ===================== CAPTURE ===================== */
-
-    public void CaptureViolationImage()
-    {
-        StartCoroutine(CaptureViolationImageCoroutine());
-    }
-
-    private IEnumerator CaptureViolationImageCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-
-        Texture2D image = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-        image.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        image.Apply();
-
-        violationImages.Add(image);
-        fileCount++;
-    }
-
-    /* ===================== SAVING ===================== */
-
-    // Disabled on mobile (performance)
-    public override void SaveAllViolationImages() { }
-
-    //  Save single image (safe)
-    public override void SaveImage(int idx)
-    {
-        if (idx < 0 || idx >= violationImages.Count) return;
-        if (savedIndexes.Contains(idx)) return;
-
-        string path = Path.Combine(Application.persistentDataPath, "Captures");
-        if (!Directory.Exists(path))
-            Directory.CreateDirectory(path);
-
-        File.WriteAllBytes(
-            Path.Combine(path, $"violation_{idx}.png"),
-            violationImages[idx].EncodeToPNG()
-        );
-
-        savedIndexes.Add(idx);
-    }
-
-    public void SaveRelevantViolationImages(int idx)
-    {
-        if (fileCount == 0) return;
-
-        SaveImage(idx);
-        SaveImage((idx - 1 + fileCount) % fileCount);
-        SaveImage((idx + 1) % fileCount);
-    }
-
+    /* ===================== PATH ===================== */
 
     IEnumerator UpdatePathLoop()
     {
-        while(!gameplayActive)
+        while (!gameplayActive)
             yield return null;
+
         while (true)
         {
             if (currentPath.Count > 1 &&
-                Vector3.Distance(player.transform.position, currentPath[1].Position) < cutThreshold)
-            {
+                Vector3.Distance(player.position, currentPath[1].Position) < cutThreshold)
                 currentPath.RemoveAt(0);
-            }
 
-            if (HasDeviatedFromPath(player.transform.position))
+            if (HasDeviatedFromPath(player.position))
             {
-                var newPath = pathfinder.GetPath(player.transform.position, destination.position);
+                var newPath = pathfinder.GetPath(player.position, destination.position);
                 if (newPath != null && newPath.Count > 1)
                     currentPath = newPath;
             }
 
-            Vector3 pathStart = player.position - player.forward * 2f;
+            Vector3 start = player.position - player.forward * 2f;
 
-            // Only redraw if player moved enough OR path changed
-            if (Vector3.Distance(pathStart, lastPathStartPos) > 1.0f)
+            if (Vector3.Distance(start, lastPathStartPos) > 1f)
             {
-                pathRenderer.DrawWorldPath(currentPath, pathStart);
-                lastPathStartPos = pathStart;
+                pathRenderer.DrawWorldPath(currentPath, start);
+                lastPathStartPos = start;
             }
+
             instructionDisplay.UpdateInstruction();
             yield return new WaitForSeconds(updateInterval);
         }
     }
+
     IEnumerator InitializePathfinding()
     {
-        // -------- PATHFINDING PARITY --------
-        // pathfinder = FindObjectOfType<Pathfinder>();
         while (pathfinder == null ||
-            pathfinder.roadGraph == null ||
-            !pathfinder.roadGraph.IsReady)
+               pathfinder.roadGraph == null ||
+               !pathfinder.roadGraph.IsReady)
         {
             yield return null;
             pathfinder = FindObjectOfType<Pathfinder>();
         }
 
-        var path = pathfinder.GetPath(player.position, destination.position);
-        currentPath = path ?? new List<LaneNode>();
+        currentPath = pathfinder.GetPath(player.position, destination.position)
+                      ?? new List<LaneNode>();
 
         pathRenderer.DrawWorldPath(
             currentPath,
-            player.transform.position - player.transform.forward * 2f
+            player.position - player.forward * 2f
         );
     }
+
     bool HasDeviatedFromPath(Vector3 pos)
     {
         if (currentPath == null || currentPath.Count == 0)
@@ -324,18 +291,25 @@ public class GameManagerMobile : GameManagerBase
         float minDist = float.MaxValue;
 
         for (int i = 0; i < checkCount; i++)
-        {
-            float dist = Vector3.Distance(pos, currentPath[i].Position);
-            if (dist < minDist)
-                minDist = dist;
-        }
+            minDist = Mathf.Min(minDist,
+                Vector3.Distance(pos, currentPath[i].Position));
 
         return minDist > deviationThreshold;
     }
-    /* ===================== INPUT ===================== */
+
+    private void PlayViolationSound()
+    {
+        if (Time.time - lastViolationSoundTime < violationSoundCooldown)
+            return;
+
+        violationAudioSource?.PlayOneShot(violationClip);
+        lastViolationSoundTime = Time.time;
+    }
 
     private void BackToMenu(InputAction.CallbackContext ctx)
     {
         SceneManager.LoadScene("Start_Mobile");
     }
+
+    public override void SaveAllViolationImages() { }
 }
