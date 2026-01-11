@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.google.xr.cardboard": "file:C:/Users/siddh/Downloads/cardboard-xr-plugin-1.29.0/cardboard-xr-plugin-1.29.0",
+    "com.google.xr.cardboard": "https://github.com/googlevr/cardboard-xr-plugin.git#v1.29.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.feature.mobile": "1.0.0",
     "com.unity.formats.fbx": "4.2.1",
