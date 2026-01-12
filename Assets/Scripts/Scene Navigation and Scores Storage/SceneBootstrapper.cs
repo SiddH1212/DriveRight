@@ -3,6 +3,7 @@ using UnityEngine.XR;
 using UnityEngine.XR.Management;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class SceneModeBootstrapper : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SceneModeBootstrapper : MonoBehaviour
     [SerializeField] private Camera nonVrCamera;
     [SerializeField] private GameObject androidControls;
     [SerializeField] private GameObject Gear;
+    [SerializeField] private GameObject steering;
 
     IEnumerator Start()
     {
@@ -52,6 +54,7 @@ public class SceneModeBootstrapper : MonoBehaviour
         if (nonVrCamera) nonVrCamera.gameObject.SetActive(false);
         androidControls?.SetActive(false);
         Gear?.SetActive(true);
+        steering?.SetActive(true);
     }
 
     void DisableVR()
@@ -66,5 +69,6 @@ public class SceneModeBootstrapper : MonoBehaviour
         if (nonVrCamera) nonVrCamera.gameObject.SetActive(true);
         androidControls?.SetActive(true);
         Gear?.SetActive(false);
+        steering?.SetActive(false);
     }
 }

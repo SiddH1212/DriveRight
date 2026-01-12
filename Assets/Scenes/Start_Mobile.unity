@@ -1288,6 +1288,63 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!1 &262831803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262831805}
+  - component: {fileID: 262831807}
+  - component: {fileID: 262831806}
+  m_Layer: 0
+  m_Name: FireBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262831805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262831803}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -193.91565, y: 36.04263, z: -208.14087}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262831806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262831803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307168e0a3237134990124cd2d4ccef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &262831807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262831803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce66cce8df85224ea785b9b4b924784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &275559742
 GameObject:
   m_ObjectHideFlags: 0
@@ -8488,6 +8545,8 @@ MonoBehaviour:
   vrRig: {fileID: 2117296197}
   nonVrCamera: {fileID: 754900391}
   androidControls: {fileID: 0}
+  Gear: {fileID: 0}
+  steering: {fileID: 0}
 --- !u!1 &1512736709
 GameObject:
   m_ObjectHideFlags: 0
@@ -12503,3 +12562,4 @@ SceneRoots:
   - {fileID: 2117296203}
   - {fileID: 754900392}
   - {fileID: 728976396}
+  - {fileID: 262831805}
