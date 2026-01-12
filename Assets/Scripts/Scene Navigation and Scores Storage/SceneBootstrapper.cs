@@ -10,7 +10,7 @@ public class SceneModeBootstrapper : MonoBehaviour
     [SerializeField] private Camera nonVrCamera;
     [SerializeField] private GameObject androidControls;
     [SerializeField] private GameObject Gear;
-    // [SerializeField] private GameObject minimap;
+    [SerializeField] private GameObject minimap;
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class SceneModeBootstrapper : MonoBehaviour
         nonVrCamera.gameObject.SetActive(false);
         androidControls.SetActive(false);
         Gear.SetActive(true);
-        // minimap.SetActive(false);
+        minimap.SetActive(false);
     }
 
     void DisableVR()
@@ -52,6 +52,6 @@ public class SceneModeBootstrapper : MonoBehaviour
         nonVrCamera.gameObject.SetActive(true);
         androidControls.SetActive(true);
         Gear.SetActive(false);
-        // minimap.SetActive(true);
+        minimap.SetActive(true);
     }
 }
