@@ -10,48 +10,61 @@ public class SceneModeBootstrapper : MonoBehaviour
     [SerializeField] private Camera nonVrCamera;
     [SerializeField] private GameObject androidControls;
     [SerializeField] private GameObject Gear;
-    [SerializeField] private GameObject minimap;
 
-    void Awake()
+    IEnumerator Start()
     {
+        // Wait for XR + scene to be ready
+        yield return null;
+        yield return null;
+
         if (AppMode.UseVR)
-            StartCoroutine(EnableVR());
+            yield return EnableVR();
         else
             DisableVR();
     }
 
     IEnumerator EnableVR()
     {
-        // Initialize XR loader if needed
-        if (XRGeneralSettings.Instance != null &&
-            XRGeneralSettings.Instance.Manager != null &&
-            XRGeneralSettings.Instance.Manager.activeLoader == null)
+        var xr = XRGeneralSettings.Instance;
+        if (xr == null || xr.Manager == null)
         {
-            yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
+            Debug.LogWarning("XR not available");
+            yield break;
         }
 
-        // Start XR subsystems
-        XRGeneralSettings.Instance.Manager.StartSubsystems();
+        if (xr.Manager.activeLoader == null)
+        {
+            yield return xr.Manager.InitializeLoader();
+        }
 
-        vrRig.SetActive(true);
-        nonVrCamera.gameObject.SetActive(false);
-        androidControls.SetActive(false);
-        Gear.SetActive(true);
-        minimap.SetActive(false);
+        if (xr.Manager.activeLoader != null)
+        {
+            xr.Manager.StartSubsystems();
+        }
+        else
+        {
+            Debug.LogError("XR Loader failed to initialize");
+            yield break;
+        }
+
+        // Enable / disable objects safely
+        vrRig?.SetActive(true);
+        if (nonVrCamera) nonVrCamera.gameObject.SetActive(false);
+        androidControls?.SetActive(false);
+        Gear?.SetActive(true);
     }
 
     void DisableVR()
     {
-        if (XRGeneralSettings.Instance != null &&
-            XRGeneralSettings.Instance.Manager != null)
+        var xr = XRGeneralSettings.Instance;
+        if (xr != null && xr.Manager != null && xr.Manager.activeLoader != null)
         {
-            XRGeneralSettings.Instance.Manager.StopSubsystems();
+            xr.Manager.StopSubsystems();
         }
 
-        vrRig.SetActive(false);
-        nonVrCamera.gameObject.SetActive(true);
-        androidControls.SetActive(true);
-        Gear.SetActive(false);
-        minimap.SetActive(true);
+        vrRig?.SetActive(false);
+        if (nonVrCamera) nonVrCamera.gameObject.SetActive(true);
+        androidControls?.SetActive(true);
+        Gear?.SetActive(false);
     }
 }
