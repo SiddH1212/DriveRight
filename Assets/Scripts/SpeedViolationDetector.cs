@@ -21,7 +21,8 @@ public class SpeedViolationDetector : MonoBehaviour
         if (collider.name != "Body") return;
         int speed = (int)(collider.attachedRigidbody.velocity.magnitude*3.6);
         if (speed > speedLimit){
-            gameManager.UpdateScore(-(int)Mathf.Min(minPenalty + (speed - speedLimit), maxPenalty), $"Overspeeding, going {speed} on a {speedLimit} road, {speed-speedLimit} over the limit");
+            gameManager.UpdateScore(-(int)Mathf.Min(minPenalty + (speed - speedLimit), maxPenalty), $"Overspeeding, going {speed} on a {speedLimit} road");
+            // gameManager.UpdateScore(-(int)Mathf.Min(minPenalty + (speed - speedLimit), maxPenalty), $"Overspeeding, going {speed} on a {speedLimit} road, {speed-speedLimit} over the limit");
         }
         else{
             gameManager.UpdateScore(10, $"Following speed limit, going {speed} on a {speedLimit} road");

@@ -31,14 +31,20 @@ public class StartMobile : MonoBehaviour
 
     void Awake()
     {
-        // Match Desktop behavior: clear prefs once per app session
+        DeviceManager.EnsureExists();
+
         if (!prefsClearedThisSession)
         {
-            PlayerPrefs.DeleteAll();
+            // Clear only gameplay-related prefs
+            PlayerPrefs.DeleteKey("LastScore");
+            PlayerPrefs.DeleteKey("PlayerName");
+            PlayerPrefs.DeleteKey("AllPlayers");
+
             PlayerPrefs.Save();
             prefsClearedThisSession = true;
-            Debug.Log("PlayerPrefs cleared at game start (Mobile)");
+            Debug.Log("Gameplay PlayerPrefs cleared (DeviceId preserved)");
         }
+
         ClearCaptureDirectory();
     }
 
@@ -72,43 +78,16 @@ public class StartMobile : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(nameCanvasFirst);
     }
 
-    public void OnConfirmName()
-    {
-        string playerName = nameInputField.text.Trim();
-
-        // Desktop-compatible fallback
-        if (string.IsNullOrEmpty(playerName))
-        {
-            int lastID = PlayerPrefs.GetInt("LastPlayerID", 0) + 1;
-            PlayerPrefs.SetInt("LastPlayerID", lastID);
-            playerName = $"Player{lastID}";
-        }
-
-        PlayerPrefs.SetString("PlayerName", playerName);
-
-        // Track all players (Desktop-compatible)
-        string allPlayers = PlayerPrefs.GetString("AllPlayers", "");
-        var players = new HashSet<string>(
-            allPlayers.Split(',', System.StringSplitOptions.RemoveEmptyEntries)
-        );
-        players.Add(playerName);
-
-        PlayerPrefs.SetString("AllPlayers", string.Join(",", players));
-
-        if (!PlayerPrefs.HasKey($"Score_{playerName}"))
-            PlayerPrefs.SetInt($"Score_{playerName}", 0);
-
-        PlayerPrefs.Save();
-
-        // Match Desktop behavior
-        GameManagerBase.SelectedshowText = showTextToggle.isOn;
-
-        Debug.Log($"Player name set: {playerName}");
-    }
-
     private void OnClickStart(string mode)
     {
         Loading.SetActive(true);
+
+        // 🔑 START SUPABASE SESSION HERE
+        SupabaseSessionService.Instance.StartSession(
+            level: mode,
+            language: LanguageTranslator.SelectedLanguage,
+            isVR: AppMode.UseVR
+        );
 
         if (mode == "Basic")
             StartCoroutine(LoadSceneAsync("Mobile2"));
@@ -117,22 +96,15 @@ public class StartMobile : MonoBehaviour
         else
             Debug.LogError($"Unknown mode: {mode}");
     }
+
     private IEnumerator LoadSceneAsync(string sceneName)
     {
-        // 1. Start loading
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
-
-        // 2. Prevent automatic scene switch
         loadOperation.allowSceneActivation = false;
 
-        // 3. While still loading...
         while (loadOperation.progress < 0.9f)
-        {
-            // Progress is happening here (0 → 0.9)
-            yield return null; // ← THIS keeps the game alive
-        }
+            yield return null;
 
-        // 4. Scene is ready → switch
         loadOperation.allowSceneActivation = true;
     }
 
@@ -174,6 +146,7 @@ public class StartMobile : MonoBehaviour
 
         previousScore.text = displayText;
     }
+
     private void ClearCaptureDirectory()
     {
         string path = Path.Combine(Application.persistentDataPath, "Captures");
@@ -184,9 +157,7 @@ public class StartMobile : MonoBehaviour
         try
         {
             foreach (string file in Directory.GetFiles(path))
-            {
                 File.Delete(file);
-            }
 
             Debug.Log("Cleared Captures directory (Mobile)");
         }
@@ -195,7 +166,6 @@ public class StartMobile : MonoBehaviour
             Debug.LogWarning($"Failed to clear Captures directory: {e.Message}");
         }
     }
-
 
     /* ===================== NAVIGATION ===================== */
 

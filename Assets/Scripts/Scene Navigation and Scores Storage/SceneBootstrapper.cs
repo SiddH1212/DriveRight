@@ -10,6 +10,8 @@ public class SceneModeBootstrapper : MonoBehaviour
     [SerializeField] private GameObject vrRig;
     [SerializeField] private Camera nonVrCamera;
     [SerializeField] private GameObject androidControls;
+    // [SerializeField] private GameObject Panel;
+    [SerializeField] private GameObject VRPanel;
     [SerializeField] private GameObject Gear;
     [SerializeField] private GameObject steering;
 
@@ -55,6 +57,8 @@ public class SceneModeBootstrapper : MonoBehaviour
         androidControls?.SetActive(false);
         Gear?.SetActive(true);
         steering?.SetActive(true);
+        VRPanel?.SetActive(true);
+        // Panel?.SetActive(false);
     }
 
     void DisableVR()
@@ -67,8 +71,26 @@ public class SceneModeBootstrapper : MonoBehaviour
 
         vrRig?.SetActive(false);
         if (nonVrCamera) nonVrCamera.gameObject.SetActive(true);
+        // if(IsControllerConnected())
+        // {
+        //     androidControls?.SetActive(false);
+        //     Gear?.SetActive(true);
+        //     steering?.SetActive(true);
+        // }
+        // else
+        // {
+        //     androidControls?.SetActive(true);
+        //     Gear?.SetActive(false);
+        //     steering?.SetActive(false);
+        // }
         androidControls?.SetActive(true);
         Gear?.SetActive(false);
         steering?.SetActive(false);
+        VRPanel?.SetActive(false);
+        // Panel?.SetActive(true);
+    }
+      public bool IsControllerConnected()
+    {
+        return InputMode.IsControllerConnected();
     }
 }

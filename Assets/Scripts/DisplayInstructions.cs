@@ -7,7 +7,9 @@ public class DisplayInstructions : MonoBehaviour
     public GameManagerBase gameManager;
     public Transform player;
     public CanvasGroup instructionGroup; // CanvasGroup on the parent UI object
+    public CanvasGroup instructionGroupVR; // CanvasGroup on the parent UI object for VR
     public TextMeshProUGUI instructionText;
+    public TextMeshProUGUI instructionTextVR;
     public float decisionCheckDistance = 40f;
     private int lookahead = 10;
     private bool turning = false;
@@ -21,11 +23,17 @@ public class DisplayInstructions : MonoBehaviour
 
     void Start()
     {
-        instructionText.font = LanguageTranslator.Instance.GetFont();
+        if(AppMode.UseVR)
+            instructionTextVR.font = LanguageTranslator.Instance.GetFont();
+        else
+            instructionText.font = LanguageTranslator.Instance.GetFont();
         instructionText.text = "";
+        instructionTextVR.text = "";
 
         if (instructionGroup != null)
             instructionGroup.alpha = 0f;
+        if (instructionGroupVR != null)
+            instructionGroupVR.alpha = 0f;
 
         StartCoroutine(ShowInitialInstruction());
     }
@@ -73,13 +81,19 @@ public class DisplayInstructions : MonoBehaviour
 
     void ShowInstructionTemporarily(string text)
     {
-        instructionText.text = text;
+        if(AppMode.UseVR)
+            instructionTextVR.text = text;
+        else
+            instructionText.text = text;
 
         if (hideCoroutine != null)
             StopCoroutine(hideCoroutine);
 
         // Fade in smoothly
-        StartCoroutine(FadeCanvasGroup(instructionGroup, instructionGroup.alpha, 1f, 0.3f));
+        if(AppMode.UseVR)
+            StartCoroutine(FadeCanvasGroup(instructionGroupVR, instructionGroupVR.alpha, 1f, 0.3f));
+        else
+            StartCoroutine(FadeCanvasGroup(instructionGroup, instructionGroup.alpha, 1f, 0.3f));
 
         hideCoroutine = StartCoroutine(HideInstructionAfterDelay());
     }
@@ -87,8 +101,12 @@ public class DisplayInstructions : MonoBehaviour
     IEnumerator HideInstructionAfterDelay()
     {
         yield return new WaitForSeconds(displayDuration);
-        yield return FadeCanvasGroup(instructionGroup, instructionGroup.alpha, 0f, fadeDuration);
+        if(AppMode.UseVR)
+            yield return FadeCanvasGroup(instructionGroupVR, instructionGroupVR.alpha, 0f, fadeDuration);
+        else
+            yield return FadeCanvasGroup(instructionGroup, instructionGroup.alpha, 0f, fadeDuration);
         instructionText.text = "";
+        instructionTextVR.text = "";
     }
 
     IEnumerator FadeCanvasGroup(CanvasGroup cg, float from, float to, float duration)

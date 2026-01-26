@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManagerMobile : GameManagerBase
 {
@@ -13,17 +14,27 @@ public class GameManagerMobile : GameManagerBase
 
     public int initialScore = 100;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText2;
+
+    /* ===================== VIOLATIONS ===================== */
+
+    [SerializeField] private int maxViolations = 10;
+    private int violationCount = 0;
+    private bool violationsEnabled = false; // ✅ NEW
+
+    /* ===================== VIOLATION BAR ===================== */
+
+    [Header("Violation Bar")]
+    [SerializeField] private Image violationBarFill;
+    [SerializeField] private Image violationBarFill2;
+    [SerializeField] private float barAnimSpeed = 6f;
+    private Coroutine barAnim;
 
     /* ===================== NOTIFICATIONS ===================== */
 
     public TextMeshProUGUI notifText;
     public float notifDisplayDuration = 1.5f;
     private Coroutine notifCoroutine;
-
-    /* ===================== TIME ===================== */
-
-    public float gracePeriod = 30f;
-    private bool timerExpired;
 
     /* ===================== INPUT ===================== */
 
@@ -64,12 +75,15 @@ public class GameManagerMobile : GameManagerBase
         gameplayActive = false;
         score = initialScore;
         elapsedTime = 0f;
-        timerExpired = false;
-        graceActive = false;
+        violationCount = 0;
+        violationsEnabled = false; // ✅ ensure disabled at start
 
         scoreText.text = "";
+        scoreText2.text = "";
         notifText.text = "";
         notifText.alpha = 0f;
+
+        UpdateViolationBarInstant();
 
         backToMenu.action.Enable();
         backToMenu.action.started += BackToMenu;
@@ -81,19 +95,6 @@ public class GameManagerMobile : GameManagerBase
         StartCoroutine(UpdatePathLoop());
     }
 
-    void Update()
-    {
-        if (!gameplayActive) return;
-
-        elapsedTime += Time.deltaTime;
-
-        if (!timerExpired && elapsedTime >= timeLimit)
-        {
-            timerExpired = true;
-            StartCoroutine(HandleTimeExpired());
-        }
-    }
-
     IEnumerator StartupCountdown(int seconds)
     {
         for (int i = seconds; i > 0; i--)
@@ -101,22 +102,12 @@ public class GameManagerMobile : GameManagerBase
             CountDown.text = i.ToString();
             yield return new WaitForSecondsRealtime(1f);
         }
+
         CountDown.text = "Go!";
         yield return new WaitForSecondsRealtime(1f);
         CountDown.text = "";
-    }
 
-    private IEnumerator HandleTimeExpired()
-    {
-        graceActive = true;
-        ShowNotification("Time exceeded! Grace period started.");
-
-        float graceEnd = elapsedTime + gracePeriod;
-        while (elapsedTime < graceEnd)
-            yield return null;
-
-        if (graceActive && levelComplete != null)
-            levelComplete.ShowLevelComplete(0);
+        violationsEnabled = true; // ✅ violations start AFTER countdown
     }
 
     /* ===================== SCORING ===================== */
@@ -138,12 +129,58 @@ public class GameManagerMobile : GameManagerBase
     {
         score += deltaScore;
         scoreText.color = deltaScore >= 0 ? Color.green : Color.red;
+        scoreText2.color = deltaScore >= 0 ? Color.green : Color.red;
 
-        if (deltaScore < 0)
+        if (deltaScore < 0 && violationsEnabled) // ✅ guarded
+        {
+            violationCount++;
             PlayViolationSound();
 
-        StartCoroutine(UpdateScoreMessage(message, 5f));
-        StartCoroutine(CaptureViolation(deltaScore, message));
+            ShowViolationMessage(message);
+            UpdateViolationBar();
+
+            if (violationCount >= maxViolations)
+            {
+                StartCoroutine(HandleFinalViolation(deltaScore, message));
+                return;
+            }
+
+            StartCoroutine(CaptureViolation(deltaScore, message));
+        }
+        else if (deltaScore >= 0 && violationsEnabled) // ✅ guarded
+        {
+            StartCoroutine(UpdateScoreMessage(message, 5f));
+            StartCoroutine(CaptureViolation(deltaScore, message));
+        }
+    }
+
+    /* ===================== FINAL VIOLATION FIX ===================== */
+
+    private IEnumerator HandleFinalViolation(int deltaScore, string message)
+    {
+        yield return StartCoroutine(CaptureViolation(deltaScore, message));
+        yield return null; // allow frame to finish
+        EndGameDueToViolations();
+    }
+
+    private void ShowViolationMessage(string message)
+    {
+        if (notifCoroutine != null)
+            StopCoroutine(notifCoroutine);
+
+        if(AppMode.UseVR)
+            scoreText2.text = $"Violation {violationCount}/{maxViolations}\n{message}";
+        else
+            scoreText.text = $"Violation {violationCount}/{maxViolations}\n{message}";
+
+        notifCoroutine = StartCoroutine(ClearScoreTextAfterDelay(4f));
+    }
+
+    private IEnumerator ClearScoreTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        scoreText.text = "";
+        notifCoroutine = null;
     }
 
     private IEnumerator UpdateScoreMessage(string message, float duration)
@@ -157,8 +194,74 @@ public class GameManagerMobile : GameManagerBase
             scoreText.text = "";
     }
 
+    /* ===================== VIOLATION BAR ===================== */
+
+    private void UpdateViolationBar()
+    {
+        // if (violationBarFill == null)
+        //     return;
+
+        if (barAnim != null)
+            StopCoroutine(barAnim);
+
+        barAnim = StartCoroutine(AnimateViolationBar());
+    }
+
+    private void UpdateViolationBarInstant()
+    {
+        // if (violationBarFill == null)
+        //     return;
+
+        float t = (float)violationCount / maxViolations;
+        if(!AppMode.UseVR)
+            violationBarFill.fillAmount = 1f - Mathf.Clamp01(t);
+        else
+            violationBarFill2.fillAmount = 1f - Mathf.Clamp01(t);
+    }
+
+    private IEnumerator AnimateViolationBar()
+    {
+        float start;
+        if(!AppMode.UseVR)
+            start = violationBarFill.fillAmount;
+        else
+            start = violationBarFill2.fillAmount;
+        float target = 1f - (float)violationCount / maxViolations;
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * barAnimSpeed;
+            if(!AppMode.UseVR)
+                violationBarFill.fillAmount = Mathf.Lerp(start, target, t);
+            else
+                violationBarFill2.fillAmount = Mathf.Lerp(start, target, t);
+            yield return null;
+        }
+        if(!AppMode.UseVR)
+            violationBarFill.fillAmount = target;
+        else
+            violationBarFill2.fillAmount = target;
+    }
+
+    /* ===================== END GAME ===================== */
+
+    private void EndGameDueToViolations()
+    {
+        gameplayActive = false;
+        ShowNotification("Too many violations!");
+
+        if (levelComplete != null)
+            levelComplete.ShowLevelComplete(0);
+    }
+
     private IEnumerator CaptureViolation(int deltaScore, string message)
     {
+        // if (deltaScore >= 0)
+        //     yield break;
+        if(!violationsEnabled)
+            yield break;
+
         yield return new WaitForEndOfFrame();
 
         Texture2D image = new Texture2D(
@@ -171,14 +274,29 @@ public class GameManagerMobile : GameManagerBase
         image.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
         image.Apply();
 
+        // ✅ violationNumber derived here (NO extra state)
+        int violationNumber = violations.Count + 1;
+
         violations.Add(new ViolationRecord
         {
             image = image,
             imagePath = null,
-            message = $"{message} ({deltaScore:+#;-#;0})",
+            // message = $"{message} ({deltaScore:+#;-#;0})",
+            message = message,
             deltaScore = deltaScore,
             time = elapsedTime
         });
+
+        // ✅ SAFE Supabase hook (optional, never crashes gameplay)
+        if (SupabaseViolationService.Instance != null)
+        {
+            SupabaseViolationService.Instance.LogViolation(
+                violationNumber,
+                message,
+                deltaScore,
+                image
+            );
+        }
     }
 
     /* ===================== SAVING ===================== */
@@ -193,10 +311,10 @@ public class GameManagerMobile : GameManagerBase
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
 
-        string path = Path.Combine(dir, $"violation_{idx}.png");
+        string path = Path.Combine(dir, $"event_{idx}.png");
         File.WriteAllBytes(path, violations[idx].image.EncodeToPNG());
 
-        Destroy(violations[idx].image); // runtime texture only
+        Destroy(violations[idx].image);
         violations[idx].image = null;
         violations[idx].imagePath = path;
 

@@ -13,7 +13,7 @@ namespace UISwitcher {
         {
             // Initialize toggle from saved mode
             switcher3.SetWithoutNotify(AppMode.UseVR);
-            UpdateLabels(AppMode.UseVR);
+            // UpdateLabels(AppMode.UseVR);
 
             switcher3.OnValueChanged += OnValueChanged3;
         }
@@ -29,7 +29,7 @@ namespace UISwitcher {
             AppMode.UseVR = isOn;
 
             // Update UI
-            UpdateLabels(isOn);
+            // UpdateLabels(isOn);
 
             // Reload SAME scene to reinitialize XR safely
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

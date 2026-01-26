@@ -30,7 +30,9 @@ public class StopViolationDetector : MonoBehaviour
 
     void OnTriggerExit(Collider collider){
         if (collider.gameObject.name == "Body" && inside){
-            gameManager.UpdateScore(-3, $"Failed to Stop on Stop Sign (Slowed till {minSpeed.ToString("0.0")}, limit {speedThresh})");
+            // gameManager.UpdateScore(-3, $"Failed to Stop on Stop Sign (Slowed till {minSpeed.ToString("0.0")}, limit {speedThresh})");
+            gameManager.UpdateScore(-3, $"Failed to Stop on Stop Sign");
+
         }
     }
 }

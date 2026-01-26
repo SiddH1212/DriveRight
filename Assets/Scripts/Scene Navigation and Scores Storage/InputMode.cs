@@ -8,5 +8,6 @@ public static class InputMode
         // New Input System (preferred)
         return Gamepad.current != null
                || Joystick.current != null;
+        // return Gamepad.all.Count > 0 || Joystick.all.Count > 0;
     }
 }

@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public GameManagerBase gameManager;
     [SerializeField] private GameObject minimap;
-    private bool minimapVisible = true;
+    // private bool minimapVisible = true;
     [SerializeField] private TextMeshProUGUI Gear;
 
     /* ---------------- CAR PARAMS ---------------- */
@@ -37,6 +37,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private float maxSteerAngle = 30f;
     [SerializeField] private float steerSensitivity = 1.5f;
     [SerializeField] private float steerReturn = 4f;
+    [SerializeField] private float steerSpeed = 120f;      // deg/sec (turn-in speed)
+    [SerializeField] private float steerReturnSpeed = 180f; // deg/sec (return speed)
 
     /* ---------------- WHEELS ---------------- */
 
@@ -60,10 +62,12 @@ public class CarController : MonoBehaviour
 
     private Vector3 prevPos;
     private const float steerDeadzone = 0.05f;
+    [SerializeField] private ArcSteering arcSteering;
 
     /* ===================== UNITY ===================== */
     public GameObject minimapCam;
 
+    public event Action<bool> OnGearChanged;
     void Start()
     {
         steer.action.Enable();
@@ -74,8 +78,8 @@ public class CarController : MonoBehaviour
         brake.action.started += BrakeOn;
         brake.action.canceled += BrakeOff;
         toggleGear.action.started += ToggleGear;
-        MapToggle.action.started += ToggleMinimap;
-        minimapCam.SetActive(minimapVisible);
+        // MapToggle.action.started += ToggleMinimap;
+        // minimapCam.SetActive(minimapVisible);
         prevPos = transform.position;
         isReverse = false;
         speedText.font = LanguageTranslator.Instance.GetFont();
@@ -103,7 +107,7 @@ public class CarController : MonoBehaviour
         brake.action.started -= BrakeOn;
         brake.action.canceled -= BrakeOff;
         toggleGear.action.started -= ToggleGear;
-        MapToggle.action.started -= ToggleMinimap;
+        // MapToggle.action.started -= ToggleMinimap;
     }
 
     /* ===================== INPUT ===================== */
@@ -113,7 +117,9 @@ public class CarController : MonoBehaviour
         // Vector2 steerInput = steer.action.ReadValue<Vector2>();
         // horizontalInput = Mathf.Abs(steerInput.x) < steerDeadzone ? 0f : steerInput.x;
         // float steerInput = steer.action.ReadValue<float>();
-       float steerInput = SimpleInput.GetAxis("Horizontal");
+    //    float steerInput = SimpleInput.GetAxis("Horizontal");
+        float steerInput = arcSteering.steeringValue;
+
 
         // Fallback if SimpleInput returns 0 (no touch input)
         if (Mathf.Approximately(steerInput, 0f))
@@ -133,8 +139,10 @@ public class CarController : MonoBehaviour
         // // Prevent gear switch at speed
         // if (speed > 1.5f) return;
 
-        isReverse = !isReverse;
-        Gear.text=isReverse ? "R" : "D";
+        // isReverse = !isReverse;
+        // Gear.text=isReverse ? "R" : "D";
+
+        SetReverse(!isReverse);
     }
 
     private void BrakeOn(InputAction.CallbackContext ctx)
@@ -148,13 +156,13 @@ public class CarController : MonoBehaviour
     }
 
     /* ===================== MOTOR ===================== */
-    private void ToggleMinimap(InputAction.CallbackContext ctx)
-    {
-        minimapVisible = !minimapVisible;
-        minimap.SetActive(minimapVisible);
-        minimapCam.SetActive(minimapVisible);
-        Debug.Log(minimapVisible ? "Minimap ON" : "Minimap OFF");
-    }
+    // private void ToggleMinimap(InputAction.CallbackContext ctx)
+    // {
+    //     minimapVisible = !minimapVisible;
+    //     minimap.SetActive(minimapVisible);
+    //     minimapCam.SetActive(minimapVisible);
+    //     Debug.Log(minimapVisible ? "Minimap ON" : "Minimap OFF");
+    // }
     private void HandleMotor()
     {
         float gearDirection = isReverse ? -1f : 1f;
@@ -178,20 +186,29 @@ public class CarController : MonoBehaviour
 
     private void HandleSteering()
     {
-        currentSteerAngle += steerSensitivity * horizontalInput;
-        currentSteerAngle = Mathf.Clamp(currentSteerAngle, -maxSteerAngle, maxSteerAngle);
+        // Input gives a TARGET angle, not velocity
+        float targetSteerAngle = horizontalInput * maxSteerAngle;
 
-        if (horizontalInput == 0f)
-            currentSteerAngle = Mathf.Lerp(currentSteerAngle, 0f, Time.deltaTime * steerReturn);
+        float speed = Mathf.Abs(horizontalInput) > 0.01f
+            ? steerSpeed
+            : steerReturnSpeed;
+
+        // Move steering toward target at a controlled rate
+        currentSteerAngle = Mathf.MoveTowards(
+            currentSteerAngle,
+            targetSteerAngle,
+            speed * Time.fixedDeltaTime
+        );
 
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
 
+        // Steering wheel visual
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, -currentSteerAngle);
         steeringWheel.localRotation = Quaternion.Slerp(
             steeringWheel.localRotation,
             targetRotation,
-            Time.deltaTime * 5f
+            Time.deltaTime * 6f
         );
     }
 
@@ -246,9 +263,22 @@ public class CarController : MonoBehaviour
     /// </summary>
     public void SetReverseFromUIToggle(bool reverse)
     {
-        isReverse = reverse;
+        // isReverse = reverse;
+        SetReverse(reverse);
         Debug.Log(isReverse ? "Gear (UI): REVERSE" : "Gear (UI): DRIVE");
     }
+    private void SetReverse(bool reverse, bool notify = true)
+    {
+        if (isReverse == reverse)
+            return;
+
+        isReverse = reverse;
+        Gear.text = isReverse ? "R" : "D";
+
+        if (notify)
+            OnGearChanged?.Invoke(isReverse);
+    }
+
     private void UpdateUI()
     {
         // string speedTranslated = LanguageTranslator.Instance.Translate("Speed");

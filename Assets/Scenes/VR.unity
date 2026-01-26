@@ -5877,6 +5877,8 @@ MonoBehaviour:
   messageList: []
   deltaScores: []
   gameplayActive: 0
+  graceActive: 0
+  violations: []
   scoreText: {fileID: 623897560}
   mainCam: {fileID: 1240696291}
   currentPath: []
@@ -18108,14 +18110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac26db4bc99ab4c25a3761d81b996ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steer: {fileID: 0}
-  accelerate: {fileID: 0}
+  steer: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  accelerate: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   brake: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   toggleGear: {fileID: 0}
   MapToggle: {fileID: 0}
   speedText: {fileID: 1137198908}
   gameManager: {fileID: 327105739}
   minimap: {fileID: 0}
+  Gear: {fileID: 0}
   motorForce: 200
   brakeForce: 100
   maxSteerAngle: 30

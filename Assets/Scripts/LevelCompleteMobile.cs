@@ -47,15 +47,19 @@ public class LevelCompleteMobile : MonoBehaviour
         LevelEndUI.SetActive(true);
         ApplyFonts();
 
-        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
-            LanguageTranslator.Instance.Translate("Reached Destination Successfully");
-        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().color = Color.green;
+        var title = LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+        title.font = LanguageTranslator.Instance.GetFont();
+        title.text = LanguageTranslator.Instance.Translate("Reached Destination Successfully");
+        title.color = Color.green;
 
-        LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().text =
-            $"{LanguageTranslator.Instance.Translate("Final Score")}: {gameManager.score}/100";
+        var scoreTMP = LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        scoreTMP.font = LanguageTranslator.Instance.GetFont();
+        scoreTMP.text =
+            $"{LanguageTranslator.Instance.Translate("Safety Score")}: {gameManager.score}/100";
 
-        LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text =
-            GetRankText(gameManager.score);
+        var rankTMP = LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>();
+        rankTMP.font = LanguageTranslator.Instance.GetFont();
+        rankTMP.text = GetRankText(gameManager.score);
 
         Time.timeScale = 0f;
 
@@ -80,12 +84,19 @@ public class LevelCompleteMobile : MonoBehaviour
         LevelEndUI.SetActive(true);
         ApplyFonts();
 
-        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
-            LanguageTranslator.Instance.Translate("Failed to Reach Destination");
-        LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>().color = Color.red;
+        var title = LevelEndUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+        title.font = LanguageTranslator.Instance.GetFont();
+        title.text = LanguageTranslator.Instance.Translate("Failed to Reach Destination");
+        title.color = Color.red;
 
-        LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().text =
-            $"{LanguageTranslator.Instance.Translate("Final Score")}: {gameManager.score}/100";
+        var scoreTMP = LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>();
+        scoreTMP.font = LanguageTranslator.Instance.GetFont();
+        scoreTMP.text =
+            $"{LanguageTranslator.Instance.Translate("Safety Score")}: {gameManager.score}/100";
+
+        var rankTMP = LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>();
+        rankTMP.font = LanguageTranslator.Instance.GetFont();
+        rankTMP.text = GetRankText(gameManager.score);
 
         Time.timeScale = 0f;
 
@@ -94,6 +105,24 @@ public class LevelCompleteMobile : MonoBehaviour
             idx = 0;
             gameManager.SaveRelevantViolationImages(idx);
             DisplayImage(idx);
+        }
+    }
+
+    void SaveScore()
+    {
+        PlayerPrefs.SetInt("LastScore", gameManager.score);
+        PlayerPrefs.Save();
+
+        // ✅ SAFE BACKEND CALL
+        if (SupabaseSessionService.Instance != null)
+        {
+            SupabaseSessionService.Instance.EndSession(gameManager.score);
+        }
+        else
+        {
+            Debug.LogWarning(
+                "[Supabase] Session service not available when ending level"
+            );
         }
     }
 
@@ -106,7 +135,7 @@ public class LevelCompleteMobile : MonoBehaviour
         string path = Path.Combine(
             Application.persistentDataPath,
             "Captures",
-            $"violation_{index}.png"
+            $"event_{index}.png"
         );
 
         if (!File.Exists(path)) return;
@@ -124,7 +153,11 @@ public class LevelCompleteMobile : MonoBehaviour
         var text = LevelEndUI.transform.Find("Violation_Text")
             .GetComponent<TextMeshProUGUI>();
 
-        text.text = $"Event {index + 1}: {record.message}";
+        text.font = LanguageTranslator.Instance.GetFont();
+        text.text =
+            $"Event {index + 1}: {LanguageTranslator.Instance.Translate(record.message)} " +
+            $"({record.deltaScore:+#;-#;0})";
+
         text.color = record.deltaScore < 0 ? Color.red : Color.green;
     }
 
@@ -165,14 +198,6 @@ public class LevelCompleteMobile : MonoBehaviour
         LevelEndUI.transform.Find("Score").GetComponent<TextMeshProUGUI>().font = font;
         LevelEndUI.transform.Find("Rank").GetComponent<TextMeshProUGUI>().font = font;
         LevelEndUI.transform.Find("Violation_Text").GetComponent<TextMeshProUGUI>().font = font;
-    }
-
-    void SaveScore()
-    {
-        PlayerPrefs.SetInt("LastScore", gameManager.score);
-        string name = PlayerPrefs.GetString("PlayerName", "Unknown");
-        PlayerPrefs.SetInt($"Score_{name}", gameManager.score);
-        PlayerPrefs.Save();
     }
 
     string GetRankText(int score)

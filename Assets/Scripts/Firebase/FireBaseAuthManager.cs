@@ -30,7 +30,11 @@ public class FirebaseAuthManager : MonoBehaviour
     {
         User = user;
         Debug.Log($"Logged in as UID: {user.UserId}");
+
+        // 🔑 Correct place to write device data
+        FirebaseDeviceWriter.Instance.WriteDevice();
     }
+
     public void SignInAnonymously()
     {
         Auth.SignInAnonymouslyAsync()
@@ -42,9 +46,7 @@ public class FirebaseAuthManager : MonoBehaviour
                     return;
                 }
 
-                FirebaseUser user = task.Result.User;
-                SetUser(user);
+                SetUser(task.Result.User);
             });
     }
-
 }
