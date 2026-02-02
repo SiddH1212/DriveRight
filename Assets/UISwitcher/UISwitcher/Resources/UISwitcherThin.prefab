@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564539901022080404}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -108,7 +107,6 @@ RectTransform:
   - {fileID: 2564539901022080404}
   - {fileID: 2564539900205365164}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -169,6 +167,7 @@ MonoBehaviour:
   offColor: {r: 0.8941177, g: 0.30980393, b: 0.2509804, a: 1}
   nullColor: {r: 0.5754717, g: 0.56135637, b: 0.56135637, a: 1}
   tipRect: {fileID: 2564539900641365366}
+  car: {fileID: 0}
 --- !u!1 &2564539900205365167
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +198,6 @@ RectTransform:
   m_Children:
   - {fileID: 2564539900641365366}
   m_Father: {fileID: 2564539900200147777}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -238,7 +236,6 @@ RectTransform:
   m_Children:
   - {fileID: 2564539900852604242}
   m_Father: {fileID: 2564539900205365164}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -314,7 +311,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564539900641365366}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -390,7 +386,6 @@ RectTransform:
   m_Children:
   - {fileID: 2564539900170807864}
   m_Father: {fileID: 2564539900200147777}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

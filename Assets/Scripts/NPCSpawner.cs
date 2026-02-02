@@ -14,7 +14,7 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private float minDist = 80f;
     [SerializeField] private List<VehicleSpawnData> vehiclesToSpawn = new List<VehicleSpawnData>();
     public RoadGraph graph;
-
+    [SerializeField] private Transform player;
     private List<Vector3> usedPositions = new List<Vector3>();
 
     void Start()
@@ -61,7 +61,13 @@ public class NPCSpawner : MonoBehaviour
             if (node.Outgoing.Count == 0) continue;
 
             Vector3 spawnPos = node.Position;
-
+            // Prevent spawning too close to the player
+            if (player != null)
+            {
+                float playerDistance = Vector3.Distance(player.position, spawnPos);
+                if (playerDistance < minDist)
+                    continue;
+            }
             // Minimum spacing check
             bool tooClose = false;
             foreach (var pos in usedPositions)

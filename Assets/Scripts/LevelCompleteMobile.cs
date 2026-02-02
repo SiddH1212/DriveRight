@@ -77,6 +77,7 @@ public class LevelCompleteMobile : MonoBehaviour
         completed = true;
 
         gameManager.score = Mathf.Max(0, finalScore);
+        gameManager.score = Mathf.Min(100, gameManager.score);
         SetupNavigation();
         SaveScore();
 
@@ -135,7 +136,8 @@ public class LevelCompleteMobile : MonoBehaviour
         string path = Path.Combine(
             Application.persistentDataPath,
             "Captures",
-            $"event_{index}.png"
+            // $"event_{index}.png"
+            $"event_{index}.jpg"
         );
 
         if (!File.Exists(path)) return;

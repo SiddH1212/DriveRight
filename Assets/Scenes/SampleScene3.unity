@@ -776,7 +776,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -784,6 +783,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 0}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!1 &11091743
 GameObject:
@@ -2878,6 +2878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b05c1b8a3ee4095a26487549b818d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redRenderer: {fileID: 0}
+  yellowRenderer: {fileID: 0}
+  greenRenderer: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!1001 &81188102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19311,7 +19315,6 @@ MonoBehaviour:
   minTailgatingDistance: 20
   midTailgatingDistance: 24
   maxTailgatingDistance: 28
-  upShift: 2
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -19319,6 +19322,7 @@ MonoBehaviour:
   decelerationFactor: 30
   accelerationFactor: 2
   roadGraph: {fileID: 0}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!1 &437420795
 GameObject:
@@ -19752,10 +19756,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 60
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
-  m_sharedMaterial: {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -19843,7 +19847,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28487,10 +28491,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 60
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
-  m_sharedMaterial: {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -28578,7 +28582,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40517,10 +40521,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 60
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
-  m_sharedMaterial: {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -40608,7 +40612,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40824,13 +40828,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f00e3ac1094fbb89467e98347b97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nCars: 5
-  nTrucks: 2
   minDist: 80
-  carPrefabBlue: {fileID: 1080037567}
-  carPrefabRed: {fileID: 9231066}
-  truckPrefab: {fileID: 1457654762}
+  vehiclesToSpawn: []
   graph: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &894431773
 Transform:
   m_ObjectHideFlags: 0
@@ -46717,7 +46718,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -46725,6 +46725,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 0}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!43 &1085795811
 Mesh:
@@ -50417,6 +50418,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b05c1b8a3ee4095a26487549b818d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redRenderer: {fileID: 0}
+  yellowRenderer: {fileID: 0}
+  greenRenderer: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!1 &1205526224
 GameObject:
   m_ObjectHideFlags: 0
@@ -56466,6 +56471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b05c1b8a3ee4095a26487549b818d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redRenderer: {fileID: 0}
+  yellowRenderer: {fileID: 0}
+  greenRenderer: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!1 &1360676957
 GameObject:
   m_ObjectHideFlags: 0
@@ -60900,7 +60909,6 @@ MonoBehaviour:
   minTailgatingDistance: 20
   midTailgatingDistance: 24
   maxTailgatingDistance: 28
-  upShift: 2
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -60908,6 +60916,7 @@ MonoBehaviour:
   decelerationFactor: 30
   accelerationFactor: 2
   roadGraph: {fileID: 0}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!1 &1461018000
 GameObject:
@@ -63727,7 +63736,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -63735,6 +63743,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 0}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!1 &1607603746
 GameObject:
@@ -65197,6 +65206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b05c1b8a3ee4095a26487549b818d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redRenderer: {fileID: 0}
+  yellowRenderer: {fileID: 0}
+  greenRenderer: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!1 &1731839307
 GameObject:
   m_ObjectHideFlags: 0
@@ -66903,10 +66916,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 60
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
-  m_sharedMaterial: {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -66994,7 +67007,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72362,11 +72375,10 @@ MonoBehaviour:
   rightIndicator: {fileID: 1808057303}
   leftArrow: {fileID: 350637853}
   rightArrow: {fileID: 750797780}
-  rightOn: 0
-  leftOn: 0
   left: {fileID: 4705362011757987152, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
   right: {fileID: -7894187844099307713, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
-  off: {fileID: 2644617449141171127, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
+  leftOn: 0
+  rightOn: 0
 --- !u!114 &1899875445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72403,14 +72415,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac26db4bc99ab4c25a3761d81b996ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  steer: {fileID: 0}
+  accelerate: {fileID: 0}
   brake: {fileID: 75884178530124842, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
+  toggleGear: {fileID: 0}
+  MapToggle: {fileID: 0}
   speedText: {fileID: 22119124}
   gameManager: {fileID: 0}
+  minimap: {fileID: 0}
+  Gear: {fileID: 0}
   motorForce: 2000
   brakeForce: 1e+10
   maxSteerAngle: 60
   steerSensitivity: 1
   steerReturn: 20
+  steerSpeed: 120
+  steerReturnSpeed: 180
   frontLeftWheelCollider: {fileID: 1899875438}
   frontRightWheelCollider: {fileID: 1899875436}
   rearLeftWheelCollider: {fileID: 1899875435}
@@ -72424,6 +72444,8 @@ MonoBehaviour:
   needleMinAngle: 127
   needleMaxAngle: -127
   maxSpeed: 220
+  arcSteering: {fileID: 0}
+  minimapCam: {fileID: 0}
 --- !u!1 &1903201242
 GameObject:
   m_ObjectHideFlags: 0

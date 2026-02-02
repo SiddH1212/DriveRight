@@ -2677,7 +2677,7 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -13163,7 +13163,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -13463,7 +13464,7 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -18124,6 +18125,8 @@ MonoBehaviour:
   maxSteerAngle: 30
   steerSensitivity: 0.5
   steerReturn: 20
+  steerSpeed: 120
+  steerReturnSpeed: 180
   frontLeftWheelCollider: {fileID: 369712986}
   frontRightWheelCollider: {fileID: 1323464051}
   rearLeftWheelCollider: {fileID: 103735949}
@@ -18137,6 +18140,7 @@ MonoBehaviour:
   needleMinAngle: 127
   needleMaxAngle: -127
   maxSpeed: 240
+  arcSteering: {fileID: 0}
   minimapCam: {fileID: 0}
 --- !u!54 &827706273
 Rigidbody:
@@ -38904,7 +38908,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -41855,7 +41860,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -41863,6 +41867,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 327105738}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 327105739}
 --- !u!1 &1719349469
 GameObject:
@@ -44270,7 +44275,7 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -45560,7 +45565,6 @@ MonoBehaviour:
   minTailgatingDistance: 20
   midTailgatingDistance: 24
   maxTailgatingDistance: 28
-  upShift: 2
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -45568,6 +45572,7 @@ MonoBehaviour:
   decelerationFactor: 30
   accelerationFactor: 2
   roadGraph: {fileID: 327105738}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 327105739}
 --- !u!1 &1853841305
 GameObject:
@@ -47287,7 +47292,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -47295,6 +47299,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 327105738}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 327105739}
 --- !u!1 &1904670425
 GameObject:
@@ -47411,6 +47416,7 @@ MonoBehaviour:
   minDist: 30
   vehiclesToSpawn: []
   graph: {fileID: 327105738}
+  player: {fileID: 0}
 --- !u!4 &1906083637
 Transform:
   m_ObjectHideFlags: 0
@@ -48562,7 +48568,7 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials:
-  - {fileID: -510780481592669720, guid: 1dc26aa5730de446dbc7b34db83835f9, type: 2}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -51450,7 +51456,6 @@ MonoBehaviour:
   minTailgatingDistance: 20
   midTailgatingDistance: 24
   maxTailgatingDistance: 28
-  upShift: 2
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -51458,6 +51463,7 @@ MonoBehaviour:
   decelerationFactor: 30
   accelerationFactor: 2
   roadGraph: {fileID: 327105738}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 327105739}
 --- !u!1 &2070903160
 GameObject:
@@ -52970,7 +52976,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -52978,6 +52983,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 327105738}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 327105739}
 --- !u!1 &2112912502
 GameObject:

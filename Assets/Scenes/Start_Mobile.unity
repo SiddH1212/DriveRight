@@ -1066,6 +1066,7 @@ MonoBehaviour:
   offColor: {r: 0.5622641, g: 0.48694193, b: 0.48694193, a: 1}
   nullColor: {r: 0.5754717, g: 0.56135637, b: 0.56135637, a: 1}
   tipRect: {fileID: 1238841167}
+  car: {fileID: 0}
 --- !u!114 &97336704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4855,7 +4856,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -9297,6 +9299,7 @@ MonoBehaviour:
   vrRig: {fileID: 2117296197}
   nonVrCamera: {fileID: 754900391}
   androidControls: {fileID: 0}
+  VRPanel: {fileID: 0}
   Gear: {fileID: 0}
   steering: {fileID: 0}
 --- !u!1 &1512736709
@@ -13279,7 +13282,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

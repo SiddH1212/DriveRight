@@ -33,11 +33,14 @@ public class SupabaseViolationService : MonoBehaviour
 
         string sessionId = SupabaseSessionService.Instance.CurrentSessionId;
 
-        byte[] pngBytes = screenshot.EncodeToPNG();
+        // byte[] pngBytes = screenshot.EncodeToPNG();
+        byte[] jpgBytes = screenshot.EncodeToJPG(60);
+        Destroy(screenshot);
 
         StartCoroutine(
             SupabaseStorageService.UploadScreenshot(
-                pngBytes,
+                // pngBytes,
+                jpgBytes,
                 sessionId,
                 violationNumber,
                 (success, screenshotUrl) =>

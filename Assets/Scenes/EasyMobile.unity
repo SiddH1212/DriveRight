@@ -1394,7 +1394,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -1402,6 +1401,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 1303926726}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 1303926727}
 --- !u!1001 &125670469
 PrefabInstance:
@@ -2081,7 +2081,6 @@ MonoBehaviour:
   minTailgatingDistance: 20
   midTailgatingDistance: 24
   maxTailgatingDistance: 28
-  upShift: 2
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -2089,6 +2088,7 @@ MonoBehaviour:
   decelerationFactor: 30
   accelerationFactor: 2
   roadGraph: {fileID: 1303926726}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 1303926727}
 --- !u!1001 &167197766
 PrefabInstance:
@@ -4476,7 +4476,6 @@ MonoBehaviour:
   minTailgatingDistance: 2.3
   midTailgatingDistance: 3.5
   maxTailgatingDistance: 5
-  upShift: 1
   minTailgatingPenalty: 5
   midTailgatingPenalty: 10
   maxTailgatingPenalty: 20
@@ -4484,6 +4483,7 @@ MonoBehaviour:
   decelerationFactor: 29
   accelerationFactor: 2
   roadGraph: {fileID: 1303926726}
+  rayOrigin: {fileID: 0}
   gameManager: {fileID: 1303926727}
 --- !u!1 &394070756
 GameObject:
@@ -10921,11 +10921,10 @@ MonoBehaviour:
   rightIndicator: {fileID: 1594729659}
   leftArrow: {fileID: 501758065}
   rightArrow: {fileID: 685801281}
-  rightOn: 0
-  leftOn: 0
   left: {fileID: 4705362011757987152, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
   right: {fileID: -7894187844099307713, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
-  off: {fileID: 2644617449141171127, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
+  leftOn: 0
+  rightOn: 0
 --- !u!114 &1143665383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10962,14 +10961,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac26db4bc99ab4c25a3761d81b996ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  steer: {fileID: 0}
+  accelerate: {fileID: 0}
   brake: {fileID: 75884178530124842, guid: 45ccaeafa95286d47b51aaa1a4bcadfc, type: 3}
+  toggleGear: {fileID: 0}
+  MapToggle: {fileID: 0}
   speedText: {fileID: 207590674}
   gameManager: {fileID: 1303926727}
+  minimap: {fileID: 0}
+  Gear: {fileID: 0}
   motorForce: 200
   brakeForce: 100
   maxSteerAngle: 30
   steerSensitivity: 0.5
   steerReturn: 20
+  steerSpeed: 120
+  steerReturnSpeed: 180
   frontLeftWheelCollider: {fileID: 813332322}
   frontRightWheelCollider: {fileID: 674463238}
   rearLeftWheelCollider: {fileID: 25616180}
@@ -10983,6 +10990,8 @@ MonoBehaviour:
   needleMinAngle: 127
   needleMaxAngle: -127
   maxSpeed: 220
+  arcSteering: {fileID: 0}
+  minimapCam: {fileID: 0}
 --- !u!54 &1143665385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11450,13 +11459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f00e3ac1094fbb89467e98347b97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nCars: 0
-  nTrucks: 0
   minDist: 80
-  carPrefabBlue: {fileID: 122452414}
-  carPrefabRed: {fileID: 368637371}
-  truckPrefab: {fileID: 148505726}
+  vehiclesToSpawn: []
   graph: {fileID: 1303926726}
+  player: {fileID: 0}
 --- !u!4 &1166889754
 Transform:
   m_ObjectHideFlags: 0
@@ -12245,10 +12251,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 100
+  fileCount: 0
+  elapsedTime: 0
+  timeLimit: 100
+  messageList: []
+  deltaScores: []
+  gameplayActive: 0
+  graceActive: 0
+  violations: []
   scoreText: {fileID: 1755660369}
   mainCam: {fileID: 0}
-  fileCount: 0
-  messageList: []
+  currentPath: []
+  destination: {fileID: 0}
 --- !u!4 &1303926728
 Transform:
   m_ObjectHideFlags: 0

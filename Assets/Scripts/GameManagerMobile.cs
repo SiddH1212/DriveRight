@@ -214,9 +214,11 @@ public class GameManagerMobile : GameManagerBase
 
         float t = (float)violationCount / maxViolations;
         if(!AppMode.UseVR)
-            violationBarFill.fillAmount = 1f - Mathf.Clamp01(t);
+            // violationBarFill.fillAmount = 1f - Mathf.Clamp01(t);
+            violationBarFill.fillAmount = Mathf.Clamp01(t);
         else
-            violationBarFill2.fillAmount = 1f - Mathf.Clamp01(t);
+            // violationBarFill2.fillAmount = 1f - Mathf.Clamp01(t);
+            violationBarFill2.fillAmount = Mathf.Clamp01(t);
     }
 
     private IEnumerator AnimateViolationBar()
@@ -226,7 +228,8 @@ public class GameManagerMobile : GameManagerBase
             start = violationBarFill.fillAmount;
         else
             start = violationBarFill2.fillAmount;
-        float target = 1f - (float)violationCount / maxViolations;
+        // float target = 1f - (float)violationCount / maxViolations;
+        float target = (float)violationCount / maxViolations;
         float t = 0f;
 
         while (t < 1f)
@@ -264,15 +267,19 @@ public class GameManagerMobile : GameManagerBase
 
         yield return new WaitForEndOfFrame();
 
-        Texture2D image = new Texture2D(
+        Texture2D full = new Texture2D(
             Screen.width,
             Screen.height,
             TextureFormat.RGB24,
             false
         );
 
-        image.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        image.Apply();
+        full.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        full.Apply();
+
+        // 🔥 Resize to 1280x720
+        Texture2D image = ResizeTexture(full, 1280, 720);
+        Destroy(full);
 
         // ✅ violationNumber derived here (NO extra state)
         int violationNumber = violations.Count + 1;
@@ -311,8 +318,10 @@ public class GameManagerMobile : GameManagerBase
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
 
-        string path = Path.Combine(dir, $"event_{idx}.png");
-        File.WriteAllBytes(path, violations[idx].image.EncodeToPNG());
+        // string path = Path.Combine(dir, $"event_{idx}.png");
+        // File.WriteAllBytes(path, violations[idx].image.EncodeToPNG());
+        string path = Path.Combine(dir, $"event_{idx}.jpg");
+        File.WriteAllBytes(path, violations[idx].image.EncodeToJPG(60));
 
         Destroy(violations[idx].image);
         violations[idx].image = null;
@@ -329,6 +338,24 @@ public class GameManagerMobile : GameManagerBase
         SaveImage((idx - 1 + violations.Count) % violations.Count);
         SaveImage((idx + 1) % violations.Count);
     }
+    Texture2D ResizeTexture(Texture2D source, int width, int height)
+    {
+        RenderTexture rt = RenderTexture.GetTemporary(width, height);
+        Graphics.Blit(source, rt);
+
+        RenderTexture prev = RenderTexture.active;
+        RenderTexture.active = rt;
+
+        Texture2D result = new Texture2D(width, height, TextureFormat.RGB24, false);
+        result.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        result.Apply();
+
+        RenderTexture.active = prev;
+        RenderTexture.ReleaseTemporary(rt);
+
+        return result;
+    }
+
 
     /* ===================== NOTIFICATIONS ===================== */
 
