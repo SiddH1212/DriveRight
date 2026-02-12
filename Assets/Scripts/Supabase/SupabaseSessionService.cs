@@ -7,6 +7,7 @@ public class SupabaseSessionService : MonoBehaviour
 
     public string currentSessionId;
     public string CurrentSessionId => currentSessionId;
+
     void Awake()
     {
         if (Instance == null)
@@ -27,6 +28,7 @@ public class SupabaseSessionService : MonoBehaviour
     {
         public string id;
         public string device_id;
+        public string user_id;     // ✅ ADDED
         public string level;
         public string language;
         public bool is_vr;
@@ -35,10 +37,17 @@ public class SupabaseSessionService : MonoBehaviour
 
     public void StartSession(string level, string language, bool isVR)
     {
+        if (string.IsNullOrEmpty(UserSession.CurrentUserId))
+        {
+            Debug.LogError("[Supabase] Cannot start session: no user selected");
+            return;
+        }
+
         var payload = new StartSessionPayload
         {
             id = Guid.NewGuid().ToString(),
             device_id = DeviceManager.DeviceId,
+            user_id = UserSession.CurrentUserId, // ✅ THIS FIXES NULL
             level = level,
             language = language,
             is_vr = isVR,

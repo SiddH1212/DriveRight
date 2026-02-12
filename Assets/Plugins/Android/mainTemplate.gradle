@@ -8,31 +8,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.19.4'
 
-// Android Resolver Dependencies Start
-    implementation 'com.google.android.gms:play-services-base:18.9.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:17
-    implementation 'com.google.firebase:firebase-analytics:23.0.0' // Assets/Firebase/Editor/StorageDependencies.xml:15
-    implementation 'com.google.firebase:firebase-app-unity:13.6.0' // Assets/Firebase/Editor/AppDependencies.xml:22
-    implementation 'com.google.firebase:firebase-auth:24.0.1' // Assets/Firebase/Editor/AuthDependencies.xml:13
-    implementation 'com.google.firebase:firebase-auth-unity:13.6.0' // Assets/Firebase/Editor/AuthDependencies.xml:20
-    implementation 'com.google.firebase:firebase-common:22.0.1' // Assets/Firebase/Editor/AppDependencies.xml:13
-    implementation 'com.google.firebase:firebase-database:22.0.1' // Assets/Firebase/Editor/DatabaseDependencies.xml:13
-    implementation 'com.google.firebase:firebase-database-unity:13.6.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:22
-    implementation 'com.google.firebase:firebase-storage:22.0.1' // Assets/Firebase/Editor/StorageDependencies.xml:13
-    implementation 'com.google.firebase:firebase-storage-unity:13.6.0' // Assets/Firebase/Editor/StorageDependencies.xml:20
-// Android Resolver Dependencies End
 **DEPS**}
 
-// Android Resolver Exclusions Start
-android {
-  packagingOptions {
-      exclude ('/lib/armeabi/*' + '*')
-      exclude ('/lib/mips/*' + '*')
-      exclude ('/lib/mips64/*' + '*')
-      exclude ('/lib/x86/*' + '*')
-      exclude ('/lib/x86_64/*' + '*')
-  }
-}
-// Android Resolver Exclusions End
 android {
     ndkPath "**NDKPATH**"
 

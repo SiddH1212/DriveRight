@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,84 +6,179 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.IO;
-using System.Collections;
 
 public class StartMobile : MonoBehaviour
 {
-    /* ---------------- UI REFERENCES ---------------- */
+    /* ===================== CANVASES ===================== */
 
-    public GameObject firstCanvas, nameCanvas, scoreCanvas;
-    public TextMeshProUGUI previousScore;
-    public Transform scoreListParent;
+    public GameObject firstCanvas;
+    public GameObject nameCanvas;
+    public GameObject userCanvas;
+    public GameObject instructionsCanvas;
     public GameObject Loading;
-    public Button Play, stats, quit, back1, back2, Basic, Advanced;
-    public TMP_InputField nameInputField;
-    public Toggle showTextToggle;
 
-    [SerializeField] private GameObject firstCanvasFirst;
-    [SerializeField] private GameObject nameCanvasFirst;
-    [SerializeField] private GameObject scoreCanvasFirst;
+    /* ===================== FIRST CANVAS ===================== */
 
-    /* ---------------- SESSION ---------------- */
+    public Button playButton;
+    public Button instructionsButton;
+    public Button quitButton;
 
-    private static bool prefsClearedThisSession = false;
+    /* ===================== NAME CANVAS ===================== */
+
+    public TMP_Dropdown userDropdown;
+    public TMP_Dropdown languageDropdown;
+    public Button basicButton;
+    public Button advancedButton;
+    public Button backFromNameButton;
+    public Button createUserButton;
+
+    /* ===================== USER CANVAS ===================== */
+
+    public TMP_InputField userNameInput;
+    public TMP_InputField userEmailInput;
+    public Button submitUserButton;
+    public Button backFromUserButton;
+
+    /* ===================== STATE ===================== */
+
+    private List<SupabaseUserService.User> loadedUsers = new();
 
     /* ===================== UNITY ===================== */
 
     void Awake()
     {
         DeviceManager.EnsureExists();
-
-        if (!prefsClearedThisSession)
-        {
-            // Clear only gameplay-related prefs
-            PlayerPrefs.DeleteKey("LastScore");
-            PlayerPrefs.DeleteKey("PlayerName");
-            PlayerPrefs.DeleteKey("AllPlayers");
-
-            PlayerPrefs.Save();
-            prefsClearedThisSession = true;
-            Debug.Log("Gameplay PlayerPrefs cleared (DeviceId preserved)");
-        }
-
         ClearCaptureDirectory();
     }
 
     void Start()
     {
-        firstCanvas.SetActive(true);
-        nameCanvas.SetActive(false);
-        scoreCanvas.SetActive(false);
+        ShowFirstCanvas();
 
-        if (InputMode.IsControllerConnected())
-            EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
+        playButton.onClick.AddListener(OpenNameCanvas);
+        instructionsButton.onClick.AddListener(OpenInstructions);
+        quitButton.onClick.AddListener(Application.Quit);
 
-        Play.onClick.AddListener(OnClickPlay);
-        Basic.onClick.AddListener(() => OnClickStart("Basic"));
-        Advanced.onClick.AddListener(() => OnClickStart("Advanced"));
-        stats.onClick.AddListener(CheckStats);
-        quit.onClick.AddListener(OnClickQuit);
-        back1.onClick.AddListener(OnClickBack);
-        back2.onClick.AddListener(OnClickBack);
+        backFromNameButton.onClick.AddListener(ShowFirstCanvas);
+        backFromUserButton.onClick.AddListener(OpenNameCanvas);
+
+        createUserButton.onClick.AddListener(OpenUserCanvas);
+        submitUserButton.onClick.AddListener(CreateUser);
+
+        basicButton.onClick.AddListener(() => StartGame("Basic"));
+        advancedButton.onClick.AddListener(() => StartGame("Advanced"));
+
         Loading.SetActive(false);
     }
 
-    /* ===================== FLOW ===================== */
+    /* ===================== CANVAS FLOW ===================== */
 
-    private void OnClickPlay()
+    void ShowFirstCanvas()
+    {
+        firstCanvas.SetActive(true);
+        nameCanvas.SetActive(false);
+        userCanvas.SetActive(false);
+        instructionsCanvas.SetActive(false);
+    }
+
+    void OpenNameCanvas()
     {
         firstCanvas.SetActive(false);
         nameCanvas.SetActive(true);
+        userCanvas.SetActive(false);
+        instructionsCanvas.SetActive(false);
 
-        if (InputMode.IsControllerConnected())
-            EventSystem.current.SetSelectedGameObject(nameCanvasFirst);
+        StartCoroutine(LoadUsers());
     }
 
-    private void OnClickStart(string mode)
+    void OpenUserCanvas()
     {
+        nameCanvas.SetActive(false);
+        userCanvas.SetActive(true);
+    }
+
+    void OpenInstructions()
+    {
+        firstCanvas.SetActive(false);
+        instructionsCanvas.SetActive(true);
+    }
+
+    /* ===================== USERS ===================== */
+
+    IEnumerator LoadUsers()
+    {
+        userDropdown.ClearOptions();
+        loadedUsers.Clear();
+        // Placeholder option
+        var options = new List<string> { "Select User" };
+        yield return SupabaseUserService.Instance.FetchUsers(users =>
+        {
+            loadedUsers = users;
+
+            // var options = new List<string>();
+            foreach (var u in users)
+                options.Add(u.display_name);
+
+            userDropdown.AddOptions(options);
+            // Force placeholder selection
+            userDropdown.value = 0;
+            userDropdown.RefreshShownValue();
+        });
+    }
+
+    void CreateUser()
+    {
+        string name = userNameInput.text.Trim();
+        string email = userEmailInput.text.Trim();
+
+        if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email))
+        {
+            Debug.LogWarning("Name and Email are required");
+            return;
+        }
+
+        SupabaseUserService.Instance.CreateUser(name, email, (success, user) =>
+        {
+            if (!success)
+            {
+                Debug.LogError("User creation failed");
+                return;
+            }
+
+            UserSession.CurrentUserId = user.id;
+            UserSession.CurrentUserName = user.display_name;
+            UserSession.CurrentUserEmail = user.email;
+
+            OpenNameCanvas();
+        });
+    }
+
+    /* ===================== START GAME ===================== */
+
+    void StartGame(string mode)
+    {
+
+        // if (userDropdown.options.Count == 0)
+        // {
+        //     Debug.LogWarning("No user selected");
+        //     return;
+        // }
+        if (userDropdown.value == 0)
+        {
+            Debug.LogWarning("User must be selected");
+            return;
+        }
+        // var selectedUser = loadedUsers[userDropdown.value];
+        var selectedUser = loadedUsers[userDropdown.value - 1];
+
+        // PlayerPrefs.SetString("SELECTED_USER_ID", selectedUser.id);
+        // PlayerPrefs.SetString("SELECTED_USER_NAME", selectedUser.display_name);
+        // PlayerPrefs.Save();
+        UserSession.CurrentUserId = selectedUser.id;
+        UserSession.CurrentUserName = selectedUser.display_name;
+        UserSession.CurrentUserEmail = selectedUser.email;
         Loading.SetActive(true);
 
-        // 🔑 START SUPABASE SESSION HERE
         SupabaseSessionService.Instance.StartSession(
             level: mode,
             language: LanguageTranslator.SelectedLanguage,
@@ -91,100 +187,29 @@ public class StartMobile : MonoBehaviour
 
         if (mode == "Basic")
             StartCoroutine(LoadSceneAsync("Mobile2"));
-        else if (mode == "Advanced")
-            StartCoroutine(LoadSceneAsync("Night_Mobile"));
         else
-            Debug.LogError($"Unknown mode: {mode}");
+            StartCoroutine(LoadSceneAsync("Night_Mobile"));
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName)
+    IEnumerator LoadSceneAsync(string sceneName)
     {
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
-        loadOperation.allowSceneActivation = false;
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+        op.allowSceneActivation = false;
 
-        while (loadOperation.progress < 0.9f)
+        while (op.progress < 0.9f)
             yield return null;
 
-        loadOperation.allowSceneActivation = true;
+        op.allowSceneActivation = true;
     }
 
-    private void OnClickQuit()
-    {
-        Application.Quit();
-    }
+    /* ===================== CLEANUP ===================== */
 
-    /* ===================== STATS ===================== */
-
-    private void CheckStats()
-    {
-        firstCanvas.SetActive(false);
-        scoreCanvas.SetActive(true);
-        LoadAndDisplayScores();
-
-        if (InputMode.IsControllerConnected())
-            EventSystem.current.SetSelectedGameObject(scoreCanvasFirst);
-    }
-
-    private void LoadAndDisplayScores()
-    {
-        string allPlayers = PlayerPrefs.GetString("AllPlayers", "");
-
-        if (string.IsNullOrEmpty(allPlayers))
-        {
-            previousScore.text = "No previous scores";
-            return;
-        }
-
-        var players = allPlayers.Split(',', System.StringSplitOptions.RemoveEmptyEntries);
-        string displayText = "";
-
-        foreach (var p in players)
-        {
-            int score = PlayerPrefs.GetInt($"Score_{p}", 0);
-            displayText += $"{p}: {score}\n";
-        }
-
-        previousScore.text = displayText;
-    }
-
-    private void ClearCaptureDirectory()
+    void ClearCaptureDirectory()
     {
         string path = Path.Combine(Application.persistentDataPath, "Captures");
+        if (!Directory.Exists(path)) return;
 
-        if (!Directory.Exists(path))
-            return;
-
-        try
-        {
-            foreach (string file in Directory.GetFiles(path))
-                File.Delete(file);
-
-            Debug.Log("Cleared Captures directory (Mobile)");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning($"Failed to clear Captures directory: {e.Message}");
-        }
-    }
-
-    /* ===================== NAVIGATION ===================== */
-
-    private void OnClickBack()
-    {
-        nameCanvas.SetActive(false);
-        scoreCanvas.SetActive(false);
-        firstCanvas.SetActive(true);
-
-        if (InputMode.IsControllerConnected())
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstCanvasFirst);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (EventSystem.current != null)
-            EventSystem.current.SetSelectedGameObject(null);
+        foreach (var file in Directory.GetFiles(path))
+            File.Delete(file);
     }
 }
