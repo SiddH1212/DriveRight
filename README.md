@@ -1,30 +1,48 @@
-# DriveRight — Technical Handover
+# DriveRight — Complete Technical Handover
 
-This branch contains the handover documentation for the DriveRight Unity project. The Unity source is maintained on `siddharth_main`; this branch is intended to hold documentation and should not be treated as the application source branch.
+This branch contains the technical handover documentation for the DriveRight Unity project.
 
-## Documentation
+- **Unity source branch:** `siddharth_main`
+- **Documentation branch:** `handover/driveright-documentation`
+- **Unity Editor:** 2022.3.30f1
 
-- [Supabase integration — detailed technical guide](docs/SUPABASE_INTEGRATION.md)
+> Open the source branch in Unity. This documentation branch is for the guides; it is not the source branch to build from.
 
-## Project scope
+## What is this project?
 
-The Unity project contains mobile gameplay and a separate Quest-oriented VR flow. The repository also contains Google Cardboard-related package/code references. Treat these as three distinct deployment targets when preparing builds:
+DriveRight is a Unity driving / road-safety training application. The source repository contains multiple target experiences in one Unity project:
 
-1. Android touchscreen
-2. Meta Quest headset
-3. Android phone running Google Cardboard VR (integration/build readiness must be verified in Unity)
+1. Android touchscreen app.
+2. Meta Quest standalone headset VR app.
+3. Google Cardboard phone VR integration (plugin and startup script are present; complete scene/build wiring must be verified).
 
-## Source branch and editor
+The Quest app is not a separate codebase. It uses the same Unity project but requires the Quest scene flow, Android build target, XR provider, headset rig, controller input and VR UI to be configured. See the build guide before attempting a Quest build.
 
-- Source branch: `siddharth_main`
-- Unity Editor version recorded in `ProjectSettings/ProjectVersion.txt`: 2022.3.30f1
-- Main gameplay and integration scripts: `Assets/Scripts/`
-- Supabase integration scripts: `Assets/Scripts/Supabase/`
+## Documentation index
 
-## Important handover notes
+### Start here
 
-- Open the source branch in Unity, not this documentation branch, unless the documentation has been merged into the source branch.
-- Git LFS is used for some project assets/settings. Ensure Git LFS files are downloaded before opening or building.
-- Scene wiring, Inspector references, Build Settings, XR settings and Supabase dashboard policies must be checked in the Unity Editor/Supabase project. Source code alone cannot prove those external settings are correct.
-- Never put a Supabase secret/service-role key in a Unity client. The app is a public client; use a publishable key with least-privilege database grants and Row Level Security (RLS).
+- [Installation and build manual](docs/SETUP_AND_BUILD.md) — clone, Git LFS, Unity setup, packages, Android touchscreen build, Quest build, Cardboard build and release checklist.
+- [Architecture and code map](docs/ARCHITECTURE_AND_CODE_MAP.md) — scene flows, script responsibilities, gameplay data flow, localization, road graph and service structure.
+- [Mobile, Quest and Cardboard modes](docs/MOBILE_AND_VR_MODES.md) — what differs between target versions and exact Quest-vs-mobile build considerations.
+- [Supabase integration](docs/SUPABASE_INTEGRATION.md) — detailed REST/Storage design, data contracts, database model, security, setup, testing and known implementation defects.
+- [Developer guide](docs/DEVELOPMENT_GUIDE.md) — how to extend the project, inspect scene wiring, debug gameplay, work with graph data and maintain the codebase.
 
+## Repository notes
+
+- Source branch reviewed: `siddharth_main`.
+- Unity version: `2022.3.30f1`.
+- Important packages include URP 14.0.11, XR Interaction Toolkit 2.5.4, XR Plug-in Management 4.5.3, Oculus XR Plugin 4.2.0, OpenXR 1.10.0 and Google Cardboard XR Plugin v1.29.0.
+- Git LFS is used for some assets and settings. Run `git lfs pull` before opening the project.
+- The actual scene hierarchy, Inspector references, XR provider activation and Build Settings scene list must be verified in Unity because relevant serialized files are LFS-backed.
+
+## Important verification boundaries
+
+The guides separate code findings from assumptions:
+- Script behavior and package dependencies were inspected from the source branch.
+- Scene names and scene navigation mappings are documented where visible in code/repository.
+- Scene object hierarchy, camera rig wiring, build profiles, Player Settings, database schema, RLS and Storage policies need direct verification in Unity or the Supabase dashboard.
+- The presence of Cardboard code/package is not proof of a working Cardboard build.
+- The presence of Oculus/OpenXR packages is not proof of which Quest XR loader is currently active.
+
+Never ship a Supabase service-role/secret key in a Unity client. Use a publishable key with restrictive database grants and RLS.
